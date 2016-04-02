@@ -15,6 +15,9 @@ img {
     font-size: 75px;
     margin: 5%;
 }
+.subheader {
+    font-size: 50px;
+}
 .login {
 	font-size: 60px;
 	position: absolute;
@@ -26,13 +29,46 @@ img {
 
 form {
 	font-size: 30px;
+    padding: 20px;
 }
+
+
 
 .input {
 	line-height: 40px;
 	width : 100%;
 }
 
+.menu {
+    position: absolute;
+	top: 17.5%;
+    right: 2.55%;
+}
+.content{
+    position: absolute;
+    background-color: black; /* Green */
+    border: none;
+    color: white;
+    top: 25%;
+    height: 70%;
+    width: 95%;
+    font-size: 16px;
+    right: 2.5%;
+}
+center{
+    font-size: 35px;
+    padding-top: 10%;
+}
+.col1{
+    position: absolute;
+    width: 50%;
+    left: 5%;
+}
+.col2{
+    position: absolute;
+    width: 50%;
+    left: 50%;
+}
 .button {
 	position: absolute;
     background-color: #008CBA; /* Green */
@@ -48,6 +84,29 @@ form {
 	font-style: italic;
 	position: absolute;
     background-color: #008CBA; /* Green */
+    border: none;
+    color: white;
+    padding: 20px 37px;
+    text-align: center;
+    font-size: 16px;
+    right: 0%;
+
+}
+
+.buttonMenu {
+
+    background-color: black; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    right: 0%;
+
+}
+.buttonMenu:hover {
+	font-style: italic;
+    background-color: red; /* Green */
     border: none;
     color: white;
     padding: 20px 37px;

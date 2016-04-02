@@ -8,7 +8,7 @@
 	<img src="http://hdwallpaperslovely.com/wp-content/gallery/black-and-grey-wallpaper/Black_and_Grey_Pattern_by_kkll70.png">
 	<div class = "header">
 		UmaLand
-	<div>
+	</div>
 	
 	<div class = "login">
 		Log In
