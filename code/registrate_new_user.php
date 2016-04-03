@@ -12,19 +12,19 @@
         <div>
             <table class = "menu">
                 <tr>
-                    <td><a href="http://localhost/themePark/code/clockInOut.php" class="buttonMenu">Check In/Out</a></td>
-                    <td><a href="http://localhost/themePark/code/scheduling.php" class="buttonMenu">Scheduling</a></td>
-                    <td><a href="http://localhost/themePark/code/ticketing.php" class="buttonMenu">Ticketing</a></td>
-                    <td><a href="http://localhost/themePark/code/concessions.php" class="buttonMenu">Concessions</a></td>
-                    <td><a href="http://localhost/themePark/code/maintenance.php" class="buttonMenu">Maitenance</a></td>
-                    <td><a href="http://localhost/themePark/code/managment.php" class="buttonMenu">Management</a></td>
-                    <td><a href="http://localhost/themePark/code/admin.php" class="buttonMenu">Admin</a></td>
+                    <td><a href="clockInOut.php" class="buttonMenu">Check In/Out</a></td>
+                    <td><a href="scheduling.php" class="buttonMenu">Scheduling</a></td>
+                    <td><a href="ticketing.php" class="buttonMenu">Ticketing</a></td>
+                    <td><a href="concessions.php" class="buttonMenu">Concessions</a></td>
+                    <td><a href="maintenance.php" class="buttonMenu">Maitenance</a></td>
+                    <td><a href="managment.php" class="buttonMenu">Management</a></td>
+                    <td><a href="admin.php" class="buttonMenu">Admin</a></td>
                 </tr>
             </table>
         </div>
         
         <div class = "content" >
-            <form action="http://localhost/themePark/code/user_added.php" method="post" id="userform" >
+            <form action="user_added.php" method="post" id="userform" >
                 
                 <b>Add a New User</b>
                 <div class = "col1">
