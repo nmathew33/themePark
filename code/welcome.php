@@ -26,7 +26,7 @@ if(isset($_SESSION['id'])){
         <div>
             <table class = "menu">
                 <tr>
-                    <td><a href="clockInOut.php" class="buttonMenu">Check In/Out</a></td>
+                    <td><a href="clockInOut.php" class="buttonMenu">Clock In/Out</a></td>
                     <td><a href="scheduling.php" class="buttonMenu">Scheduling</a></td>
                     <td><a href="ticketing.php" class="buttonMenu">Ticketing</a></td>
                     <td><a href="concessions.php" class="buttonMenu">Concessions</a></td>
@@ -39,7 +39,7 @@ if(isset($_SESSION['id'])){
         
         <div class = "content" >
             <?php
-                echo "<center>
+                echo "<center class=\"info\">
                         <h1>Welcome " . $first_name . ' ' . $last_name . "</h1>
                         <p>Click one of the functional tabs above to get started</p>
                         </center>";

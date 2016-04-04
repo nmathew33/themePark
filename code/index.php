@@ -21,6 +21,8 @@ if(isset($_POST['username'])){
 	$dbEmail = $row['email'];
 	$dbPassword = $row['password'];
 
+	mysqli_close($dbc);
+
 	if($username == $dbEmail && $password == $dbPassword){
 		//Set session variables 
 		$_SESSION['username'] = $username;

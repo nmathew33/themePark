@@ -1,6 +1,6 @@
 body {
     background-image: url("images/91839.jpg");
-    color: rgb(255, 255, 255);
+    color: white;
 }
 img {
     position: absolute;
@@ -46,7 +46,7 @@ form {
 }
 .content{
     position: absolute;
-    background-color: black; /* Green */
+    background-color: black; 
     border: none;
     color: white;
     top: 25%;
@@ -55,7 +55,21 @@ form {
     font-size: 16px;
     right: 2.5%;
 }
-center{
+.reports{
+    background-color: white;
+    border: #008CBA;
+    font-color: black;
+    height: 600px; 
+    overflow: scroll;
+}
+.report{
+    color: black;
+}
+.report, b{
+    color: black;
+    font-size: 18px;
+}
+.info{
     font-size: 35px;
     padding-top: 10%;
 }
@@ -71,7 +85,7 @@ center{
 }
 .button {
 	position: absolute;
-    background-color: #008CBA; /* Green */
+    background-color: #008CBA; 
     border: none;
     color: white;
     padding: 15px 32px;
@@ -83,7 +97,7 @@ center{
 .button:hover {
 	font-style: italic;
 	position: absolute;
-    background-color: #008CBA; /* Green */
+    background-color: #008CBA; 
     border: none;
     color: white;
     padding: 20px 37px;
@@ -95,7 +109,7 @@ center{
 
 .buttonMenu {
 
-    background-color: black; /* Green */
+    background-color: black; 
     border: none;
     color: white;
     padding: 15px 32px;
@@ -106,10 +120,32 @@ center{
 }
 .buttonMenu:hover {
 	font-style: italic;
-    background-color: red; /* Green */
+    background-color: red; 
     border: none;
     color: white;
     padding: 20px 37px;
+    text-align: center;
+    font-size: 16px;
+    right: 0%;
+
+}
+.clockInButton {
+
+    background-color: green; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    right: 0%;
+
+}
+.clockOutButton {
+
+    background-color: red; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
     text-align: center;
     font-size: 16px;
     right: 0%;

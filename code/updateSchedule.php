@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if(isset($_SESSION['id'])){
+    $id = $_SESSION['id'];
+} else{
+    header("Location: index.php");
+}
+?>
 <html>
     <head>
         <title>Register User</title>
@@ -7,6 +16,7 @@
         <img src="http://hdwallpaperslovely.com/wp-content/gallery/black-and-grey-wallpaper/Black_and_Grey_Pattern_by_kkll70.png">
         <div class = "subheader">
 	   	   UmaLand
+           <a href="logout.php" class="button">Sign Out</a>
 	    </div>
         
         <div>
@@ -49,136 +59,90 @@
 
                 }
 
-                if(empty($_POST['role'])){
+                if(empty($_POST['idShift_Schedule'])){
 
-                    $data_missing[] = 'Role';
+                    $data_missing[] = 'idShift_Schedule';
 
                 } else{
 
-                    $role = trim($_POST['role']);
+                    $shiftID = trim($_POST['idShift_Schedule']);
 
                 }
 
-                if(empty($_POST['email'])){
+                if(empty($_POST['worker_id'])){
 
-                    $data_missing[] = 'Email';
+                    $data_missing[] = 'worker_id';
 
                 } else {
 
-                    $email = trim($_POST['email']);
+                    $workerID = trim($_POST['worker_id']);
 
                 }
 
-                if(empty($_POST['street'])){
+                if(empty($_POST['date_begin'])){
 
-                    $data_missing[] = 'Street';
+                    $data_missing[] = 'date_begin';
 
                 } else {
 
-                    $street = trim($_POST['street']);
+                    $date_begin = trim($_POST['date_begin']);
 
                 }
 
-                if(empty($_POST['city'])){
+                if(empty($_POST['time_begin'])){
 
-                    $data_missing[] = 'City';
+                    $data_missing[] = 'time_begin';
 
                 } else {
 
-                    $city = trim($_POST['city']);
+                    $time_begin = trim($_POST['time_begin']);
 
                 }
 
-                if(empty($_POST['state'])){
+                if(empty($_POST['date_end'])){
 
-                    $data_missing[] = 'State';
+                    $data_missing[] = 'date_end';
 
                 } else {
 
-                    $state = trim($_POST['state']);
+                    $date_end = trim($_POST['date_end']);
 
                 }
 
-                if(empty($_POST['zip'])){
+                if(empty($_POST['time_end'])){
 
-                    $data_missing[] = 'Zip Code';
+                    $data_missing[] = 'time_end';
 
                 } else {
 
-                    $zip = trim($_POST['zip']);
+                    $time_end = trim($_POST['time_end']);
 
                 }
 
-                if(empty($_POST['phone'])){
+                if(empty($_POST['managerID'])){
 
-                    $data_missing[] = 'Phone Number';
+                    $data_missing[] = 'managerID';
 
                 } else {
 
-                    $phone = trim($_POST['phone']);
+                    $managerID = trim($_POST['managerID']);
 
                 }
 
-                if(empty($_POST['ssn'])){
-
-                    $data_missing[] = 'Social Security Number';
-
-                } else {
-
-                    $ssn = trim($_POST['ssn']);
-
-                }
-
-                if(empty($_POST['gender'])){
-
-                    $data_missing[] = 'Gender';
-
-                } else {
-
-                    $gender = trim($_POST['gender']);
-
-                }
-
-                if(empty($_POST['password'])){
-
-                    $data_missing[] = 'Password';
-
-                } else {
-
-                    $password = trim($_POST['password']);
-
-                }
-
-                if(empty($_POST['employed_date'])){
-
-                    $data_missing[] = 'Date Employed';
-
-                } else {
-
-                    $e_date = trim($_POST['employed_date']);
-
-                }
-
-                
-    
                 if(empty($data_missing)){
                     
                     require_once('../db_connection.php');
                     
-                    $query = "INSERT INTO Users (idUsers, role_id, first_name, last_name, email,
-                    address, phone, ssn, gender, password, date_employed) VALUES ( ?, ?, ?, ?,
-                    ?, ?, ?, ?, ?, ?, ?)";
+                    $query = "UPDATE Shift_Schedule SET worker_id= ?, shift_begin = ?, shift_end= ?, created_by = ? WHERE idShift_Schedule = ?";
                     
                     $stmt = mysqli_prepare($dbc, $query);
                     
-                    $userId = sprintf("%06d", mt_rand(1, 999999));
+                    $shift_begin = $date_begin . ' ' . $time_begin;
                     
-                    $roleId = intval($role);
+                    $shift_end = $date_end . ' ' . $time_end;
                     
-                    $address = $street . ' ' . $city . ', ' . $state . ' ' . $zip;
                     
-                    mysqli_stmt_bind_param($stmt, "sisssssssss", $userId, $roleId, $f_name, $l_name, $email,
-                                           $address, $phone, $ssn, $gender, $password, $e_date);
+                    mysqli_stmt_bind_param($stmt, "issii", $workerID, $shift_begin, $shift_end, $managerID, $shiftID);
                     
                     mysqli_stmt_execute($stmt);
                     
@@ -186,7 +150,7 @@
                     
                     if($affected_rows == 1){
                         
-                        echo '<center><h1>User Successfully Entered</h1></center>';
+                        echo '<center><h1>Update Successfully Entered</h1></center>';
                         
                         mysqli_stmt_close($stmt);
                         mysqli_close($dbc);
@@ -221,7 +185,7 @@
 
         ?>
 
-        <a href="registrate_new_user.php" class="button">Create New User</a>
+        <a href="schedule.php" class="button">View Schedules</a>
         </div>
 </body>
 </html>

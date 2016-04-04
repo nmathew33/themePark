@@ -12,7 +12,7 @@
         <div>
             <table class = "menu">
                 <tr>
-                    <td><a href="clockInOut.php" class="buttonMenu">Check In/Out</a></td>
+                    <td><a href="clockInOut.php" class="buttonMenu">Clock In/Out</a></td>
                     <td><a href="scheduling.php" class="buttonMenu">Scheduling</a></td>
                     <td><a href="ticketing.php" class="buttonMenu">Ticketing</a></td>
                     <td><a href="concessions.php" class="buttonMenu">Concessions</a></td>
@@ -24,7 +24,7 @@
         </div>
         
         <div class = "content" >
-            <center>
+            <center class="info">
                 <h1>Scheduling</h1>
                 <p>Sorry not implemented</p>
             </center>

@@ -1,3 +1,20 @@
+<?php
+session_start();
+
+if(isset($_SESSION['id'])){
+    $username = $_SESSION['username']; 
+    $id = $_SESSION['id'];
+    $roleId = $_SESSION['roleId'];
+    $first_name = $_SESSION['first_name'];
+    $last_name = $_SESSION['last_name'];
+
+    require_once("../db_connection.php");
+    $query = "SELECT idClock_Times, active_status FROM Clock_Times Where user_id = '$id' AND clock_out IS NULL LIMIT 1";
+    $response = @mysqli_query($dbc,$query);
+} else{
+    header("Location: index.php");
+}
+?>
 <html>
 	<head>
 		<title>Register User</title>
@@ -7,6 +24,7 @@
         <img src="http://hdwallpaperslovely.com/wp-content/gallery/black-and-grey-wallpaper/Black_and_Grey_Pattern_by_kkll70.png">
         <div class = "subheader">
 	   	   UmaLand
+           <a href="logout.php" class="button">Sign Out</a>
 	    </div>
         
         <div>
@@ -24,10 +42,33 @@
         </div>
         
         <div class = "content" >
-            <center>
-                <h1>Clock In/Out</h1>
-                <p>Sorry not implemented</p>
-            </center>
+            <?php
+                date_default_timezone_set('America/Chicago');
+                /*  Echo the Date
+                    h : 12 hr format
+                    H : 24 hr format
+                    i : minutes
+                    s : seconds
+                    u : Microseconds
+                    a : lowercase am or pm
+                    l : Full text for the day
+                    F : full text for the month 
+                    j : day of the month
+                    S : suffix for the day
+                    Y : 4 digit year    
+                */
+                    
+                echo '<center class="info"><h1>' . date('h:i:s a'). '</h1><p>' . date('l F jS, Y ') . 'CST</p>' . '</center>';
+                if (mysqli_num_rows($response) == 0) { 
+                   echo '<center><a href="in.php" class="clockInButton">Clock In</a></center>';
+                } else { 
+                    $row = mysqli_fetch_array($response);
+                    $_SESSION['idClock_Times'] = $row['idClock_Times'];
+                    $_SESSION['active_status'] = $row['active_status'];
+                   echo '<center><a href="out.php" class="clockOutButton">Clock Out</a></center>';
+                }
+                mysqli_close($dbc);  
+            ?>
         </div>
 	</body>
 </html>
