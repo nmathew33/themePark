@@ -25,8 +25,12 @@ $siteBuilder->getMenu();
 
 <div class = "content" >
     <h1>Employee List</h1>
+    <form action="editingEmployee.php" method="post" enctype="multipart/form=data"> 
+        <button type="submit" name="" value="">Select</button>
+    </form> 
     <div class="reports">
         <?php
+           
             require_once('../db_connection.php');
 
             $query = "SELECT idUsers, Roles.name, first_name, last_name, email, address, phone,
