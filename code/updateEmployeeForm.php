@@ -28,7 +28,7 @@ $siteBuilder->getMenu();
         if(isset($_POST['deleteEmployeeID'])){
             require_once('../db_connection.php');
             
-            $query = "DELETE FROM Users WHERE idUsers=?;";
+            $query = "DELETE FROM Users WHERE idUsers= ?";
 
             $stmt = mysqli_prepare($dbc, $query);
 
