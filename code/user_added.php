@@ -178,7 +178,7 @@ $siteBuilder->getMenu();
                     
                     $address = $street . ' ' . $city . ', ' . $state . ' ' . $zip;
                     
-                    mysqli_stmt_bind_param($stmt, "sisssssssss", $userId, $roleId, $f_name, $l_name, $email,
+                    mysqli_stmt_bind_param($stmt, "iisssssssss", $userId, $roleId, $f_name, $l_name, $email,
                                            $address, $phone, $ssn, $gender, $password, $e_date);
                     
                     mysqli_stmt_execute($stmt);
