@@ -4,7 +4,6 @@ body {
 }
 .overlay{
     position: absolute;
-    position: absolute;
     background-color: #1a1a1a;
     left: 0px;
     top: 0px;
@@ -48,8 +47,7 @@ body {
 }
 .content{
     position: absolute;
-    background-color: black; 
-    border: none;
+    border: black;
     color: white;
     top: 25%;
     height: 70%;
@@ -57,6 +55,19 @@ body {
     font-size: 16px;
     right: 2.5%;
 }
+
+.contentBackDrop{
+    position: absolute;
+    background-color: black; 
+    border: black;
+    opacity: 0.6;
+    top: 25%;
+    height: 70%;
+    width: 95%;
+    font-size: 16px;
+    right: 2.5%;
+}
+
 .reports{
     position: absolute; 
     width: 100%;
