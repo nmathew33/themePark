@@ -28,7 +28,7 @@ $siteBuilder->getMenu();
         <h1>Managment</h1>
         <table class = "menu">
             <tr>
-                <td><a href="employeeList.php" class="clockInButton">View All Employees</a></td>
+                <td><a href="viewEmployee.php" class="clockInButton">View All Employees</a></td>
                 <td><a href="viewSchedule.php" class="clockInButton">Schedule Employees</a></td>
             </tr>
         </table>
