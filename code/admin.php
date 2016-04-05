@@ -14,7 +14,7 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Welcome');
+$siteBuilder->getOpeningHtmlTags('Admin');
 
 $siteBuilder->getGreyOverLay();
 

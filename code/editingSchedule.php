@@ -14,7 +14,7 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Welcome');
+$siteBuilder->getOpeningHtmlTags('Shift Schedule');
 
 $siteBuilder->getGreyOverLay();
 
@@ -58,6 +58,7 @@ $siteBuilder->getMenu();
                 cellspacing="5" cellpadding="8" class="report">
 
                 <tr><td align="left"><b></b></td>
+                <td align="left"><b></b></td>
                 <td align="left"><b>ID</b></td>
                 <td align="left"><b>Role</b></td>
                 <td align="left"><b>First Name</b></td>

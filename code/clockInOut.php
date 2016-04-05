@@ -18,7 +18,7 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Welcome');
+$siteBuilder->getOpeningHtmlTags('Clock In/out');
 
 $siteBuilder->getGreyOverLay();
 
