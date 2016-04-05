@@ -14,7 +14,7 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Managment');
+$siteBuilder->getOpeningHtmlTags('Concession Stand');
 
 $siteBuilder->getGreyOverLay();
 
@@ -25,14 +25,8 @@ $siteBuilder->getMenu();
 
 <div class = "content" >
     <center class="info">
-        <h1>Managment</h1>
-        <table class = "menu">
-            <tr>
-                <td><a href="viewEmployee.php" class="clockInButton">Employees</a></td>
-                <td><a href="viewSchedule.php" class="clockInButton">Shift Schedule</a></td>
-                <td><a href="viewConcessionStands.php" class="clockInButton">Concession Stands</a></td>
-            </tr>
-        </table>
+        <h1>Concession Stand</h1>
+        <p>Sorry not implemented</p>
     </center>
 </div>
 

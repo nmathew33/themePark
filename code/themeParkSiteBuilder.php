@@ -38,7 +38,8 @@ class ThemeParkSiteBuilder{
                     <td><a href="admin.php" class="buttonMenu">Admin</a></td>
                 </tr>
             </table>
-        </div>';
+        </div>
+        <div class="contentBackDrop"></div>';
 	}
 
 	public function getOpenContentTags(){
