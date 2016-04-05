@@ -22,13 +22,13 @@ $siteBuilder->getSubTitle();
 
 $siteBuilder->getMenu();
 ?>
-
 <div class = "content" >
     <h1>Shift Schedule</h1>
     <form action="viewSchedule.php" method="post">
       Schedule (month and year):
       <input type="month" name="yearMonth">
       <input type="submit">
+      <a href="insertScheduleForm.php" class="button">Add New Shift</a>
     </form>
 
 
@@ -38,8 +38,8 @@ $siteBuilder->getMenu();
                 
                 $month = $_POST['yearMonth'];
 
-                echo '<form action="viewSchedule.php" method="post" enctype="multipart/form=data"> 
-                           <button type="submit" name="yearMonth" value="' . $month . '">Back</button>
+                echo '<form action="editingSchedule.php" method="post" enctype="multipart/form=data"> 
+                           <button type="submit" name="yearMonth" value="' . $month . '">Select</button>
                         </form> ';
                 echo '<div class="reports">';
 
@@ -51,14 +51,11 @@ $siteBuilder->getMenu();
 
                 $response = @mysqli_query($dbc, $query);
                 
-                echo '<form action="updateScheduleForm.php" method="post" enctype="multipart/form=data">';
-
                 if($response){
                 echo '<table align="left"
                 cellspacing="5" cellpadding="8" class="report">
 
-                <tr><td align="left"><b></b></td>
-                <td align="left"><b>ID</b></td>
+                <tr><td align="left"><b>ID</b></td>
                 <td align="left"><b>Role</b></td>
                 <td align="left"><b>First Name</b></td>
                 <td align="left"><b>Last Name</b></td>
@@ -67,12 +64,10 @@ $siteBuilder->getMenu();
                 <td align="left"><b>Phone</b></td>
                 <td align="left"><b>Manager ID</b></td></tr>';
 
-            	
+            
                 while($row = mysqli_fetch_array($response)){
 
                 echo '<tr><td align="left">' . 
-                '<button type="submit" name="updateShiftID" value="' . $row['idShift_Schedule'] . '">edit</button>'  . '</td><td align="left">' . 
-                '<button type="submit" name="deleteShiftID" value="' . $row['idShift_Schedule'] . '">delete</button>'  . '</td><td align="left">' . 
                 $row['idUsers'] . '</td><td align="left">' . 
                 $row['name'] . '</td><td align="left">' .
                 $row['first_name'] . '</td><td align="left">' . 
@@ -86,7 +81,6 @@ $siteBuilder->getMenu();
                 }
 
                 echo '</table>';
-                echo '</form>';
                 } else {
 
                 echo "Couldn't issue database query<br />";
@@ -106,5 +100,3 @@ $siteBuilder->getMenu();
 <?php
 $siteBuilder->getClosinghtmlTags();
 ?>
-
- 

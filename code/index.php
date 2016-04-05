@@ -45,7 +45,7 @@ if(isset($_POST['username'])){
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<img src="http://hdwallpaperslovely.com/wp-content/gallery/black-and-grey-wallpaper/Black_and_Grey_Pattern_by_kkll70.png">
+	<div class="overlay"></div>
 	<div class = "header">
 		UmaLand
 	</div>
