@@ -42,6 +42,7 @@ body {
 .input {
 	line-height: 40px;
 	width : 100%;
+    font-size: 30px;
 }
 
 .form-input{
@@ -50,6 +51,7 @@ body {
 
 .label{
     padding:0;
+    margin:0;
 }
 
 .menu {
