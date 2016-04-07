@@ -33,7 +33,7 @@ if(isset($_POST['username'])){
 		//Now direct to users feed
 		header("Location: welcome.php");
 	} else{
-		echo "<h2>Oops that username or password combination was inccorect</h2>";
+		echo "<h2>Oops that username or password combination was incorrect</h2>";
 	}
 }
 ?>
