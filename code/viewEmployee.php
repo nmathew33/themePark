@@ -25,7 +25,7 @@ $siteBuilder->getMenu();
 
 <div class = "content" >
     <h1>Employee List</h1>
-    <form action="editingEmployee.php" method="post" enctype="multipart/form=data"> 
+    <form action="editingEmployee.php" method="post" enctype="multipart/form=data">
         <button type="submit" name="" value="">Select</button>
     </form> 
     <div class="reports">
