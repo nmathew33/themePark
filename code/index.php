@@ -58,9 +58,11 @@ $siteBuilder->getSubTitle();
 		Log In
 			<form action="index.php" method="post" enctype="multipart/form=data"> 
                <div class="form-input">
+                    <h2 class='label'>Username</h2>
                     <input type="text" name="username" class = "input">
                </div>
                <div class="form-input">
+                    <h2 class='label'>Password</h2> 
                     <input type="password" name="password" class = "input">
                </div>
                <div class="form-input">
