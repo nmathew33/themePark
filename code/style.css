@@ -4,7 +4,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 .overlay{
-    position: absolute;
+    position: fixed;
     background: rgba(0, 0, 0, .5);
     /*background-color: #1a1a1a;*/
     left: 0px;
