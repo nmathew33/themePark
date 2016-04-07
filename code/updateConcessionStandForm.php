@@ -70,10 +70,8 @@ $siteBuilder->getMenu();
                         <div class = "col1">';
                 
                     
-                echo '<p>Concession Stand ID:
-                    <input type="text" name="idConcession_Stands" size="30" value="' . $row['idConcession_Stands'] . '" />
-                </p>
-        
+                echo '<input type="hidden" name="idConcession_Stands" size="30" value="' . $row['idConcession_Stands'] . '" />';
+                echo '
                 <p>Name:
                     <input type="text" name="name" size="30" value="'. $row['name'] .'" />
                 </p>

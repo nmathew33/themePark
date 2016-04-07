@@ -4,7 +4,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 .overlay{
-    position: absolute;
+    position: fixed;
     background: rgba(0, 0, 0, .5);
     /*background-color: #1a1a1a;*/
     left: 0px;
@@ -42,6 +42,7 @@ body {
 .input {
 	line-height: 40px;
 	width : 100%;
+    font-size: 30px;
 }
 
 .form-input{
@@ -50,6 +51,7 @@ body {
 
 .label{
     padding:0;
+    margin:0;
 }
 
 .menu {
