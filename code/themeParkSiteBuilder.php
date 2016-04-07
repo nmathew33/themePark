@@ -1,7 +1,7 @@
 <?php
 class ThemeParkSiteBuilder{
 
-	protected $title = '<div class = "header">UmaLand</div>';
+	protected $title = '<div class = "header">Four O Four Land</div>';
 	protected $subTitle = '<div class = "subheader">Four O Four Land<a href="logout.php" class="button">Sign Out</a></div>';
 
 	public function getOpeningHtmlTags($title){
