@@ -35,20 +35,24 @@ if(isset($_POST['username'])){
 	} else{
 		echo "<h2>Oops that username or password combination was incorrect</h2>";
 	}
+    
+    
 }
+if(isset($_SESSION['id'])){
+    header("Location: welcome.php");
+}
+
+require("themeparkSiteBuilder.php");
+$siteBuilder = new themeParkSiteBuilder();
+
+$siteBuilder->getOpeningHtmlTags('Ticketing');
+
+$siteBuilder->getGreyOverLay();
+
+$siteBuilder->getSubTitle();
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Login</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-	<div class="overlay"></div>
-	<div class = "header">
-		UmaLand
-	</div>
+
 	
 	<div class = "login">
 		Log In
@@ -64,5 +68,6 @@ if(isset($_POST['username'])){
 			</form>	
 	</div>
 
-</body>
-</html>
+<?php
+$siteBuilder->getClosinghtmlTags();
+?>
