@@ -35,34 +35,42 @@ if(isset($_POST['username'])){
 	} else{
 		echo "<h2>Oops that username or password combination was inccorect</h2>";
 	}
+    
+    
 }
+if(isset($_SESSION['id'])){
+    header("Location: welcome.php");
+}
+
+require("themeparkSiteBuilder.php");
+$siteBuilder = new themeParkSiteBuilder();
+
+$siteBuilder->getOpeningHtmlTags('Ticketing');
+
+$siteBuilder->getGreyOverLay();
+
+$siteBuilder->getSubTitle();
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Login</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-	<div class="overlay"></div>
-	<div class = "header">
-		UmaLand
-	</div>
+
 	
 	<div class = "login">
 		Log In
 			<form action="index.php" method="post" enctype="multipart/form=data"> 
-			<br>
-			   Username
-			   <input type="text" name="username" class = "input">
-			   <br><br>
-			   Password 
-			   <input type="password" name="password" class = "input">
-			   <br><br>
-			   <input type="submit" name="submit" value="LOGIN" class = "button"> 
+               <div class="form-input">
+                    <h2 class='label'>Username</h2>
+                    <input type="text" name="username" class = "input">
+               </div>
+               <div class="form-input">
+                    <h2 class='label'>Password</h2> 
+                    <input type="password" name="password" class = "input">
+               </div>
+               <div class="form-input">
+                    <input type="submit" name="submit" value="LOGIN" class = "button"> 
+               </div>
 			</form>	
 	</div>
 
-</body>
-</html>
+<?php
+$siteBuilder->getClosinghtmlTags();
+?>
