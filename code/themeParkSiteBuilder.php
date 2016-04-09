@@ -30,6 +30,7 @@ class ThemeParkSiteBuilder{
             <table class = "menu">
                 <tr>
                     <td><a href="clockInOut.php" class="buttonMenu">Clock In/Out</a></td>
+					<td><a href="rideUsage.php" class="buttonMenu">Ride Usage</a></td>
                     <td><a href="scheduling.php" class="buttonMenu">Scheduling</a></td>
                     <td><a href="ticketing.php" class="buttonMenu">Ticketing</a></td>
                     <td><a href="concessions.php" class="buttonMenu">Concessions</a></td>
