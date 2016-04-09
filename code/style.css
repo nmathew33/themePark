@@ -111,8 +111,8 @@ body {
 }
 .content{
     position: absolute;
-    border: black;
     color: white;
+    background: rgba(0,0,0,.5);
     top: 25%;
     height: 70%;
     width: 95%;
@@ -120,6 +120,8 @@ body {
     right: 2.5%;
 }
 
+
+/*
 .contentBackDrop{
     position: absolute;
     background-color: black; 
@@ -131,6 +133,8 @@ body {
     font-size: 16px;
     right: 2.5%;
 }
+}*/
+
 .maintenanceMenu{
     position: absolute; 
     top: 300px;
@@ -143,6 +147,7 @@ body {
     overflow: scroll;
     
 }
+
 .reports{
     position: absolute; 
     width: 100%;
