@@ -49,7 +49,9 @@ class ThemeParkSiteBuilder{
 		echo '</div>';
 	}
 	public function getClosinghtmlTags(){
-		echo '</body>
+		echo '
+                <script src="script.js" ></script>
+            </body>
 		</html>';
 	}
 
