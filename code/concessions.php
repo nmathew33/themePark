@@ -25,12 +25,39 @@ $siteBuilder->getMenu();
 
 <div class = "content" >
     <center class="info">
-        <h1>Concessions</h1>
-        <p>Sorry not implemented</p>
+            <h1>Concessions Stands</h1>
+            <form action="concession_stand_items.php" method="post" id="priceform" >
+                <p>Concession Stand Name:
+                <?php 
+
+                    require_once('../db_connection.php');
+
+                    $query = "SELECT * FROM Concession_Stands";
+                    $response = @mysqli_query($dbc, $query);
+                    if($response){
+                        echo '<select name="ConcessionName"  form="priceform">';
+
+                        while($row = mysqli_fetch_array($response)){
+                            echo '<option value="' . $row['idConcession_Stands'] . '">' . $row['name'];
+                            echo '</option>';
+                        }
+
+                        echo '</select>';
+                    } else {
+                        echo "Couldn't obtain role list";
+
+                        echo mysqli_error($dbc);
+                    }
+
+                    mysqli_close($dbc);
+
+                ?>
+                </p>
+                <input type = "submit" value="Select">
+            </form>
     </center>
 </div>
 
 <?php
 $siteBuilder->getClosinghtmlTags();
 ?>
-
