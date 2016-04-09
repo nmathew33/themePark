@@ -49,7 +49,7 @@ $siteBuilder->getOpeningHtmlTags('Ticketing');
 
 $siteBuilder->getGreyOverLay();
 
-$siteBuilder->getSubTitle();
+$siteBuilder->getTitle();
 ?>
 
 
@@ -57,14 +57,17 @@ $siteBuilder->getSubTitle();
 	<div class = "login">
 		Log In
 			<form action="index.php" method="post" enctype="multipart/form=data"> 
-			<br>
-			   Username
-			   <input type="text" name="username" class = "input">
-			   <br><br>
-			   Password 
-			   <input type="password" name="password" class = "input">
-			   <br><br>
-			   <input type="submit" name="submit" value="LOGIN" class = "button"> 
+               <div class="form-input">
+                    <h2 class='label'>Username</h2>
+                    <input type="text" name="username" class = "input">
+               </div>
+               <div class="form-input">
+                    <h2 class='label'>Password</h2> 
+                    <input type="password" name="password" class = "input">
+               </div>
+               <div class="form-input">
+                    <input type="submit" name="submit" value="LOGIN" class = "button"> 
+               </div>
 			</form>	
 	</div>
 

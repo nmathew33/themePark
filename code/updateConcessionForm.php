@@ -25,14 +25,14 @@ $siteBuilder->getMenu();
 
 <div class = "content" >
     <?php 
-        if(isset($_POST['deleteConcessionStandID'])){
+        if(isset($_POST['deleteConcessionID'])){
             require_once('../db_connection.php');
             
-            $query = "DELETE FROM Concession_Stands WHERE idConcession_Stands=?;";
+            $query = "DELETE FROM Concession_Pricing WHERE idConcession_Pricing=?;";
 
             $stmt = mysqli_prepare($dbc, $query);
 
-            mysqli_stmt_bind_param($stmt, "i", $_POST['deleteConcessionStandID']);
+            mysqli_stmt_bind_param($stmt, "i", $_POST['deleteConcessionID']);
 
             mysqli_stmt_execute($stmt);
 
@@ -43,12 +43,12 @@ $siteBuilder->getMenu();
                 echo '<center><h1>User Successfully Entered</h1></center>';
                 mysqli_stmt_close($stmt);
                 mysqli_close($dbc);
-                header('Location: viewConcessionStands.php');
+                header('Location: viewConcession.php');
 
             } else {
                 
                 echo '<center><h1>Error Occurred</h1></center>';
-                echo mysqli_error();
+                echo mysqli_error($dbc);
                 
                 mysqli_stmt_close($stmt);
                 mysqli_close($dbc);
@@ -100,6 +100,7 @@ $siteBuilder->getMenu();
             mysqli_close($dbc);
         }
     ?>
+    
 </div>
 
 <?php

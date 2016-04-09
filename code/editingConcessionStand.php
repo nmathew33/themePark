@@ -32,7 +32,7 @@ $siteBuilder->getMenu();
             <option value="location">Location</option>
         </select>
       <input type="submit">
-      <a href="insertConcessionStandForm.php" class="button">Add New Shift</a>
+      <a href="insertConcessionStandForm.php" class="button">Add Concession Stand</a>
     </form>
 
 
@@ -72,7 +72,6 @@ $siteBuilder->getMenu();
             <td align="left"><b></b></td>
             <td align="left"><b>ID</b></td>
             <td align="left"><b>Name</b></td>
-            <td align="left"><b>Last Name</b></td>
             <td align="left"><b>Description</b></td>
             <td align="left"><b>Location</b></td></tr>';
 
@@ -84,7 +83,6 @@ $siteBuilder->getMenu();
             '<button type="submit" name="deleteConcessionStandID" value="' . $row['idConcession_Stands'] . '">delete</button>'  . '</td><td align="left">' . 
             $row['idConcession_Stands'] . '</td><td align="left">' . 
             $row['name'] . '</td><td align="left">' .
-            $row['name'] . '</td><td align="left">' . 
             $row['description'] . '</td><td align="left">' .
             $row['location'] . '</td><td align="left">';
 
