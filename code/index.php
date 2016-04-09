@@ -49,7 +49,7 @@ $siteBuilder->getOpeningHtmlTags('Ticketing');
 
 $siteBuilder->getGreyOverLay();
 
-$siteBuilder->getSubTitle();
+$siteBuilder->getTitle();
 ?>
 
 

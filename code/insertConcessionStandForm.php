@@ -24,10 +24,33 @@ $siteBuilder->getMenu();
 ?>
 
 <div class = "content" >
-    <center class="info">
-        <h1>Concession Stand</h1>
-        <p>Sorry not implemented</p>
-    </center>
+    <form action="insertConcessionStand.php" method="post" id="insertConcessionStandForm" >
+        
+        <b>Add Shift</b>
+            <div class = "col1">
+        
+                <p>Name:
+                    <input type="text" name="name" size="30" value="" />
+                </p>
+
+                <p>Description:
+                    <input type="text" name="description" size="30" value="" />
+                </p>
+        
+            </div>
+
+            <div class = "col2">
+
+                <p>Location:
+                    <input type="text" name="location" size="30" value="" />
+                </p>
+
+                <p>
+                    <input type="submit" name="submit" value="Submit" class="button"/>
+                </p>
+
+            </div>
+    </form>
 </div>
 
 <?php

@@ -25,16 +25,49 @@ $siteBuilder->getMenu();
 
 <div class = "content" >
     <h1>Employee List</h1>
-    <form action="viewEmployee.php" method="post" enctype="multipart/form=data"> 
-        <button type="submit" name="" value="">Back</button>
-    </form> 
-    <div class="reports">
-        <?php
-           
-            require_once('../db_connection.php');
+    <form action="editingEmployee.php" method="post">
+       <select name = 'by'>
+            <option value="idUsers">ID</option>
+            <option value="name">Role</option>
+            <option value="first_name">First Name</option>
+            <option value="last_name">Last Name</option>
+            <option value="email">Email</option>
+            <option value="address">Address</option>
+            <option value="phone">Phone</option>
+            <option value="ssn">SSN</option>
+            <option value="gender">Gender</option>
+            <option value="date_employed">Date Employed</option>
+        </select>
+      <input type="submit">
+      <a href="registrate_new_user.php" class="button">Add Employee</a>
+    </form>
 
-            $query = "SELECT idUsers, Roles.name, first_name, last_name, email, address, phone,
-            ssn, gender, date_employed FROM Users, Roles Where idRoles = role_id";
+        <?php
+        
+            if(isset($_POST['by'])){
+                
+            $by = $_POST['by'];
+
+                echo '<form action="viewEmployee.php" method="post" enctype="multipart/form=data"> 
+                            <button type="submit" name="by" value="' . $by . '">Select</button>
+                        </form> ';
+                echo '<div class="reports">';
+                
+                $query = "SELECT idUsers, Roles.name, first_name, last_name, email, address, phone,
+            ssn, gender, date_employed FROM Users, Roles Where idRoles = role_id ORDER BY " . $by;
+            
+            } else{
+                
+                 echo '<form action="viewEmployee.php" method="post" enctype="multipart/form=data"> 
+                        <button type="submit" value="">Select</button>
+                    </form> ';
+                echo '<div class="reports">';
+            
+                $query = "SELECT idUsers, Roles.name, first_name, last_name, email, address, phone,
+                            ssn, gender, date_employed FROM Users, Roles Where idRoles = role_id";
+                
+            }
+            require_once('../db_connection.php');
 
             $response = @mysqli_query($dbc, $query);
             

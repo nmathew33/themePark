@@ -18,6 +18,9 @@ body {
     font-size: 75px;
     margin: 5%;
 }
+
+
+
 .subheader {
     font-size: 50px;
 }
@@ -38,6 +41,53 @@ body {
 }
 */
 
+.add_maintenance{
+    
+    height: 50px;
+    font-size: 30px;
+    width: 200px;
+    text-decoration: none;
+    background: green;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    margin: 10px;
+    position:absolute;
+}
+.mod_maintenance{
+    
+    height: 50px;
+    font-size: 30px;
+    width: 200px;
+    text-decoration: none;
+    background: green;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    margin: 10px;
+    position:absolute;
+    right:1px;
+    top:60px;
+}
+.end_maintenance{
+    
+    height: 50px;
+    font-size: 30px;
+    width: 200px;
+    text-decoration: none;
+    background: green;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    margin: 10px;
+    position:absolute;
+    right:1px;
+    top:120px;
+}
+.add_ticket_button{
+    color: inherit;
+    text-decoration: inherit;
+}
 
 .input {
 	line-height: 40px;
@@ -61,8 +111,8 @@ body {
 }
 .content{
     position: absolute;
-    border: black;
     color: white;
+    background: rgba(0,0,0,.5);
     top: 25%;
     height: 70%;
     width: 95%;
@@ -70,6 +120,8 @@ body {
     right: 2.5%;
 }
 
+
+/*
 .contentBackDrop{
     position: absolute;
     background-color: black; 
@@ -81,6 +133,20 @@ body {
     font-size: 16px;
     right: 2.5%;
 }
+}*/
+
+.maintenanceMenu{
+    position: absolute; 
+    top: 300px;
+    left: 50px;
+    width: 92%;
+    height: 50%; 
+    background-color: white;
+    border: #008CBA;
+    font-color: black; 
+    overflow: scroll;
+    
+}
 
 .reports{
     position: absolute; 
@@ -91,6 +157,7 @@ body {
     font-color: black; 
     overflow: scroll;
 }
+
 .report{
     color: black;
 }
