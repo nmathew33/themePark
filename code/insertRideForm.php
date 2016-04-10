@@ -14,7 +14,7 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Concession Stand');
+$siteBuilder->getOpeningHtmlTags('Ride');
 
 $siteBuilder->getGreyOverLay();
 
@@ -24,25 +24,38 @@ $siteBuilder->getMenu();
 ?>
 
 <div class = "content" >
-    <form action="insertConcessionStand.php" method="post" id="insertConcessionStandForm" >
+    <form action="insertRide.php" method="post" id="insertRide" >
         
         <b>Add Shift</b>
             <div class = "col1">
-        
+                        
                 <p>Name:
                     <input type="text" name="name" size="30" value="" />
                 </p>
-
+                
                 <p>Description:
                     <input type="text" name="description" size="30" value="" />
                 </p>
+                
+                <p>in Use:                    
+                    <select name="in_use"  form="insertRide">
+                        <option value="1">yes</option>
+                        <option value="2">no</option>
+                    </select>
+                </p>
+
         
             </div>
 
             <div class = "col2">
 
-                <p>Location:
-                    <input type="text" name="location" size="30" value="" />
+                <p>Staff:
+                    <input type="text" name="staff" size="30" value="" />
+                </p>
+                
+                
+                <p>Date Created (YYYY-MM-DD):
+                    <input type="text" name="date_created" size="30" value="" />
                 </p>
 
                 <p>

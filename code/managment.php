@@ -31,6 +31,8 @@ $siteBuilder->getMenu();
                 <td><a href="viewEmployee.php" class="clockInButton">Employees</a></td>
                 <td><a href="viewSchedule.php" class="clockInButton">Shift Schedule</a></td>
                 <td><a href="viewConcessionStands.php" class="clockInButton">Concession Stands</a></td>
+                <td><a href="viewConcession.php" class="clockInButton">Concessions</a></td>
+                <td><a href="viewRides.php" class="clockInButton">Rides</a></td>
             </tr>
         </table>
     </center>

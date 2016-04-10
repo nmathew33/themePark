@@ -2,9 +2,39 @@ body {
     background-image: url("images/91839.jpg");
     color: white;
     font-family: Arial, Helvetica, sans-serif;
+    background-attachment:fixed;
 }
+
+.col-50{
+    width: 50%;
+    float: left;
+    display: block;
+}
+
+.ticket_input > div > input{
+    width: 20%;
+    float: left;
+    font-size: 20px;
+}
+
+.ticket_input > div{
+    float: left;
+}
+
+.full-width-submit{
+    width: 80%;
+    margin: 30px auto;
+    background: green;
+    color: white;
+    font-size: 30px;
+    border:none;
+    padding:20px;
+    border-radius: 10px;
+}
+
+
 .overlay{
-    position: absolute;
+    position: fixed;
     background: rgba(0, 0, 0, .5);
     /*background-color: #1a1a1a;*/
     left: 0px;
@@ -18,6 +48,9 @@ body {
     font-size: 75px;
     margin: 5%;
 }
+
+
+
 .subheader {
     font-size: 50px;
 }
@@ -38,10 +71,57 @@ body {
 }
 */
 
+.add_maintenance{
+    
+    height: 50px;
+    font-size: 30px;
+    width: 200px;
+    text-decoration: none;
+    background: green;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    margin: 10px;
+    position:absolute;
+}
+.mod_maintenance{
+    
+    height: 50px;
+    font-size: 30px;
+    width: 200px;
+    text-decoration: none;
+    background: green;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    margin: 10px;
+    position:absolute;
+    top:60px;
+}
+.end_maintenance{
+    
+    height: 50px;
+    font-size: 30px;
+    width: 200px;
+    text-decoration: none;
+    background: green;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    margin: 10px;
+    position:absolute;
+    right:1px;
+    top:120px;
+}
+.add_ticket_button{
+    color: inherit;
+    text-decoration: inherit;
+}
 
 .input {
 	line-height: 40px;
 	width : 100%;
+    font-size: 30px;
 }
 
 .form-input{
@@ -50,6 +130,7 @@ body {
 
 .label{
     padding:0;
+    margin:0;
 }
 
 .menu {
@@ -57,17 +138,20 @@ body {
 	top: 17.5%;
     right: 2.55%;
 }
+
 .content{
     position: absolute;
-    border: black;
     color: white;
+    background: rgba(0,0,0,.5);
     top: 25%;
-    height: 70%;
+    min-height: 70%;
     width: 95%;
     font-size: 16px;
     right: 2.5%;
 }
 
+
+/*
 .contentBackDrop{
     position: absolute;
     background-color: black; 
@@ -79,6 +163,20 @@ body {
     font-size: 16px;
     right: 2.5%;
 }
+}*/
+
+.maintenanceMenu{
+    position: absolute; 
+    top: 330px;
+    left: 50px;
+    width: 92%;
+    height: 50%; 
+    background-color: white;
+    border: #008CBA;
+    font-color: black; 
+    overflow: scroll;
+    
+}
 
 .reports{
     position: absolute; 
@@ -89,6 +187,7 @@ body {
     font-color: black; 
     overflow: scroll;
 }
+
 .report{
     color: black;
 }
@@ -178,3 +277,4 @@ body {
     right: 0%;
 
 }
+

@@ -14,7 +14,7 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Ticketing');
+$siteBuilder->getOpeningHtmlTags('Ride');
 
 $siteBuilder->getGreyOverLay();
 
@@ -25,14 +25,14 @@ $siteBuilder->getMenu();
 
 <div class = "content" >
     <?php 
-        if(isset($_POST['deleteConcessionStandID'])){
+        if(isset($_POST['deleteRidesID'])){
             require_once('../db_connection.php');
             
-            $query = "DELETE FROM Concession_Stands WHERE idConcession_Stands=?;";
+            $query = "DELETE FROM Rides WHERE idRides=?;";
 
             $stmt = mysqli_prepare($dbc, $query);
 
-            mysqli_stmt_bind_param($stmt, "i", $_POST['deleteConcessionStandID']);
+            mysqli_stmt_bind_param($stmt, "i", $_POST['deleteRidesID']);
 
             mysqli_stmt_execute($stmt);
 
@@ -43,12 +43,12 @@ $siteBuilder->getMenu();
                 echo '<center><h1>User Successfully Entered</h1></center>';
                 mysqli_stmt_close($stmt);
                 mysqli_close($dbc);
-                header('Location: viewConcessionStands.php');
+                header('Location: viewRides.php');
 
             } else {
                 
                 echo '<center><h1>Error Occurred</h1></center>';
-                echo mysqli_error();
+                echo mysqli_error($dbc);
                 
                 mysqli_stmt_close($stmt);
                 mysqli_close($dbc);
@@ -58,30 +58,29 @@ $siteBuilder->getMenu();
 
             
         }
-        if(isset($_POST['updateConcessionStandID'])){
+        if(isset($_POST['updateR'])){
             require_once('../db_connection.php');
 
-            $query = "SELECT idConcession_Stands, name, description, location FROM Concession_Stands WHERE idConcession_Stands=" . $_POST['updateConcessionStandID'] . " LIMIT 1";
+            $query = "SELECT * FROM Rides WHERE idRides = " . $_POST['updateRidesID'] . " LIMIT 1";
             $response = @mysqli_query($dbc, $query);
             if($response){
-                $row = mysqli_fetch_array($response);
-                echo '<form action="updateConcessionStand.php" method="post" id="ConcessionStand">';
+                
+                echo '<form action="updateRide.php" method="post" id="updateRide">';
                 echo '<b>Update Shift</b>
                         <div class = "col1">';
                 
                     
-                echo '<input type="hidden" name="idConcession_Stands" size="30" value="' . $row['idConcession_Stands'] . '" />';
+                echo '<input type="hidden" name="idConcession" size="30" value="' . $_POST['updateRidesID'] . '" />';
+                
+                
+                
                 echo '
                 <p>Name:
                     <input type="text" name="name" size="30" value="'. $row['name'] .'" />
                 </p>
-
-                <p>Description:
-                    <input type="text" name="description" size="100" value="' . $row['description'] . '" />
-                </p>
         
-                <p>Location:
-                    <input type="text" name="location" size="30" value="'. $row['location'] . '" />
+                <p>Price:
+                    <input type="text" name="price" size="30" value="'. $row['name']  . '" />
                 </p>';
 
                 echo '</div>';
@@ -100,6 +99,7 @@ $siteBuilder->getMenu();
             mysqli_close($dbc);
         }
     ?>
+    
 </div>
 
 <?php

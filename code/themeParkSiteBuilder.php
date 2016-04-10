@@ -1,8 +1,8 @@
 <?php
 class ThemeParkSiteBuilder{
 
-	protected $title = '<div class = "header">UmaLand</div>';
-	protected $subTitle = '<div class = "subheader">UmaLand<a href="logout.php" class="button">Sign Out</a></div>';
+	protected $title = '<div class = "header">Four O Four Land</div>';
+	protected $subTitle = '<div class = "subheader">Four O Four Land<a href="logout.php" class="button">Sign Out</a></div>';
 
 	public function getOpeningHtmlTags($title){
 		echo '<html>
@@ -30,6 +30,7 @@ class ThemeParkSiteBuilder{
             <table class = "menu">
                 <tr>
                     <td><a href="clockInOut.php" class="buttonMenu">Clock In/Out</a></td>
+					<td><a href="rideUsage.php" class="buttonMenu">Ride Usage</a></td>
                     <td><a href="scheduling.php" class="buttonMenu">Scheduling</a></td>
                     <td><a href="ticketing.php" class="buttonMenu">Ticketing</a></td>
                     <td><a href="concessions.php" class="buttonMenu">Concessions</a></td>
@@ -49,7 +50,9 @@ class ThemeParkSiteBuilder{
 		echo '</div>';
 	}
 	public function getClosinghtmlTags(){
-		echo '</body>
+		echo '
+                <script src="script.js" ></script>
+            </body>
 		</html>';
 	}
 
