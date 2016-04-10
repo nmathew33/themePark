@@ -14,7 +14,7 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Concession');
+$siteBuilder->getOpeningHtmlTags('Rides');
 
 $siteBuilder->getGreyOverLay();
 
@@ -30,26 +30,6 @@ $siteBuilder->getMenu();
 
             $data_missing = array();
 
-            if(empty($_POST['idConcession'])){
-
-                $data_missing[] = 'idConcession';
-
-            } else {
-
-                $idConcession = trim($_POST['idConcession']);
-
-            }
-
-            if(empty($_POST['price'])){
-
-                $data_missing[] = 'price';
-
-            } else{
-
-                $price = trim($_POST['price']);
-
-            }
-
             if(empty($_POST['name'])){
 
                 $data_missing[] = 'name';
@@ -59,14 +39,44 @@ $siteBuilder->getMenu();
                 $name = trim($_POST['name']);
 
             }
-            
-            if(empty($_POST['location'])){
 
-                $data_missing[] = 'location';
+            if(empty($_POST['description'])){
+
+                $data_missing[] = 'description';
+
+            } else{
+
+                $description = trim($_POST['description']);
+
+            }
+
+            if(empty($_POST['in_use'])){
+
+                $data_missing[] = 'in_use';
 
             } else {
 
-                $location = trim($_POST['location']);
+                $in_use = (trim($_POST['in_use']) == '1');
+
+            }
+            
+            if(empty($_POST['staff'])){
+
+                $data_missing[] = 'staff';
+
+            } else{
+
+                $staff = trim($_POST['staff']);
+
+            }
+
+            if(empty($_POST['date_created'])){
+
+                $data_missing[] = 'date_created';
+
+            } else {
+
+                $date_created = trim($_POST['date_created']);
 
             }
 
@@ -75,13 +85,13 @@ $siteBuilder->getMenu();
                 
                 require_once('../db_connection.php');
                 
-                $query = "UPDATE Concession_Pricing SET location = ?, price = ?, name = ? WHERE idConcession_Pricing = ?";
+                $query = "INSERT INTO Rides (idRides, in_use, staff, name, description, date_created) VALUES (?, ?, ?, ?, ?, ?);";
 
                 $stmt = mysqli_prepare($dbc, $query);
                 
-                $doubleprice = floatval($price);
+                $idRides = sprintf("%04d", mt_rand(1, 9999));
                                 
-                mysqli_stmt_bind_param($stmt, "idsi", $location, $doubleprice, $name, $idConcession);
+                mysqli_stmt_bind_param($stmt, "isssss", $idRides, $in_use, $staff, $name, $description, $date_created);
                 
                 mysqli_stmt_execute($stmt);
                 
@@ -124,7 +134,7 @@ $siteBuilder->getMenu();
 
     ?>
 
-    <a href="viewConcession.php" class="button">View Concession Stands</a>
+    <a href="viewRides.php" class="button">View Concession Stands</a>
 </div>
 
 <?php

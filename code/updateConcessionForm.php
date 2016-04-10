@@ -58,30 +58,55 @@ $siteBuilder->getMenu();
 
             
         }
-        if(isset($_POST['updateConcessionStandID'])){
+        if(isset($_POST['updateConcessionID'])){
             require_once('../db_connection.php');
 
-            $query = "SELECT idConcession_Stands, name, description, location FROM Concession_Stands WHERE idConcession_Stands=" . $_POST['updateConcessionStandID'] . " LIMIT 1";
+            $query = "SELECT idConcession_Pricing, Concession_Pricing.location AS lo, price, Concession_Pricing.name, Concession_Stands.name AS cstn, Concession_Stands.location AS cstl FROM Concession_Pricing, Concession_Stands WHERE idConcession_Pricing=" . $_POST['updateConcessionID'] . " AND Concession_Pricing.location = idConcession_Stands LIMIT 1";
             $response = @mysqli_query($dbc, $query);
             if($response){
+                
                 $row = mysqli_fetch_array($response);
-                echo '<form action="updateConcessionStand.php" method="post" id="ConcessionStand">';
+                $concessionId = $row['idConcession_Pricing'];
+                $concessionName = $row['name'];
+                $concessionLocationID = $row['lo'];
+                $cstn = $row['cstn'];
+                $cstl = $row['cstl'];
+                $concessionPrice = $row['price'];
+                
+                echo '<form action="updateConcession.php" method="post" id="updateConcession">';
                 echo '<b>Update Shift</b>
                         <div class = "col1">';
                 
                     
-                echo '<input type="hidden" name="idConcession_Stands" size="30" value="' . $row['idConcession_Stands'] . '" />';
+                echo '<input type="hidden" name="idConcession" size="30" value="' . $concessionId . '" />';
+                
+                echo '<p>Location:';
+                    $query = "SELECT idConcession_Stands, Concession_Stands.location as loc, name FROM Concession_Stands";
+                    $response = @mysqli_query($dbc, $query);
+                    if($response){
+                        echo '<select name="location"  form="updateConcession">';
+                        echo '<option value="' . $concessionLocationID . '">' . $cstn . " -- " . $cstl .'</option>'; 
+                        while($row = mysqli_fetch_array($response)){
+                            echo '<option value="' . $row['idConcession_Stands'] . '">' . 
+                            $row['name'] . " -- " . $row['loc'];
+                            echo '</option>';
+                        }
+                        echo '</select>';
+                    } else {
+                        echo "Couldn't obtain role list";
+
+                        echo mysqli_error($dbc);
+                    }
+            
+                echo '</p>';
+                
                 echo '
                 <p>Name:
-                    <input type="text" name="name" size="30" value="'. $row['name'] .'" />
-                </p>
-
-                <p>Description:
-                    <input type="text" name="description" size="100" value="' . $row['description'] . '" />
+                    <input type="text" name="name" size="30" value="'. $concessionName .'" />
                 </p>
         
-                <p>Location:
-                    <input type="text" name="location" size="30" value="'. $row['location'] . '" />
+                <p>Price:
+                    <input type="text" name="price" size="30" value="'. $concessionPrice . '" />
                 </p>';
 
                 echo '</div>';
