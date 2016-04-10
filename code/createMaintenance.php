@@ -26,7 +26,7 @@ $siteBuilder->getMenu();
 ?>
 
 <div class = "content" >
-    <form action="user_added.php" method="post" id="userform" >
+    <form action="newMaintenance.php" method="post" id="userform" >
         
         <p>Maintenance Mode</p>
         <div class = "col1">
@@ -42,7 +42,7 @@ $siteBuilder->getMenu();
                     $query = "SELECT idRides,name FROM UmaLand.Rides";
                     $response = @mysqli_query($dbc, $query);
                     if($response){
-                        echo '<select name="Ride ID"  form="userform">';
+                        echo '<select name="ride_id"  form="userform">';
 
                         while($row = mysqli_fetch_array($response)){
                             echo '<option value="' . $row['idRides'] . '">' .
@@ -65,7 +65,7 @@ $siteBuilder->getMenu();
             <p>
                 Ticket Description:
             </p>
-            <textarea rows = "5" cols = "50">
+            <textarea name = "description" rows = "5" cols = "50">
                 </textarea>
             <p>
                 <input type="submit" name="submit" value="Submit" class="button"/>
