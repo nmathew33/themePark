@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 if(isset($_SESSION['id'])){
     $username = $_SESSION['username']; 
     $id = $_SESSION['id'];
@@ -10,21 +9,14 @@ if(isset($_SESSION['id'])){
 } else{
     header("Location: index.php");
 }
-
-
 // $query = "INSERT INTO Users (idUsers, role_id, first_name, last_name, email,
 // address, phone, ssn, gender, password, date_employed) VALUES ( ?, ?, ?, ?,
 // ?, ?, ?, ?, ?, ?, ?)";
-
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
-
 $siteBuilder->getOpeningHtmlTags('Ticketing');
-
 $siteBuilder->getGreyOverLay();
-
 $siteBuilder->getSubTitle();
-
 $siteBuilder->getMenu();
 ?>
 
