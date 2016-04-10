@@ -23,7 +23,7 @@ $siteBuilder->getSubTitle();
 $siteBuilder->getMenu();
 ?>
 <div class = "content" >
-    <h1>Concession Pricing</h1>
+    <h1>Rides</h1>
     <form action="viewRides.php" method="post">
        <select name = 'by'>
             <option value="idRides">ID</option>
@@ -34,7 +34,7 @@ $siteBuilder->getMenu();
             <option value="date_created">Date Created</option>
         </select>
       <input type="submit">
-      <a href="insertRide.php" class="button">Add Ride</a>
+      <a href="insertRideForm.php" class="button">Add Ride</a>
     </form>
 
 
@@ -63,6 +63,8 @@ $siteBuilder->getMenu();
             require_once('../db_connection.php');
 
             $response = @mysqli_query($dbc, $query);
+            
+            echo '<form action="updateRideForm.php" method="post" enctype="multipart/form=data">';
             
             if($response){
             echo '<table align="left"
@@ -94,6 +96,7 @@ $siteBuilder->getMenu();
             }
 
             echo '</table>';
+            echo '</form>';
             } else {
 
             echo "Couldn't issue database query<br />";
