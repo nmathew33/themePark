@@ -14,7 +14,7 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Ticketing');
+$siteBuilder->getOpeningHtmlTags('Ride Usage');
 
 $siteBuilder->getGreyOverLay();
 
@@ -27,15 +27,15 @@ $siteBuilder->getMenu();
     <center class="info">
         <h1>Ride Usage</h1>
         <form action="rideUsage.php" method="post">
-            <div id="rideUsageForm">
-                <ul>
-                    <li>
-                    <input name="customerID" type="text" placeholder="Customer ID" />
-                    </li>
-                    <li>
-                    <input name="rideID" type="text" placeholder="Ride ID" />
-                    </li>
-                </ul>
+            <div>
+                <ul class="rideUsageForm">
+					<li>
+						<input name="customerID" type="text" placeholder="Customer ID" />
+					</li>
+					<li>
+						<input name="rideID" type="text" placeholder="Ride ID" />
+					</li>
+				</ul>
             </div>
 			<div class="rideUsageInput">
                     <input type="submit" name="submit" value="Submit" class = "button"> 
@@ -89,3 +89,5 @@ if (isset($_POST['submit'])) {
 }
 
 ?>
+
+<script>console.log("mysql error",<?php echo mysqli_error(); ?>);</script>
