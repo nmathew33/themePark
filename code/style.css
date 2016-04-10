@@ -66,7 +66,6 @@ body {
     border-radius: 10px;
     margin: 10px;
     position:absolute;
-    right:1px;
     top:60px;
 }
 .end_maintenance{
@@ -242,3 +241,4 @@ body {
     right: 0%;
 
 }
+
