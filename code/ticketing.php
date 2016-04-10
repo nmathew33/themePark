@@ -12,6 +12,7 @@ if(isset($_SESSION['id'])){
 }
 
 
+
 // $query = "INSERT INTO Users (idUsers, role_id, first_name, last_name, email,
 // address, phone, ssn, gender, password, date_employed) VALUES ( ?, ?, ?, ?,
 // ?, ?, ?, ?, ?, ?, ?)";
@@ -31,54 +32,34 @@ $siteBuilder->getMenu();
 <div class = "content" >
     <center class="info">
         <h1>Ticketing</h1>
-        <form action="form_sent.php" method="post">
-            <div id="adultList">
-                <h3>Adults</h3>
-                <ul>
-                    <li>
-                    <input name="first_name[]" type="text" placeholder="First Name" />
-                    </li>
-                    <li>
-                    <input name="last_name[]" type="text" placeholder="Last Name" />
-                    </li>
-                    <li>
-                    <input name="email[]" type="text" placeholder="E-Mail">
-                    </li>
-                    <li>
-                    <input name="address[]" type="text" placeholder="Address">
-                    </li>
-                    <li>
-                    <input name="phone[]" type="text" placeholder="Phone">
-                    </li>
-                </ul>
-            </div>
-            <button id="addAdult" onclick="addAdult()">Add Adult</button>
-            
-            <br>
-            <br>
-            <div id="childList">
-                <h3>Children</h3>
-                <ul>
-                    <li>
-                    <input name="child_first_name[]" type="text" placeholder="First Name" />
-                    </li>
-                    <li>
-                    <input name="child_last_name[]" type="text" placeholder="Last Name" />
-                    </li>
-                    <li>
-                    <input name="child_email[]" type="text" placeholder="E-Mail">
-                    </li>
-                    <li>
-                    <input name="child_address[]" type="text" placeholder="Address">
-                    </li>
-                    <li>
-                    <input name="child_phone[]" type="text" placeholder="Phone">
-                    </li>
-                </ul>
-            </div>
-            <button id="addChild" onclick="addChild()">Add Child</button>            
-            
-            <input type="submit">
+        
+        <?php if(isset($_POST['first_name'][0])){
+            echo $_POST['first_name'][0];
+        } ?>
+        <form action="ticketing.php" method="post">
+                <div class="col-50">
+                    <h3>Adults</h3>
+                    <div class='ticket_input'>
+                        <div>
+                            <input name="first_name[]" type="text" placeholder="First Name" />
+                            <input name="last_name[]" type="text" placeholder="Last Name" />
+                            <input name="email[]" type="text" placeholder="E-Mail">
+                            <input name="address[]" type="text" placeholder="Address">
+                            <input name="phone[]" type="text" placeholder="Phone">
+                        </div>
+                        <div id="adultList"></div>
+                        <div id="addAdult" onclick="addAdult()"  class='ticket_input'>Add Adult</div>
+                    </div>
+                </div>
+
+                <div class="col-50">
+                    <h3>Children</h3>
+                    <div class='ticket_input'>
+                        <div id="childList"></div>
+                        <div id="addChild" onclick="addChild()" class='ticket_input'>Add Child</div>                    
+                    </div>
+                </div>
+            <input class='full-width-submit' type="submit">
         </form>
     </center>
 </div>
