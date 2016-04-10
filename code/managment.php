@@ -33,6 +33,7 @@ $siteBuilder->getMenu();
                 <td><a href="viewConcessionStands.php" class="clockInButton">Concession Stands</a></td>
                 <td><a href="viewConcession.php" class="clockInButton">Concessions</a></td>
                 <td><a href="viewRides.php" class="clockInButton">Rides</a></td>
+				<td><a href="viewClock.php" class="clockInButton">Clock Times</a></td>
             </tr>
         </table>
     </center>
