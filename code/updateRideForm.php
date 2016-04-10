@@ -58,36 +58,60 @@ $siteBuilder->getMenu();
 
             
         }
-        if(isset($_POST['updateR'])){
+        if(isset($_POST['updateRidesID'])){
             require_once('../db_connection.php');
 
             $query = "SELECT * FROM Rides WHERE idRides = " . $_POST['updateRidesID'] . " LIMIT 1";
             $response = @mysqli_query($dbc, $query);
             if($response){
+                $row = mysqli_fetch_array($response);
                 
                 echo '<form action="updateRide.php" method="post" id="updateRide">';
-                echo '<b>Update Shift</b>
+                echo '<b>Update Ride</b>
                         <div class = "col1">';
                 
                     
-                echo '<input type="hidden" name="idConcession" size="30" value="' . $_POST['updateRidesID'] . '" />';
+                echo '<input type="hidden" name="idRides" size="30" value="' . $_POST['updateRidesID'] . '" />';
                 
                 
                 
-                echo '
+                echo '<div class = "col1">
+                        
                 <p>Name:
-                    <input type="text" name="name" size="30" value="'. $row['name'] .'" />
+                    <input type="text" name="name" size="30" value="' . $row['name'] . '" />
                 </p>
+                
+                <p>Description:
+                    <input type="text" name="description" size="30" value="' . $row['description'] . '" />
+                </p>
+                
+                <p>in Use:                    
+                    <select name="in_use"  form="updateRide">
+                        <option value="' . ($row['in_use'] == 1 ? 1 : 2) . '">' . ($row['in_use'] == 1 ? 'yes' : 'no') . '</option>
+                        <option value="1">yes</option>
+                        <option value="2">no</option>
+                    </select>
+                </p>
+
         
-                <p>Price:
-                    <input type="text" name="price" size="30" value="'. $row['name']  . '" />
-                </p>';
+            </div>
 
-                echo '</div>';
+            <div class = "col2">
 
-                echo '<p>
+                <p>Staff:
+                    <input type="text" name="staff" size="30" value="' . $row['staff'] . '" />
+                </p>
+                
+                
+                <p>Date Created (YYYY-MM-DD):
+                    <input type="text" name="date_created" size="30" value="' . $row['date_created'] . '" />
+                </p>
+
+                <p>
                     <input type="submit" name="submit" value="Submit" class="button"/>
-                </p>';
+                </p>
+
+            </div>';
 
                 echo '</form>';
             } else {
