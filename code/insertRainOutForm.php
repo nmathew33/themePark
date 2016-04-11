@@ -24,7 +24,7 @@ $siteBuilder->getMenu();
 ?>
 
 <div class = "content" >
-    <form action="user_added.php" method="post" id="rainout" >
+    <form action="insertRainOut.php" method="post" id="rainout" >
         
         <b>Insert Rain Out</b>
         <div>
@@ -63,6 +63,7 @@ $siteBuilder->getMenu();
             <p>Comment:
                 <input type="text" name="comment" size="30" value="" />
             </p>
+            <input type="submit" name="submit" value="Submit" class="button"/>
         </div>
         
     </form>
