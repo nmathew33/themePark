@@ -36,6 +36,7 @@ $siteBuilder->getMenu();
       <input type="submit">
       <a href="insertRideForm.php" class="button">Add Ride</a>
     </form>
+    
 
 
     

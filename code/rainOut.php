@@ -28,6 +28,7 @@ $siteBuilder->getMenu();
       Rain Out (month and year):
       <input type="month" name="yearMonth">
 	  <input type="submit">
+      <a href="insertRainOutForm.php" class="button">Enter RainOut</a>
     </form>
 
 
