@@ -94,7 +94,7 @@ $siteBuilder->getMenu();
                 while($row = mysqli_fetch_array($response))
                 {
                     echo '<tr><td align="left">'.
-                    '<button type="submit" name="updateMaintenance" value="' . $row['idMaintenance'] . '">Archive</button>'  . '</td><td align="left">' .
+                    '<button type="submit" name="closeMaintenance" value="' . $row['idMaintenance'] . '">Archive</button>'  . '</td><td align="left">' .
                     $row['idMaintenance'] . '</td><td align="left">' . 
                     $row['date_created'] . '</td><td align="left">' .
                     $row['user_created'] . '</td><td align="left">' .
