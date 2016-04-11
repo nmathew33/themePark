@@ -22,7 +22,6 @@ $siteBuilder->getSubTitle();
 
 $siteBuilder->getMenu();
 
-// $rides = rides table
 ?>
 
 <div class = "content" >

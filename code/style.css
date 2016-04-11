@@ -3,6 +3,7 @@ body {
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     background-attachment:fixed;
+
 }
 
 .col-50{
@@ -34,12 +35,11 @@ body {
 
 
 .overlay{
-    position: fixed;
-    background: rgba(0, 0, 0, .5);
-    /*background-color: #1a1a1a;*/
+    position: absolute;
+    background-color: #1a1a1a;
     left: 0px;
     top: 0px;
-    /*opacity: 0.5;*/
+    opacity: 0.5;
     z-index: -1;
     width: 100%;
     height: 100%;
@@ -60,9 +60,7 @@ body {
 	top: 40%;
 	left: 20%;
 	width: 25%;
-    padding: 30px;
-    background: rgba(0,0,0, .5);
-    border-radius: 30px;
+	height: 30%;
 }
 
 /*form {
@@ -121,16 +119,6 @@ body {
 .input {
 	line-height: 40px;
 	width : 100%;
-    font-size: 30px;
-}
-
-.form-input{
-    padding:20px;
-}
-
-.label{
-    padding:0;
-    margin:0;
 }
 
 .menu {
