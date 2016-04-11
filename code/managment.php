@@ -34,6 +34,7 @@ $siteBuilder->getMenu();
                 <td><a href="viewConcession.php" class="clockInButton">Concessions</a></td>
                 <td><a href="viewRides.php" class="clockInButton">Rides</a></td>
 				<td><a href="viewClock.php" class="clockInButton">Clock Times</a></td>
+                <td><a href="rainOut.php" class="clockInButton">Rain Outs</a></td>
             </tr>
         </table>
     </center>

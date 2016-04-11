@@ -31,7 +31,9 @@ $siteBuilder->getMenu();
         <p>Maintenance Mode</p>
         <div class = "col1">
             <p>User ID:
-                <input type="text" name="user_id" size="30" value="" />
+                <?php
+                echo '<input type="text" name="user_id" size="30" value="' . $id . '" />';
+                ?>
             </p>
             
             <p>RideID:
