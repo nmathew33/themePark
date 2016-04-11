@@ -79,7 +79,7 @@ require("themeparkSiteBuilder.php");
 
                 $query = "SELECT idConcession_Pricing, name ,price 
                  		  FROM Concession_Pricing
-                 		  WHERE idConcession_Pricing = " . $_POST['ConcessionName'];
+                 		  WHERE location = " . $_POST['ConcessionName'];
 
                 $response = @mysqli_query($dbc, $query);
 
