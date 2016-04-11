@@ -6,16 +6,40 @@ body {
 
 }
 
+#addAdult, #addChild, #addCoupon{
+    background: dodgerblue;
+    padding: 20px 0;
+    margin: 10px 30%;
+    border-radius:10px;
+    width: 40%;
+}
+
+#coupon_id{
+    width: 30%;
+    margin: 10px 35%;
+}
+
+#coupon_id{
+    font-size: 30px;
+}
+
 .col-50{
     width: 50%;
     float: left;
     display: block;
 }
 
-.ticket_input > div > input{
+
+.col-100{
+    width: 100%;
+    float: left;
+    display: block;
+}
+
+.ticket_input > div > input, .ticket_input > div > div > input {
     width: 20%;
     float: left;
-    font-size: 20px;
+    font-size: 35px;
 }
 
 .ticket_input > div{
@@ -23,7 +47,7 @@ body {
 }
 
 .full-width-submit{
-    width: 80%;
+    width: 100%;
     margin: 30px auto;
     background: green;
     color: white;
@@ -187,6 +211,11 @@ body {
     font-size: 35px;
     padding-top: 10%;
 }
+
+.info2{
+    font-size: 35px;
+}
+
 .col1{
     position: absolute;
     width: 50%;

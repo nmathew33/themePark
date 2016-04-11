@@ -1,6 +1,7 @@
 <?php
 session_start();
 if(isset($_SESSION['id'])){
+    require_once('../db_connection.php');
     $username = $_SESSION['username']; 
     $id = $_SESSION['id'];
     $roleId = $_SESSION['roleId'];
@@ -9,9 +10,39 @@ if(isset($_SESSION['id'])){
 } else{
     header("Location: index.php");
 }
-// $query = "INSERT INTO Users (idUsers, role_id, first_name, last_name, email,
-// address, phone, ssn, gender, password, date_employed) VALUES ( ?, ?, ?, ?,
-// ?, ?, ?, ?, ?, ?, ?)";
+
+
+
+$query = "SELECT * FROM Coupon";
+
+$response = @mysqli_query($dbc,$query);
+
+
+while ($row = @mysqli_fetch_array($response)) {
+    
+    $result[] = $row;
+}
+
+$json = @json_encode($result);
+
+
+
+$query = "SELECT * FROM Ticket_Pricing";
+
+$response2 = @mysqli_query($dbc,$query);
+
+while ($row = @mysqli_fetch_array($response2)) {
+    
+    $result2[] = $row;
+}
+
+$json_prices = @json_encode($result2);
+
+
+
+
+@mysqli_close($dbc);
+
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 $siteBuilder->getOpeningHtmlTags('Ticketing');
@@ -20,15 +51,10 @@ $siteBuilder->getSubTitle();
 $siteBuilder->getMenu();
 ?>
 
-<div class = "content" >
-    <center class="info">
-        <h1>Ticketing</h1>
-        
-        <?php if(isset($_POST['first_name'][0])){
-            echo $_POST['first_name'][0];
-        } ?>
+<div class = "content">
+    <center class="info2">
         <form action="ticketing.php" method="post">
-                <div class="col-50">
+                <div class="col-100">
                     <h3>Adults</h3>
                     <div class='ticket_input'>
                         <div>
@@ -43,17 +69,191 @@ $siteBuilder->getMenu();
                     </div>
                 </div>
 
-                <div class="col-50">
+                <div>
                     <h3>Children</h3>
                     <div class='ticket_input'>
                         <div id="childList"></div>
                         <div id="addChild" onclick="addChild()" class='ticket_input'>Add Child</div>                    
                     </div>
                 </div>
+                
+                <div class="col-100">
+                    <h3>Coupon</h3>
+                    <input name="coupon" type="text" id="coupon_id">
+                    <input type="hidden" name="coupon_value" id="coupon_value">
+                    <div id="addCoupon" onclick="addCoupon()">Add Coupon</div>
+                </div>
+                
+                <h2  >$<span id="total_price">0.00</span></h2>
+                
+                
+                
+                
+                
+                
+                
             <input class='full-width-submit' type="submit">
         </form>
     </center>
 </div>
+
+<script> 
+
+    console.log("query", "<?php echo $query; ?>");
+    var output = <?php echo $json; ?>;
+    console.log("coupons", output);
+    var prices = <?php echo $json_prices ?>;
+    console.log(prices);
+    var coupon_discount = 0;
+    var adult_price = prices.filter(function( obj ) { return obj.name == 'adult'; })[0];
+    var child_price = prices.filter(function( obj ) { return obj.name == 'child'; })[0];
+    var total_price = adult_price.price;
+    
+    
+    
+// var para = document.createElement("p");
+// var node = document.createTextNode("This is new.");
+// para.appendChild(node);
+
+// var element = document.getElementById("div1");
+// element.appendChild(para);
+
+
+function addAdult() {
+    var append_list = document.createElement('div');
+    
+    var input = document.createElement('input');
+    input.name = "first_name[]";
+    input.type = "text";
+    input.placeholder = "First Name";
+    append_list.appendChild(input);
+    
+    input = document.createElement('input');
+    input.name = "last_name[]";
+    input.type = "text";
+    input.placeholder = "Last Name";
+    append_list.appendChild(input);
+    
+    input = document.createElement('input');
+    input.name = "email[]";
+    input.type = "text";
+    input.placeholder = "Email";
+    append_list.appendChild(input);
+    
+    input = document.createElement('input');
+    input.name = "address[]";
+    input.type = "text";
+    input.placeholder = "Address";
+    append_list.appendChild(input);
+    
+    input = document.createElement('input');
+    input.name = "phone[]";
+    input.type = "text";
+    input.placeholder = "Phone";
+    append_list.appendChild(input);
+    
+    addItem("adultList", append_list);
+}
+
+function addChild(){
+     var append_list = document.createElement('div');
+    
+    var input = document.createElement('input');
+    input.name = "child_first_name[]";
+    input.type = "text";
+    input.placeholder = "First Name";
+    append_list.appendChild(input);
+    
+    input = document.createElement('input');
+    input.name = "child_last_name[]";
+    input.type = "text";
+    input.placeholder = "Last Name";
+    append_list.appendChild(input);
+    
+    input = document.createElement('input');
+    input.name = "child_email[]";
+    input.type = "text";
+    input.placeholder = "Email";
+    append_list.appendChild(input);
+    
+    input = document.createElement('input');
+    input.name = "child_address[]";
+    input.type = "text";
+    input.placeholder = "Address";
+    append_list.appendChild(input);
+    
+    input = document.createElement('input');
+    input.name = "child_phone[]";
+    input.type = "text";
+    input.placeholder = "Phone";
+    append_list.appendChild(input);
+    
+    addItem("childList", append_list);  
+}
+
+
+
+function addItem(element_id, append_item){
+    var element = document.getElementById(element_id);
+    element.appendChild(append_item);
+    updatePrice();
+    
+}
+
+
+
+function updatePrice(){
+    var adult_count = document.getElementById("adultList").childElementCount;
+    var child_count = document.getElementById("childList").childElementCount;
+    console.log("adults", document.getElementById("adultList").childElementCount);
+    console.log('update price begin');
+    console.log("adult_count", adult_count);
+    console.log("adult_price", adult_price.price);
+    adult_count += 1;
+    console.log("adult_count", adult_count);
+    
+    total_price1 = adult_count  * adult_price.price;
+    total_price1 += child_count * child_price.price;
+    console.log(coupon_discount);
+    if(coupon_discount < 1){   
+        total_price1 = total_price1 * (1 - coupon_discount);
+    } else {
+        total_price1 = total_price1 - coupon_discount;
+    }
+    
+    console.log('total price', total_price);
+    document.getElementById('total_price').innerHTML = total_price1.toFixed(2);        
+}    
+    
+    
+    
+    
+function addCoupon() {
+    var coupon;
+    var coupon_value;
+    if (typeof document.getElementById('coupon_id').value != '') {
+        coupon = document.getElementById('coupon_id').value;
+        coupon_value = output.filter(function( obj ) { return obj.code == coupon; });
+        if(typeof coupon_value != 'undefined'){
+            console.log("typeof",typeof coupon_value);
+            console.log(coupon_value[0].name);
+            coupon_discount = coupon_value[0].amount;
+            console.log(coupon_value);
+        }
+    } else {
+        coupon = "";
+        coupon_value = null;
+    }
+    updatePrice();
+    
+}
+
+
+updatePrice();
+    
+
+</script>
+
 
 <?php
 $siteBuilder->getClosinghtmlTags();
