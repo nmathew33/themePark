@@ -60,7 +60,9 @@ $siteBuilder->getMenu();
 				WHERE
 					idUsers = user_id AND 
 					role_id = idRoles AND 
-					clock_in LIKE '$month'";
+					clock_in LIKE '$month'
+                ORDER BY 
+                    clock_in";
 
                 $response = @mysqli_query($dbc, $query);
                 if($response){

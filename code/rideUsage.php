@@ -26,14 +26,38 @@ $siteBuilder->getMenu();
 <div class = "content" >
     <center class="info">
         <h1>Ride Usage</h1>
-        <form action="rideUsage.php" method="post">
+        <form action="rideUsage.php" method="post" id="rideusage">
             <div>
                 <ul class="rideUsageForm">
 					<li>
 						<input name="customerID" type="text" placeholder="Customer ID" />
 					</li>
 					<li>
-						<input name="rideID" type="text" placeholder="Ride ID" />
+                        <?php 
+
+                            require_once('../db_connection.php');
+
+                            $query = "SELECT * FROM Rides";
+                            $response = @mysqli_query($dbc, $query);
+                            if($response){
+                                echo '<select name="rideID"  form="rideusage">';
+
+                                while($row = mysqli_fetch_array($response)){
+                                    echo '<option value="' . $row['idRides'] . '">' .
+                                    $row['name'];
+                                    echo '</option>';
+                                }
+
+                                echo '</select>';
+                            } else {
+                                echo "Couldn't obtain role list";
+
+                                echo mysqli_error($dbc);
+                            }
+
+                           
+
+                        ?>
 					</li>
 				</ul>
             </div>
@@ -66,7 +90,7 @@ if (isset($_POST['submit'])) {
 		}
 		echo '</h1></center>';
 	} else {
-		require_once('../db_connection.php');
+		
 		
 		$query = "INSERT INTO Ride_Usage (customer, ride) VALUES ($customer, $ride)";
 		
