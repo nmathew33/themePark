@@ -43,7 +43,7 @@ $siteBuilder->getMenu();
                 echo '<center><h1>User Successfully Entered</h1></center>';
                 mysqli_stmt_close($stmt);
                 mysqli_close($dbc);
-                header('Location: viewEmployee.php');
+                header('Location: maintenance.php');
 
             } else {
                 
@@ -73,7 +73,7 @@ $siteBuilder->getMenu();
                 echo '<form action="resolveMaintenance.php" method="post" id="updateEmployeeForm">';
                 echo '<b>Update Ticket</b>
                         <div class = "col1">';
-                echo '<input type="hidden" name="ID" value="'. $maint .'"/>';
+                echo '<input type="hidden" name="maint_id" value="'. $maint .'"/>';
                     
                 echo '<p>User ID: '. $userID .'
                         </p>

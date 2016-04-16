@@ -34,7 +34,7 @@ class ThemeParkSiteBuilder{
                     <td><a href="scheduling.php" class="buttonMenu">Scheduling</a></td>
                     <td><a href="ticketing.php" class="buttonMenu">Ticketing</a></td>
                     <td><a href="concessions.php" class="buttonMenu">Concessions</a></td>
-                    <td><a href="maintenance.php" class="buttonMenu">Maitenance</a></td>
+                    <td><a href="maintenance.php" class="buttonMenu">Maintenance</a></td>
                     <td><a href="managment.php" class="buttonMenu">Management</a></td>
                     <td><a href="admin.php" class="buttonMenu">Admin</a></td>
                 </tr>

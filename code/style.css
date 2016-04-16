@@ -6,7 +6,7 @@ body {
 
 }
 
-#addAdult, #addChild, #addCoupon{
+#addAdult, #addChild, #addCoupon, .remove {
     background: dodgerblue;
     padding: 20px 0;
     margin: 10px 30%;
@@ -19,8 +19,21 @@ body {
     margin: 10px 35%;
 }
 
-#coupon_id{
+.col-80 {
+    width: 80%;
+    margin: 20px auto;
+}
+
+#coupon_id, #getCash > input ,#getCard > input, #getCard select{
     font-size: 30px;
+}
+
+#getCard, #getCash{
+    width: 400px;
+    padding: 20px;
+    margin: 20px, auto;
+    background: rgba(255, 255, 255, .8);
+    text-align: left;
 }
 
 .col-50{

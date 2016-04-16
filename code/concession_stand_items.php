@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 if(isset($_SESSION['id'])){
@@ -39,10 +40,6 @@ require("themeparkSiteBuilder.php");
 	 	            </tr>
 	        	</table>
 
-
-	        	<h2 class="total_price">	
-	        			Total: <span id='total_value'>0.00</span>
-	        	</h2>
                 <?php 
 
                     require_once('../db_connection.php');
@@ -52,7 +49,7 @@ require("themeparkSiteBuilder.php");
                     if($response){
                         echo '<select name="ConcessionName"  form="priceform">';
 
-                        while($row = mysqli_fetch_array($response)){
+                        while($row = @mysqli_fetch_array($response)){
                             echo '<option value="' . $row['idConcession_Stands'] . '">' . $row['name'];
                             echo '</option>';
                         }
@@ -65,6 +62,9 @@ require("themeparkSiteBuilder.php");
                     }
                 ?>
             </p>
+            <h2 class="total_price">	
+	        			Total: <span id='total_value'>0.00</span>
+	        </h2>
         <input type = "submit" value="Select">
 
      </form>
@@ -86,7 +86,7 @@ require("themeparkSiteBuilder.php");
                 if($response){
 
 
-             	while($row = mysqli_fetch_array($response)){
+             	while($row =@mysqli_fetch_array($response)){
 
              		$field_array[] = $row; 
 
@@ -100,7 +100,7 @@ require("themeparkSiteBuilder.php");
             	}
             	// echo '</table>';
 
-            	$output = json_encode($field_array);
+            	$output = @json_encode($field_array);
             } else {
             	echo "Couldn't issue database query<br />";
             }
@@ -115,7 +115,7 @@ require("themeparkSiteBuilder.php");
 	var json = <?php echo $output ?>;
 	console.log(json);
 	var table = document.getElementById('concession_table');
-	// for (var i = json.length - 1; i >= 0; i--) {
+	// for (var i = json.length - 1; i >= 0; i--) ;
 	json.forEach(function(concession){
 		var append_row = document.createElement('tr');
 		append_row.class = "concession_row";
@@ -135,6 +135,8 @@ require("themeparkSiteBuilder.php");
 		append_data = document.createElement('td');
 		var input_element = document.createElement('input');
 		input_element.type = 'number';
+		input_element.min = 0;
+		input_element.value = 0;
 		append_data.appendChild(input_element);
 		append_data.align ="left";
 		append_row.appendChild(append_data);
@@ -154,13 +156,13 @@ require("themeparkSiteBuilder.php");
 	        for (var j = 0, col; col = row.cells[j]; j++) {
 	        		if (col.className == 'concession_price') {
 	        			if (typeof row.cells[j+1].childNodes[0].value != 'undefined') {
-	        				total_price += (parseFloat(col.innerText) * parseFloat(row.cells[j+1].childNodes[0].value));
+	        				total_price += parseFloat(col.innerText) * parseFloat(row.cells[j+1].childNodes[0].value);
 	        			};
 	        		};
 			} 
 		}
 		console.log("total", total_price);
-		document.getElementById('total_value').innerHTML = total_price;
+		document.getElementById('total_value').innerHTML = total_price.toFixed(2);
 	});
 
 
