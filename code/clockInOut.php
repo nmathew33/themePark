@@ -22,7 +22,6 @@ $siteBuilder->getOpeningHtmlTags('Clock In/out');
 
 $siteBuilder->getGreyOverLay();
 
-$siteBuilder->getSubTitle();
 
 $siteBuilder->getMenu();
 

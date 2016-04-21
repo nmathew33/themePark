@@ -18,8 +18,6 @@ $siteBuilder->getOpeningHtmlTags('Maintenance');
 
 $siteBuilder->getGreyOverLay();
 
-$siteBuilder->getSubTitle();
-
 $siteBuilder->getMenu();
 ?>
 

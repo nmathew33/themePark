@@ -26,30 +26,30 @@ class ThemeParkSiteBuilder{
 	}
 
 	public function getMenu(){
-		echo '<div>
-            <table class = "menu">
-                <tr>
-                    <td><a href="clockInOut.php" class="buttonMenu">Clock In/Out</a></td>
-                    <td><a href="scheduling.php" class="buttonMenu">Scheduling</a></td>
-                    <td><a href="ticketing.php" class="buttonMenu">Ticketing</a></td>
-                    <td><a href="concessions.php" class="buttonMenu">Concessions</a></td>
-                    <td><a href="maintenance.php" class="buttonMenu">Maitenance</a></td>
-                    <td><a href="managment.php" class="buttonMenu">Management</a></td>
-                    <td><a href="admin.php" class="buttonMenu">Admin</a></td>
-                </tr>
-            </table>
-        </div>
-        <div class="contentBackDrop"></div>';
+		echo '
+			<div class="left-bar">
+				<div class="logo">
+					Four o Four land
+				</div>
+				<a href="clockInOut.php"><div class="menu-item">Clock In/Out</div></a>
+				<a href="scheduling.php"><div class="menu-item">Scheduling</div></a>
+				<a href="ticketing.php"><div class="menu-item">Ticketing</div></a>
+				<a href="concessions.php"><div class="menu-item">Concessions</div></a>
+				<a href="maintenance.php"><div class="menu-item">Maintenance</div></a>
+				<a href="managment.php"><div class="menu-item">Management</div></a>
+				<a href="admin.php"><div class="menu-item">Admin</div></a>
+			</div>
+			<div class = "content">
+				<div class="content-inner">
+				';
+		
 	}
 
-	public function getOpenContentTags(){
-		echo '<div class = "content">';
-	}
-	public function getCloseContentTags(){
-		echo '</div>';
-	}
 	public function getClosinghtmlTags(){
-		echo '
+			echo '
+				</div>
+			</div>
+					</div>
                 <script src="script.js" ></script>
             </body>
 		</html>';
