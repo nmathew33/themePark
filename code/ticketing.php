@@ -77,7 +77,7 @@ $siteBuilder->getMenu();
                 <h3>Children</h3>
                 <div class='ticket_input'>
                     <div id="childList"></div>
-                    <div class="button-group">
+                    <div class="button_group">
                         <div onclick="addChild()">Add Child</div>                    
                         <div onclick="removeItem('childList')">Remove Child</div>
                     </div>
