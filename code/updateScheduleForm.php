@@ -14,16 +14,13 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Shift Schedule');
+$siteBuilder->getOpenHtmlTags();
 
 $siteBuilder->getGreyOverLay();
-
-$siteBuilder->getSubTitle();
 
 $siteBuilder->getMenu();
 ?>
 
-<div class = "content" >
     <?php 
         if(isset($_POST['deleteShiftID'])){
             require_once('../db_connection.php');
@@ -66,8 +63,7 @@ $siteBuilder->getMenu();
             if($response){
                 $row = mysqli_fetch_array($response);
                 echo '<form action="updateSchedule.php" method="post" id="insertScheduleform">';
-                echo '<b>Update Shift</b>
-                        <div class = "col1">';
+                echo '<b>Update Shift</b>';
                 
                     
                 echo '<p>Shift Schedule ID:
@@ -85,10 +81,6 @@ $siteBuilder->getMenu();
                 <p>Last Name:
                     <input type="text" name="last_name" size="30" value="'. $row['last_name'] . '" />
                 </p>';
-
-                echo '</div>';
-
-                echo '<div class = "col2">';
 
                 echo '<p>Date Begin(YYYY-MM-DD):
                     <input type="text" name="date_begin" size="30" value="" />
@@ -114,7 +106,6 @@ $siteBuilder->getMenu();
                     <input type="submit" name="submit" value="Submit" class="button"/>
                 </p>';
 
-                echo '</div>';
                 echo '</form>';
             } else {
                 echo "Couldn't obtain schedule to update";
@@ -125,7 +116,7 @@ $siteBuilder->getMenu();
             mysqli_close($dbc);
         }
     ?>
-</div>
+
 
 <?php
 $siteBuilder->getClosinghtmlTags();

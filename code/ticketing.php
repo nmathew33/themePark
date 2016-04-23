@@ -45,7 +45,7 @@ $json_prices = @json_encode($result2);
 
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
-$siteBuilder->getOpeningHtmlTags('Ticketing');
+$siteBuilder->getOpenHtmlTags();
 $siteBuilder->getGreyOverLay();
 
 $siteBuilder->getMenu();

@@ -14,16 +14,13 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Welcome');
+$siteBuilder->getOpenHtmlTags();
 
 $siteBuilder->getGreyOverLay();
-
-$siteBuilder->getSubTitle();
 
 $siteBuilder->getMenu();
 ?>
 
-<div class = "content" >
     <h1>Employee List</h1>
     <form action="viewEmployee.php" method="post">
        <select name = 'by'>
@@ -118,7 +115,6 @@ $siteBuilder->getMenu();
 
             ?>
     </div>
-</div>
 
 <?php
 $siteBuilder->getClosinghtmlTags();

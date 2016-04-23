@@ -21,22 +21,18 @@ $siteBuilder->getGreyOverLay();
 $siteBuilder->getMenu();
 ?>
 
-<div class = "content" >
-    <center class="info">
-        <h1>Managment</h1>
-        <table class = "menu">
-            <tr>
-                <td><a href="viewEmployee.php" class="clockInButton">Employees</a></td>
-                <td><a href="viewSchedule.php" class="clockInButton">Shift Schedule</a></td>
-                <td><a href="viewConcessionStands.php" class="clockInButton">Concession Stands</a></td>
-                <td><a href="viewConcession.php" class="clockInButton">Concessions</a></td>
-                <td><a href="viewRides.php" class="clockInButton">Rides</a></td>
-				<td><a href="viewClock.php" class="clockInButton">Clock Times</a></td>
-                <td><a href="rainOut.php" class="clockInButton">Rain Outs</a></td>
-            </tr>
-        </table>
-    </center>
-</div>
+<h1>Managment</h1>
+<table class = "menu">
+    <tr>
+        <td><a href="viewEmployee.php" class="clockInButton">Employees</a></td>
+        <td><a href="viewSchedule.php" class="clockInButton">Shift Schedule</a></td>
+        <td><a href="viewConcessionStands.php" class="clockInButton">Concession Stands</a></td>
+        <td><a href="viewConcession.php" class="clockInButton">Concessions</a></td>
+        <td><a href="viewRides.php" class="clockInButton">Rides</a></td>
+        <td><a href="viewClock.php" class="clockInButton">Clock Times</a></td>
+        <td><a href="rainOut.php" class="clockInButton">Rain Outs</a></td>
+    </tr>
+</table>
 
 <?php
 $siteBuilder->getClosinghtmlTags();

@@ -14,110 +14,107 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('User');
+$siteBuilder->getOpenHtmlTags();
 
 $siteBuilder->getGreyOverLay();
-
-$siteBuilder->getSubTitle();
 
 $siteBuilder->getMenu();
 ?>
 
-<dic class="content">
-        <?php
+<?php
 
-            if(isset($_POST['submit'])){
-    
-                $data_missing = array();
-               if(empty($_POST['maint_id'])){
+    if(isset($_POST['submit'])){
 
-                    $data_missing[] = 'Maintenance ID';
+        $data_missing = array();
+        if(empty($_POST['maint_id'])){
 
-                } else {
+            $data_missing[] = 'Maintenance ID';
 
-                    $maint = trim($_POST['maint_id']);
+        } else {
 
-                }
-                if(empty($_POST['closed_id'])){
+            $maint = trim($_POST['maint_id']);
 
-                    $data_missing[] = 'Close ID';
+        }
+        if(empty($_POST['closed_id'])){
 
-                } else {
+            $data_missing[] = 'Close ID';
 
-                    $user = trim($_POST['closed_id']);
+        } else {
 
-                }
+            $user = trim($_POST['closed_id']);
 
-                if(empty($_POST['close_description'])){
+        }
 
-                    $data_missing[] = 'Resolve Desciption';
+        if(empty($_POST['close_description'])){
 
-                } else{
+            $data_missing[] = 'Resolve Desciption';
 
-                    $descrip = trim($_POST['close_description']);
+        } else{
 
-                }
+            $descrip = trim($_POST['close_description']);
 
-               
+        }
 
+        
+
+        
+
+        if(empty($data_missing)){
+            
+            require_once('../db_connection.php');
+            
+            $query = "UPDATE Maintenance SET user_closed = ?, date_closed = ?, closed_description = ?
+            WHERE idMaintenance = $maint";
+            
+            $stmt = mysqli_prepare($dbc, $query);
+            
+            $dateEnd = date("Y-m-d H:i:s");               
+
+            mysqli_stmt_bind_param($stmt, "ids", $user,$dateEnd, $descrip);
+        
+            mysqli_stmt_execute($stmt);
+            
+            $affected_rows = mysqli_stmt_affected_rows($stmt);
+            
+            if($affected_rows == 1){
                 
-    
-                if(empty($data_missing)){
-                    
-                    require_once('../db_connection.php');
-                    
-                    $query = "UPDATE Maintenance SET user_closed = ?, date_closed = ?, closed_description = ?
-                    WHERE idMaintenance = $maint";
-                    
-                    $stmt = mysqli_prepare($dbc, $query);
-                    
-                    $dateEnd = date("Y-m-d H:i:s");               
-  
-                    mysqli_stmt_bind_param($stmt, "ids", $user,$dateEnd, $descrip);
-              
-                    mysqli_stmt_execute($stmt);
-                    
-                    $affected_rows = mysqli_stmt_affected_rows($stmt);
-                    
-                    if($affected_rows == 1){
-                        
-                        echo '<center><h1>Ticket Resolved</h1></center>';
-                        
-                        mysqli_stmt_close($stmt);
-                        mysqli_close($dbc);
-                        
-                        
-                    } else {
-                        
-                        echo '<center><h1>Error Occurred</h1></center>';
-                        echo mysqli_error($dbc);
-                        
-                        mysqli_stmt_close($stmt);
-                        mysqli_close($dbc);
-                       
-                        
-                    }
-                    
-                } else {
-                    
-                    echo '<center><h1>You need to enter the following data</h1>';
-                    
-                    foreach($data_missing as $missing){
-                        
-                        echo "$missing<br />";
-                        
-                    }
-                    
-                    echo '</center>';
-                    
-                }
+                echo '<center><h1>Ticket Resolved</h1></center>';
+                
+                mysqli_stmt_close($stmt);
+                mysqli_close($dbc);
+                
+                
+            } else {
+                
+                echo '<center><h1>Error Occurred</h1></center>';
+                echo mysqli_error($dbc);
+                
+                mysqli_stmt_close($stmt);
+                mysqli_close($dbc);
+                
                 
             }
+            
+        } else {
+            
+            echo '<center><h1>You need to enter the following data</h1>';
+            
+            foreach($data_missing as $missing){
+                
+                echo "$missing<br />";
+                
+            }
+            
+            echo '</center>';
+            
+        }
+        
+    }
 
-        ?>
+?>
 
-        <a href="maintenance.php" class="add_maintenance">Back</a>
-        </div>
+<a href="maintenance.php" class="add_maintenance">Back</a>
+
 
 <?php
 $siteBuilder->getClosinghtmlTags();
