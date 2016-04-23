@@ -37,6 +37,7 @@ class ThemeParkSiteBuilder{
 	public function getMenu(){
 
 		echo '
+            <div class = "subheader"><a href="logout.php" class="button">Sign Out</a></div>
 			<div class="left-bar">
 				<div class="logo">
 					Four o Four land
