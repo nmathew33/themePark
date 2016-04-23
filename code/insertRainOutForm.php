@@ -14,60 +14,57 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Rain Out');
+$siteBuilder->getOpenHtmlTags();
 
 $siteBuilder->getGreyOverLay();
-
-$siteBuilder->getSubTitle();
 
 $siteBuilder->getMenu();
 ?>
 
-<div class = "content" >
-    <form action="insertRainOut.php" method="post" id="rainout" >
+<form action="insertRainOut.php" method="post" id="rainout" >
+    
+    <b>Insert Rain Out</b>
+    <div>
+        <p>Date:
+            <input type="date" name="date" value="" />
+        </p>
         
-        <b>Insert Rain Out</b>
-        <div>
-            <p>Date:
-                <input type="date" name="date" value="" />
-            </p>
-            
-            <p>Rides:
-                <?php 
+        <p>Rides:
+            <?php 
 
-                    require_once('../db_connection.php');
+                require_once('../db_connection.php');
 
-                    $query = "SELECT * FROM Rides";
-                    $response = @mysqli_query($dbc, $query);
-                    if($response){
-                        echo '<select name="ride"  form="rainout">';
+                $query = "SELECT * FROM Rides";
+                $response = @mysqli_query($dbc, $query);
+                if($response){
+                    echo '<select name="ride"  form="rainout">';
 
-                        while($row = mysqli_fetch_array($response)){
-                            echo '<option value="' . $row['idRides'] . '">' .
-                            $row['name'];
-                            echo '</option>';
-                        }
-
-                        echo '</select>';
-                    } else {
-                        echo "Couldn't obtain role list";
-
-                        echo mysqli_error($dbc);
+                    while($row = mysqli_fetch_array($response)){
+                        echo '<option value="' . $row['idRides'] . '">' .
+                        $row['name'];
+                        echo '</option>';
                     }
 
-                    mysqli_close($dbc);
+                    echo '</select>';
+                } else {
+                    echo "Couldn't obtain role list";
 
-                ?>
-            </p>
+                    echo mysqli_error($dbc);
+                }
 
-            <p>Comment:
-                <input type="text" name="comment" size="30" value="" />
-            </p>
-            <input type="submit" name="submit" value="Submit" class="button"/>
-        </div>
-        
-    </form>
-</div>
+                mysqli_close($dbc);
+
+            ?>
+        </p>
+
+        <p>Comment:
+            <input type="text" name="comment" size="30" value="" />
+        </p>
+        <input type="submit" name="submit" value="Submit" class="button"/>
+    </div>
+    
+</form>
+
 
 
 <?php

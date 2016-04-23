@@ -14,65 +14,56 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Shift Schedule');
+$siteBuilder->getOpenHtmlTags();
 
 $siteBuilder->getGreyOverLay();
-
 
 $siteBuilder->getMenu();
 
 ?>
 
-<div class = "content" >
-    <form action="insertSchedule.php" method="post" id="insertScheduleform" >
-        
-        <b>Add Shift</b>
-            <div class = "col1">
-        
-                <p>Worker ID:
-                    <input type="text" name="worker_id" size="30" value="" />
-                </p>
+<form action="insertSchedule.php" method="post" id="insertScheduleform" >
+    
+    <b>Add Shift</b>
+    
+            <p>Worker ID:
+                <input type="text" name="worker_id" size="30" value="" />
+            </p>
 
-                <p>First Name:
-                    <input type="text" name="first_name" size="30" value="" />
-                </p>
-        
-                <p>Last Name:
-                    <input type="text" name="last_name" size="30" value="" />
-                </p>
+            <p>First Name:
+                <input type="text" name="first_name" size="30" value="" />
+            </p>
+    
+            <p>Last Name:
+                <input type="text" name="last_name" size="30" value="" />
+            </p>
 
-            </div>
+            <p>Date Begin(YYYY-MM-DD):
+                <input type="text" name="date_begin" size="30" value="" />
+            </p>
 
-            <div class = "col2">
+            <p>Time Begin(HH:MM:SS):
+                <input type="text" name="time_begin" size="30" value="" />
+            </p>
+    
+            <p>Date End(YYYY-MM-DD):
+                <input type="text" name="date_end" size="30" value="" />
+            </p>
 
-                <p>Date Begin(YYYY-MM-DD):
-                    <input type="text" name="date_begin" size="30" value="" />
-                </p>
+            <p>Time End(HH:MM:SS):
+                <input type="text" name="time_end" size="30" value="" />
+            </p>
+            <?php
+            echo '<p>Manager ID:
+                <input type="text" form="insertScheduleform" name="managerID" size="30" value="' . $id . '" />
+            </p>';
+            ?>
 
-                <p>Time Begin(HH:MM:SS):
-                    <input type="text" name="time_begin" size="30" value="" />
-                </p>
-        
-                <p>Date End(YYYY-MM-DD):
-                    <input type="text" name="date_end" size="30" value="" />
-                </p>
+            <p>
+                <input type="submit" name="submit" value="Submit" class="button"/>
+            </p>
 
-                <p>Time End(HH:MM:SS):
-                    <input type="text" name="time_end" size="30" value="" />
-                </p>
-                <?php
-                echo '<p>Manager ID:
-                    <input type="text" form="insertScheduleform" name="managerID" size="30" value="' . $id . '" />
-                </p>';
-                ?>
-
-                <p>
-                    <input type="submit" name="submit" value="Submit" class="button"/>
-                </p>
-
-            </div>
-    </form>
-</div>
+</form>
 
 <?php
 $siteBuilder->getClosinghtmlTags();

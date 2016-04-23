@@ -12,6 +12,15 @@ class ThemeParkSiteBuilder{
 				</head>
 			<body>';
 	}
+    
+    public function getOpenHtmlTags(){
+		echo '<html>
+				<head>
+					<title>' . 'Four o Four Land'  . '</title>
+        			<link rel="stylesheet" type="text/css" href="style.css">
+				</head>
+			<body>';
+	}
 
 	public function getGreyOverLay(){
 		echo '<div class="overlay"></div>';

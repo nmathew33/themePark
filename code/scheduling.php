@@ -28,8 +28,8 @@ $siteBuilder->getGreyOverLay();
 
 
 $siteBuilder->getMenu();
-$siteBuilder->getOpenContentTags();
 ?>
+<div class="content">
 
     <h1>Shift Schedule</h1>
     <form action="scheduling.php" method="get">
@@ -111,8 +111,7 @@ $siteBuilder->getOpenContentTags();
                 echo '</div>';
         ?>
   
-
+</div>
 <?php
-$siteBuilder->getCloseContentTags();
 $siteBuilder->getClosinghtmlTags();
 ?>

@@ -285,8 +285,7 @@ h3{
 .maintenanceMenu{
     position: absolute; 
     top: 360px;
-    left: 50px;
-    width: 92%;
+    width: 75%;
     height: 50%; 
     background-color: white;
     border: #008CBA;

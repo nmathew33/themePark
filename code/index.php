@@ -45,12 +45,9 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags();
+$siteBuilder->getOpeningHtmlTags('Login');
 
 // $siteBuilder->getGreyOverLay();
-
-
-$siteBuilder->getOpenContentTags();
 ?>
 
 	<div class = "login">
@@ -71,7 +68,6 @@ $siteBuilder->getOpenContentTags();
 	</div>
 
 <?php
-$siteBuilder->getCloseContentTags();
 $siteBuilder->getClosinghtmlTags();
 
 ?>

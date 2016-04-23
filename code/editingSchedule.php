@@ -14,7 +14,7 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Shift Schedule');
+$siteBuilder->getOpenHtmlTags();
 
 $siteBuilder->getGreyOverLay();
 
@@ -22,86 +22,84 @@ $siteBuilder->getGreyOverLay();
 $siteBuilder->getMenu();
 ?>
 
-<div class = "content" >
-    <h1>Shift Schedule</h1>
-    <form action="viewSchedule.php" method="post">
-      Schedule (month and year):
-      <input type="month" name="yearMonth">
-      <input type="submit">
-    </form>
+<h1>Shift Schedule</h1>
+<form action="viewSchedule.php" method="post">
+    Schedule (month and year):
+    <input type="month" name="yearMonth">
+    <input type="submit">
+</form>
 
 
-    
-        <?php
-            if(isset($_POST['yearMonth'])){
-                
-                $month = $_POST['yearMonth'];
 
-                echo '<form action="viewSchedule.php" method="post" enctype="multipart/form=data"> 
-                           <button type="submit" name="yearMonth" value="' . $month . '">Back</button>
-                        </form> ';
-                echo '<div class="reports">';
+    <?php
+        if(isset($_POST['yearMonth'])){
+            
+            $month = $_POST['yearMonth'];
 
-                require_once('../db_connection.php');
+            echo '<form action="viewSchedule.php" method="post" enctype="multipart/form=data"> 
+                        <button type="submit" name="yearMonth" value="' . $month . '">Back</button>
+                    </form> ';
+            echo '<div class="reports">';
 
-                $month = $month . '%';
+            require_once('../db_connection.php');
 
-                $query = "SELECT idShift_Schedule, idUsers, first_name, last_name, name, shift_begin, shift_end, phone, created_by FROM Shift_Schedule, Users, Roles WHERE idUsers = worker_id AND role_id = idRoles AND shift_begin LIKE '$month'";
+            $month = $month . '%';
 
-                $response = @mysqli_query($dbc, $query);
-                
-                echo '<form action="updateScheduleForm.php" method="post" enctype="multipart/form=data">';
+            $query = "SELECT idShift_Schedule, idUsers, first_name, last_name, name, shift_begin, shift_end, phone, created_by FROM Shift_Schedule, Users, Roles WHERE idUsers = worker_id AND role_id = idRoles AND shift_begin LIKE '$month'";
 
-                if($response){
-                echo '<table align="left"
-                cellspacing="5" cellpadding="8" class="report">
+            $response = @mysqli_query($dbc, $query);
+            
+            echo '<form action="updateScheduleForm.php" method="post" enctype="multipart/form=data">';
 
-                <tr><td align="left"><b></b></td>
-                <td align="left"><b></b></td>
-                <td align="left"><b>ID</b></td>
-                <td align="left"><b>Role</b></td>
-                <td align="left"><b>First Name</b></td>
-                <td align="left"><b>Last Name</b></td>
-                <td align="left"><b>Shift Begin</b></td>
-                <td align="left"><b>Shift End</b></td>
-                <td align="left"><b>Phone</b></td>
-                <td align="left"><b>Manager ID</b></td></tr>';
+            if($response){
+            echo '<table align="left"
+            cellspacing="5" cellpadding="8" class="report">
 
-            	
-                while($row = mysqli_fetch_array($response)){
+            <tr><td align="left"><b></b></td>
+            <td align="left"><b></b></td>
+            <td align="left"><b>ID</b></td>
+            <td align="left"><b>Role</b></td>
+            <td align="left"><b>First Name</b></td>
+            <td align="left"><b>Last Name</b></td>
+            <td align="left"><b>Shift Begin</b></td>
+            <td align="left"><b>Shift End</b></td>
+            <td align="left"><b>Phone</b></td>
+            <td align="left"><b>Manager ID</b></td></tr>';
 
-                echo '<tr><td align="left">' . 
-                '<button type="submit" name="updateShiftID" value="' . $row['idShift_Schedule'] . '">edit</button>'  . '</td><td align="left">' . 
-                '<button type="submit" name="deleteShiftID" value="' . $row['idShift_Schedule'] . '">delete</button>'  . '</td><td align="left">' . 
-                $row['idUsers'] . '</td><td align="left">' . 
-                $row['name'] . '</td><td align="left">' .
-                $row['first_name'] . '</td><td align="left">' . 
-                $row['last_name'] . '</td><td align="left">' .
-                $row['shift_begin'] . '</td><td align="left">' . 
-                $row['shift_end'] . '</td><td align="left">' . 
-                $row['phone'] . '</td><td align="left">' .
-                $row['created_by'] . '</td><td align="left">';
+            
+            while($row = mysqli_fetch_array($response)){
 
-                echo '</tr>';
-                }
+            echo '<tr><td align="left">' . 
+            '<button type="submit" name="updateShiftID" value="' . $row['idShift_Schedule'] . '">edit</button>'  . '</td><td align="left">' . 
+            '<button type="submit" name="deleteShiftID" value="' . $row['idShift_Schedule'] . '">delete</button>'  . '</td><td align="left">' . 
+            $row['idUsers'] . '</td><td align="left">' . 
+            $row['name'] . '</td><td align="left">' .
+            $row['first_name'] . '</td><td align="left">' . 
+            $row['last_name'] . '</td><td align="left">' .
+            $row['shift_begin'] . '</td><td align="left">' . 
+            $row['shift_end'] . '</td><td align="left">' . 
+            $row['phone'] . '</td><td align="left">' .
+            $row['created_by'] . '</td><td align="left">';
 
-                echo '</table>';
-                echo '</form>';
-                } else {
+            echo '</tr>';
+            }
 
-                echo "Couldn't issue database query<br />";
+            echo '</table>';
+            echo '</form>';
+            } else {
 
-                echo mysqli_error($dbc);
+            echo "Couldn't issue database query<br />";
 
-                }
+            echo mysqli_error($dbc);
 
-                mysqli_close($dbc);
+            }
 
-                }    
-                echo '</div>';
-        ?>
-  
-</div>
+            mysqli_close($dbc);
+
+            }    
+            echo '</div>';
+    ?>
+
 
 <?php
 $siteBuilder->getClosinghtmlTags();
