@@ -19,97 +19,91 @@ require("themeparkSiteBuilder.php");
 
 	$siteBuilder->getGreyOverLay();
 
-	$siteBuilder->getSubTitle();
-
 	$siteBuilder->getMenu();
 ?>
 
-<div class = "content" >
-	<center>
-     <h1>Concessions Stands</h1>
+<center>
+    <h1>Concessions Stands</h1>
 
-     <form action="concession_stand_items.php" method="post" id="priceform" >
-            <p>Concession Stand Name:
+    <form action="concession_stand_items.php" method="post" id="priceform" >
+        <p>Concession Stand Name:
 
-        		<table border = "1" bgcolor="#FFFFFF" align="left"
- 	            cellspacing="5" cellpadding="8" class="report" id='concession_table'>
-	 	            <tr>
-	 	            <td align="left"><b>Item</b></td>
-	 	            <td align="left"><b>Price</b></td>
-	 	            <td align="left"><b>Quantity</b></td>
-	 	            </tr>
-	        	</table>
+            <table border = "1" bgcolor="#FFFFFF" align="left"
+            cellspacing="5" cellpadding="8" class="report" id='concession_table'>
+                <tr>
+                <td align="left"><b>Item</b></td>
+                <td align="left"><b>Price</b></td>
+                <td align="left"><b>Quantity</b></td>
+                </tr>
+            </table>
 
-                <?php 
+            <?php 
 
-                    require_once('../db_connection.php');
+                require_once('../db_connection.php');
 
-                    $query = "SELECT * FROM Concession_Stands";
-                    $response = @mysqli_query($dbc, $query);
-                    if($response){
-                        echo '<select name="ConcessionName"  form="priceform">';
-
-                        while($row = @mysqli_fetch_array($response)){
-                            echo '<option value="' . $row['idConcession_Stands'] . '">' . $row['name'];
-                            echo '</option>';
-                        }
-
-                        echo '</select>';
-                    } else {
-                        echo "Couldn't obtain role list";
-
-                        echo mysqli_error($dbc);
-                    }
-                ?>
-            </p>
-            <h2 class="total_price">	
-	        			Total: <span id='total_value'>0.00</span>
-	        </h2>
-        <input type = "submit" value="Select">
-
-     </form>
-     </center>
-
-  
-     <?php
-
-             if(isset($_POST['ConcessionName'])){
-             	
-             	require_once('../db_connection.php');
-
-                $query = "SELECT idConcession_Pricing, name ,price 
-                 		  FROM Concession_Pricing
-                 		  WHERE location = " . $_POST['ConcessionName'];
-
+                $query = "SELECT * FROM Concession_Stands";
                 $response = @mysqli_query($dbc, $query);
-
                 if($response){
+                    echo '<select name="ConcessionName"  form="priceform">';
+
+                    while($row = @mysqli_fetch_array($response)){
+                        echo '<option value="' . $row['idConcession_Stands'] . '">' . $row['name'];
+                        echo '</option>';
+                    }
+
+                    echo '</select>';
+                } else {
+                    echo "Couldn't obtain role list";
+
+                    echo mysqli_error($dbc);
+                }
+            ?>
+        </p>
+        <h2 class="total_price">	
+                    Total: <span id='total_value'>0.00</span>
+        </h2>
+    <input type = "submit" value="Select">
+
+    </form>
+    </center>
 
 
-             	while($row =@mysqli_fetch_array($response)){
+    <?php
 
-             		$field_array[] = $row; 
+            if(isset($_POST['ConcessionName'])){
+            
+            require_once('../db_connection.php');
 
-            	// echo '<tr><td align="left">' .
-            	// $row['idConcession_Pricing'] . '</td><td align="left">' . 
-            	// $row['name'] . '</td><td align="left">' .
-            	// $row['price'] . '</td><td align="left">' .
-            	// '<input name="'. $row['idConcession_Pricing'].'" type="number" min="0" value="0">';
-            	// echo '</tr>';
+            $query = "SELECT idConcession_Pricing, name ,price 
+                        FROM Concession_Pricing
+                        WHERE location = " . $_POST['ConcessionName'];
 
-            	}
-            	// echo '</table>';
+            $response = @mysqli_query($dbc, $query);
 
-            	$output = @json_encode($field_array);
-            } else {
-            	echo "Couldn't issue database query<br />";
+            if($response){
+
+
+            while($row =@mysqli_fetch_array($response)){
+
+                $field_array[] = $row; 
+
+            // echo '<tr><td align="left">' .
+            // $row['idConcession_Pricing'] . '</td><td align="left">' . 
+            // $row['name'] . '</td><td align="left">' .
+            // $row['price'] . '</td><td align="left">' .
+            // '<input name="'. $row['idConcession_Pricing'].'" type="number" min="0" value="0">';
+            // echo '</tr>';
+
             }
+            // echo '</table>';
+
+            $output = @json_encode($field_array);
+        } else {
+            echo "Couldn't issue database query<br />";
         }
-        mysqli_close($dbc);
-    ?>
-
- </div> 
-
+    }
+    mysqli_close($dbc);
+?>
 
 <script>
 	var json = <?php echo $output ?>;

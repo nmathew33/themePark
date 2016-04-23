@@ -45,111 +45,104 @@ $json_prices = @json_encode($result2);
 
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
-$siteBuilder->getOpeningHtmlTags('Ticketing');
+$siteBuilder->getOpenHtmlTags();
 $siteBuilder->getGreyOverLay();
-$siteBuilder->getSubTitle();
+
 $siteBuilder->getMenu();
 ?>
 
-<div class = "content">
-    <center class="info2">
-        <div class="col-80">
-            
-            <form action="ticketing.php" method="post">
-                    <div class="col-100">
-                        <h3>Adults</h3>
-                        <div class='ticket_input'>
-                            <div>
-                                <input name="first_name[]" type="text" placeholder="First Name" />
-                                <input name="last_name[]" type="text" placeholder="Last Name" />
-                                <input name="email[]" type="text" placeholder="E-Mail">
-                                <input name="address[]" type="text" placeholder="Address">
-                                <input name="phone[]" type="text" placeholder="Phone">
-                            </div>
-                            <div id="adultList"></div>
-                            <div class="col-50">
-                                <div id="addAdult" onclick="addAdult()"  class='ticket_input'>Add Adult</div>
-                            </div>
-                            <div class="col-50">
-                                <div onclick="removeItem('adultList')"  class='ticket_input remove'>Remove Adult</div>
-                            </div>
-                        </div>
+<div>
+    <form action="ticketing.php" method="post">
+            <div class="col-100">
+                <h3>Adults</h3>
+                <div class='ticket_input'>
+                    <div class="input-group">
+                        <input name="first_name[]" type="text" placeholder="First Name" />
+                        <input name="last_name[]" type="text" placeholder="Last Name" />
+                        <input name="email[]" type="text" placeholder="E-Mail">
+                        <input name="phone[]" type="text" placeholder="Phone">
                     </div>
+                    <div class="col-100">
+                        <input name="address[]" class="col-100" type="text" placeholder="Address">
+                    </div>
+                    <div id="adultList"></div>
+                    <div class="button_group">
+                        <div onclick="addAdult()" >Add Adult</div>
+                        <div onclick="removeItem('adultList')" >Remove Adult</div>
+                    </div>
+                </div>
+            </div>
 
-                    <div>
-                        <h3>Children</h3>
-                        <div class='ticket_input'>
-                            <div id="childList"></div>
-                            <div class="col-50">
-                                <div id="addChild" onclick="addChild()" class='ticket_input'>Add Child</div>                    
-                            </div>
-                            <div class="col-50">
-                                <div onclick="removeItem('childList')" class='ticket_input remove'>Remove Child</div>
-                            </div>
-                        </div>
+            <div>
+                <h3>Children</h3>
+                <div class='ticket_input'>
+                    <div id="childList"></div>
+                    <div class="button-group">
+                        <div onclick="addChild()">Add Child</div>                    
+                        <div onclick="removeItem('childList')">Remove Child</div>
                     </div>
-                    
-                    <div class="col-100">
-                        <h3>Coupon</h3>
-                        <input name="coupon" type="text" id="coupon_id">
-                        <input type="hidden" name="coupon_value" id="coupon_value">
-                        <div id="addCoupon" onclick="addCoupon()">Add Coupon</div>
+                </div>
+            </div>
+            
+            <div class="col-100">
+                <h3>Coupon</h3>
+                <input name="coupon" type="text" id="coupon_id">
+                <input type="hidden" name="coupon_value" id="coupon_value">
+                <div id="addCoupon" onclick="addCoupon()">Add Coupon</div>
+            </div>
+            
+            <h2>$<span id="total_price">0.00</span></h2>
+            
+            <div id="payment_options">
+                <div class="col-50">
+                    <div id="getCash" class=" ticket_input">
+                        <h3>Cash</h3>
+                        <input   type="number" min="0.01" step="0.01" max="2500" name="cash" placeholder="Cash">
                     </div>
-                    
-                    <h2>$<span id="total_price">0.00</span></h2>
-                    
-                    <div id="payment_options">
-                        <div class="col-50">
-                            <div id="getCash" class=" ticket_input">
-                                <h3>Cash</h3>
-                                <input   type="number" min="0.01" step="0.01" max="2500" name="cash" placeholder="Cash">
-                            </div>
-                        </div>
+                </div>
+                
+                <div class="col-50">
+                    <div id="getCard">
+                        <h3>Card</h3>
+                        <input type="number" placeholder="Card Number">
+                        <br>
+                        <input type="number" placeholder="cvv" min="0" step="1" max="999">
+                        <br>                            
+                        <select name='expireMM' id='expireMM'>
+                            <option value=''>Month</option>
+                            <option value='01'>Janaury/01</option>
+                            <option value='02'>February/02</option>
+                            <option value='03'>March/03</option>
+                            <option value='04'>April/04</option>
+                            <option value='05'>May/05</option>
+                            <option value='06'>June/06</option>
+                            <option value='07'>July/07</option>
+                            <option value='08'>August/08</option>
+                            <option value='09'>September/09</option>
+                            <option value='10'>October/10</option>
+                            <option value='11'>November/11</option>
+                            <option value='12'>December/12</option>
+                        </select>
+                        <select name='expireYY' id='expireYY'>
+                            <option value=''>Year</option>
+                            <option value='10'>2016</option>
+                            <option value='11'>2017</option>
+                            <option value='12'>2018</option>
+                            <option value='12'>2019</option>
+                        </select>
                         
-                        <div class="col-50">
-                            <div id="getCard">
-                                <h3>Card</h3>
-                                <input type="number" placeholder="Card Number">
-                                <br>
-                                <input type="number" placeholder="cvv" min="0" step="1" max="999">
-                                <br>                            
-                                <select name='expireMM' id='expireMM'>
-                                    <option value=''>Month</option>
-                                    <option value='01'>Janaury/01</option>
-                                    <option value='02'>February/02</option>
-                                    <option value='03'>March/03</option>
-                                    <option value='04'>April/04</option>
-                                    <option value='05'>May/05</option>
-                                    <option value='06'>June/06</option>
-                                    <option value='07'>July/07</option>
-                                    <option value='08'>August/08</option>
-                                    <option value='09'>September/09</option>
-                                    <option value='10'>October/10</option>
-                                    <option value='11'>November/11</option>
-                                    <option value='12'>December/12</option>
-                                </select>
-                                <select name='expireYY' id='expireYY'>
-                                    <option value=''>Year</option>
-                                    <option value='10'>2016</option>
-                                    <option value='11'>2017</option>
-                                    <option value='12'>2018</option>
-                                    <option value='12'>2019</option>
-                                </select>
-                                
-                                <input class="inputCard" type="hidden" name="expiry" id="expiry" maxlength="4"/>
-                                <br>                            
-                                <select name='bank' id='bank_input'>
-                                    <option value='Visa'>Visa</option>
-                                    <option value='Mastercard'>Mastercard</option>
-                                </select> 
-                                
-                            </div>
-                        </div>
+                        <input class="inputCard" type="hidden" name="expiry" id="expiry" maxlength="4"/>
+                        <br>                            
+                        <select name='bank' id='bank_input'>
+                            <option value='Visa'>Visa</option>
+                            <option value='Mastercard'>Mastercard</option>
+                        </select> 
+                        
                     </div>
-                <input class='full-width-submit' type="submit" value="Complete order">
-            </form>
-        </div>
-    </center>
+                </div>
+            </div>
+        <input class='full-width-submit' type="submit" value="Complete order">
+    </form>
 </div>
 
 <script> 

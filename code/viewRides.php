@@ -14,15 +14,12 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Rides');
+$siteBuilder->getOpenHtmlTags();
 
 $siteBuilder->getGreyOverLay();
 
-$siteBuilder->getSubTitle();
-
 $siteBuilder->getMenu();
 ?>
-<div class = "content" >
     <h1>Rides</h1>
     <form action="viewRides.php" method="post">
        <select name = 'by'>
@@ -103,8 +100,6 @@ $siteBuilder->getMenu();
 
             echo '</div>';
         ?>
-  
-</div>
 
 <?php
 $siteBuilder->getClosinghtmlTags();

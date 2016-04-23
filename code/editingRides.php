@@ -14,103 +14,99 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Rides');
+$siteBuilder->getOpenHtmlTags();
 
 $siteBuilder->getGreyOverLay();
 
-$siteBuilder->getSubTitle();
-
 $siteBuilder->getMenu();
 ?>
-<div class = "content" >
-    <h1>Rides</h1>
-    <form action="viewRides.php" method="post">
-       <select name = 'by'>
-            <option value="idRides">ID</option>
-            <option value="in_use">Active</option>
-            <option value="staff">Staff</option>
-            <option value="name">Name</option>
-            <option value="description">Description</option>
-            <option value="date_created">Date Created</option>
-        </select>
-      <input type="submit">
-      <a href="insertRideForm.php" class="button">Add Ride</a>
-    </form>
+<h1>Rides</h1>
+<form action="viewRides.php" method="post">
+    <select name = 'by'>
+        <option value="idRides">ID</option>
+        <option value="in_use">Active</option>
+        <option value="staff">Staff</option>
+        <option value="name">Name</option>
+        <option value="description">Description</option>
+        <option value="date_created">Date Created</option>
+    </select>
+    <input type="submit">
+    <a href="insertRideForm.php" class="button">Add Ride</a>
+</form>
 
+
+
+    <?php
+        if(isset($_POST['by'])){
+            
+        $by = $_POST['by'];
+
+            echo '<form action="viewRides.php" method="post" enctype="multipart/form=data"> 
+                        <button type="submit" name="by" value="' . $by . '">Select</button>
+                    </form> ';
+            echo '<div class="reports">';
+            
+            $query = "SELECT idRides, in_use, staff, name, description, date_created FROM Rides ORDER BY " . $by;
+        } else{
+            
+                echo '<form action="viewRides.php" method="post" enctype="multipart/form=data"> 
+                    <button type="submit" value="">Select</button>
+                </form> ';
+            echo '<div class="reports">';
+        
+            $query = "SELECT idRides, in_use, staff, name, description, date_created FROM Rides";
+            
+        }
+        require_once('../db_connection.php');
+
+        $response = @mysqli_query($dbc, $query);
+        
+        echo '<form action="updateRideForm.php" method="post" enctype="multipart/form=data">';
+        
+        if($response){
+        echo '<table align="left"
+        cellspacing="5" cellpadding="8" class="report">
+
+        <tr><td align="left"><b></b></td>
+        <td align="left"><b></b></td>
+        <td align="left"><b>ID</b></td>
+        <td align="left"><b>Name</b></td>
+        <td align="left"><b>Active</b></td>
+        <td align="left"><b>Description</b></td>
+        <td align="left"><b>Staff</b></td>
+        <td align="left"><b>date_created</b></td></tr>';
 
     
-        <?php
-            if(isset($_POST['by'])){
-                
-            $by = $_POST['by'];
+        while($row = mysqli_fetch_array($response)){
 
-                echo '<form action="viewRides.php" method="post" enctype="multipart/form=data"> 
-                            <button type="submit" name="by" value="' . $by . '">Select</button>
-                        </form> ';
-                echo '<div class="reports">';
-                
-                $query = "SELECT idRides, in_use, staff, name, description, date_created FROM Rides ORDER BY " . $by;
-            } else{
-                
-                 echo '<form action="viewRides.php" method="post" enctype="multipart/form=data"> 
-                        <button type="submit" value="">Select</button>
-                    </form> ';
-                echo '<div class="reports">';
-            
-                $query = "SELECT idRides, in_use, staff, name, description, date_created FROM Rides";
-                
-            }
-            require_once('../db_connection.php');
+        echo '<tr><td align="left">' .
+            '<button type="submit" name="updateRidesID" value="' . $row['idRides'] . '">edit</button>'  . '</td><td align="left">' . 
+        '<button type="submit" name="deleteRidesID" value="' . $row['idRides'] . '">delete</button>'  . '</td><td align="left">' .  
+        $row['idRides'] . '</td><td align="left">' . 
+        $row['name'] . '</td><td align="left">' .
+        ($row['in_use'] ? 'yes' : 'no') . '</td><td align="left">' .
+        $row['description'] . '</td><td align="left">' .
+        $row['staff'] . '</td><td align="left">' . 
+        $row['date_created'] . '</td><td align="left">';
 
-            $response = @mysqli_query($dbc, $query);
-            
-            echo '<form action="updateRideForm.php" method="post" enctype="multipart/form=data">';
-            
-            if($response){
-            echo '<table align="left"
-            cellspacing="5" cellpadding="8" class="report">
+        echo '</tr>';
+        }
 
-            <tr><td align="left"><b></b></td>
-            <td align="left"><b></b></td>
-            <td align="left"><b>ID</b></td>
-            <td align="left"><b>Name</b></td>
-            <td align="left"><b>Active</b></td>
-            <td align="left"><b>Description</b></td>
-            <td align="left"><b>Staff</b></td>
-            <td align="left"><b>date_created</b></td></tr>';
+        echo '</table>';
+        echo '</form>';
+        } else {
 
-        
-            while($row = mysqli_fetch_array($response)){
+        echo "Couldn't issue database query<br />";
 
-            echo '<tr><td align="left">' .
-             '<button type="submit" name="updateRidesID" value="' . $row['idRides'] . '">edit</button>'  . '</td><td align="left">' . 
-            '<button type="submit" name="deleteRidesID" value="' . $row['idRides'] . '">delete</button>'  . '</td><td align="left">' .  
-            $row['idRides'] . '</td><td align="left">' . 
-            $row['name'] . '</td><td align="left">' .
-            ($row['in_use'] ? 'yes' : 'no') . '</td><td align="left">' .
-            $row['description'] . '</td><td align="left">' .
-            $row['staff'] . '</td><td align="left">' . 
-            $row['date_created'] . '</td><td align="left">';
+        echo mysqli_error($dbc);
 
-            echo '</tr>';
-            }
+        }
 
-            echo '</table>';
-            echo '</form>';
-            } else {
+        mysqli_close($dbc);
 
-            echo "Couldn't issue database query<br />";
-
-            echo mysqli_error($dbc);
-
-            }
-
-            mysqli_close($dbc);
-
-            echo '</div>';
-        ?>
+        echo '</div>';
+    ?>
   
-</div>
 
 <?php
 $siteBuilder->getClosinghtmlTags();

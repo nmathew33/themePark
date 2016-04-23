@@ -22,13 +22,11 @@ $siteBuilder->getOpeningHtmlTags('Clock In/out');
 
 $siteBuilder->getGreyOverLay();
 
-$siteBuilder->getSubTitle();
 
 $siteBuilder->getMenu();
 
 ?>
         
-<div class = "content" >
     <?php
         date_default_timezone_set('America/Chicago');
         /*  Echo the Date
@@ -56,8 +54,6 @@ $siteBuilder->getMenu();
         }
         mysqli_close($dbc);  
     ?>
-</div>
-
 <?php
 $siteBuilder->getClosinghtmlTags();
 ?>

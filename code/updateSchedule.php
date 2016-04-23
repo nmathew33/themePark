@@ -14,170 +14,167 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Shift Schedule');
+$siteBuilder->getOpenHtmlTags();
 
 $siteBuilder->getGreyOverLay();
-
-$siteBuilder->getSubTitle();
 
 $siteBuilder->getMenu();
 ?>
 
-<dic class="content">
-    <?php
+<?php
 
-        if(isset($_POST['submit'])){
+    if(isset($_POST['submit'])){
 
-            $data_missing = array();
+        $data_missing = array();
 
-            if(empty($_POST['first_name'])){
+        if(empty($_POST['first_name'])){
 
-                $data_missing[] = 'First Name';
+            $data_missing[] = 'First Name';
 
-            } else {
+        } else {
 
-                $f_name = trim($_POST['first_name']);
+            $f_name = trim($_POST['first_name']);
 
-            }
+        }
 
-            if(empty($_POST['last_name'])){
+        if(empty($_POST['last_name'])){
 
-                $data_missing[] = 'Last Name';
+            $data_missing[] = 'Last Name';
 
-            } else{
+        } else{
 
-                $l_name = trim($_POST['last_name']);
+            $l_name = trim($_POST['last_name']);
 
-            }
+        }
 
-            if(empty($_POST['idShift_Schedule'])){
+        if(empty($_POST['idShift_Schedule'])){
 
-                $data_missing[] = 'idShift_Schedule';
+            $data_missing[] = 'idShift_Schedule';
 
-            } else{
+        } else{
 
-                $shiftID = trim($_POST['idShift_Schedule']);
+            $shiftID = trim($_POST['idShift_Schedule']);
 
-            }
+        }
 
-            if(empty($_POST['worker_id'])){
+        if(empty($_POST['worker_id'])){
 
-                $data_missing[] = 'worker_id';
+            $data_missing[] = 'worker_id';
 
-            } else {
+        } else {
 
-                $workerID = trim($_POST['worker_id']);
+            $workerID = trim($_POST['worker_id']);
 
-            }
+        }
 
-            if(empty($_POST['date_begin'])){
+        if(empty($_POST['date_begin'])){
 
-                $data_missing[] = 'date_begin';
+            $data_missing[] = 'date_begin';
 
-            } else {
+        } else {
 
-                $date_begin = trim($_POST['date_begin']);
+            $date_begin = trim($_POST['date_begin']);
 
-            }
+        }
 
-            if(empty($_POST['time_begin'])){
+        if(empty($_POST['time_begin'])){
 
-                $data_missing[] = 'time_begin';
+            $data_missing[] = 'time_begin';
 
-            } else {
+        } else {
 
-                $time_begin = trim($_POST['time_begin']);
+            $time_begin = trim($_POST['time_begin']);
 
-            }
+        }
 
-            if(empty($_POST['date_end'])){
+        if(empty($_POST['date_end'])){
 
-                $data_missing[] = 'date_end';
+            $data_missing[] = 'date_end';
 
-            } else {
+        } else {
 
-                $date_end = trim($_POST['date_end']);
+            $date_end = trim($_POST['date_end']);
 
-            }
+        }
 
-            if(empty($_POST['time_end'])){
+        if(empty($_POST['time_end'])){
 
-                $data_missing[] = 'time_end';
+            $data_missing[] = 'time_end';
 
-            } else {
+        } else {
 
-                $time_end = trim($_POST['time_end']);
+            $time_end = trim($_POST['time_end']);
 
-            }
+        }
 
-            if(empty($_POST['managerID'])){
+        if(empty($_POST['managerID'])){
 
-                $data_missing[] = 'managerID';
+            $data_missing[] = 'managerID';
 
-            } else {
+        } else {
 
-                $managerID = trim($_POST['managerID']);
+            $managerID = trim($_POST['managerID']);
 
-            }
+        }
 
-            if(empty($data_missing)){
+        if(empty($data_missing)){
+            
+            require_once('../db_connection.php');
+            
+            $query = "UPDATE Shift_Schedule SET worker_id= ?, shift_begin = ?, shift_end= ?, created_by = ? WHERE idShift_Schedule = ?";
+            
+            $stmt = mysqli_prepare($dbc, $query);
+            
+            $shift_begin = $date_begin . ' ' . $time_begin;
+            
+            $shift_end = $date_end . ' ' . $time_end;
+            
+            
+            mysqli_stmt_bind_param($stmt, "issii", $workerID, $shift_begin, $shift_end, $managerID, $shiftID);
+            
+            mysqli_stmt_execute($stmt);
+            
+            $affected_rows = mysqli_stmt_affected_rows($stmt);
+            
+            if($affected_rows == 1){
                 
-                require_once('../db_connection.php');
+                echo '<center><h1>Update Successfully Entered</h1></center>';
                 
-                $query = "UPDATE Shift_Schedule SET worker_id= ?, shift_begin = ?, shift_end= ?, created_by = ? WHERE idShift_Schedule = ?";
+                mysqli_stmt_close($stmt);
+                mysqli_close($dbc);
                 
-                $stmt = mysqli_prepare($dbc, $query);
-                
-                $shift_begin = $date_begin . ' ' . $time_begin;
-                
-                $shift_end = $date_end . ' ' . $time_end;
-                
-                
-                mysqli_stmt_bind_param($stmt, "issii", $workerID, $shift_begin, $shift_end, $managerID, $shiftID);
-                
-                mysqli_stmt_execute($stmt);
-                
-                $affected_rows = mysqli_stmt_affected_rows($stmt);
-                
-                if($affected_rows == 1){
-                    
-                    echo '<center><h1>Update Successfully Entered</h1></center>';
-                    
-                    mysqli_stmt_close($stmt);
-                    mysqli_close($dbc);
-                    
-                    
-                } else {
-                    
-                    echo '<center><h1>Error Occurred</h1></center>';
-                    echo mysqli_error();
-                    
-                    mysqli_stmt_close($stmt);
-                    mysqli_close($dbc);
-                   
-                    
-                }
                 
             } else {
                 
-                echo '<center><h1>You need to enter the following data</h1>';
+                echo '<center><h1>Error Occurred</h1></center>';
+                echo mysqli_error();
                 
-                foreach($data_missing as $missing){
-                    
-                    echo "$missing<br />";
-                    
-                }
+                mysqli_stmt_close($stmt);
+                mysqli_close($dbc);
                 
-                echo '</center>';
                 
             }
             
+        } else {
+            
+            echo '<center><h1>You need to enter the following data</h1>';
+            
+            foreach($data_missing as $missing){
+                
+                echo "$missing<br />";
+                
+            }
+            
+            echo '</center>';
+            
         }
+        
+    }
 
-    ?>
+?>
 
-    <a href="viewSchedule.php" class="button">View Schedules</a>
-</div>
+<a href="viewSchedule.php" class="button">View Schedules</a>
+
 
 <?php
 $siteBuilder->getClosinghtmlTags();

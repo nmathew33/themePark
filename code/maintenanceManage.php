@@ -14,11 +14,9 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Maintenance');
+$siteBuilder->getOpenHtmlTags();
 
 $siteBuilder->getGreyOverLay();
-
-$siteBuilder->getSubTitle();
 
 $siteBuilder->getMenu();
 ?>

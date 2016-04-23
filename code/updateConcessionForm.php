@@ -14,16 +14,12 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Ticketing');
+$siteBuilder->getOpenHtmlTags();
 
 $siteBuilder->getGreyOverLay();
 
-$siteBuilder->getSubTitle();
-
 $siteBuilder->getMenu();
 ?>
-
-<div class = "content" >
     <?php 
         if(isset($_POST['deleteConcessionID'])){
             require_once('../db_connection.php');
@@ -74,8 +70,7 @@ $siteBuilder->getMenu();
                 $concessionPrice = $row['price'];
                 
                 echo '<form action="updateConcession.php" method="post" id="updateConcession">';
-                echo '<b>Update Shift</b>
-                        <div class = "col1">';
+                echo '<b>Update Shift</b>';
                 
                     
                 echo '<input type="hidden" name="idConcession" size="30" value="' . $concessionId . '" />';
@@ -109,8 +104,6 @@ $siteBuilder->getMenu();
                     <input type="text" name="price" size="30" value="'. $concessionPrice . '" />
                 </p>';
 
-                echo '</div>';
-
                 echo '<p>
                     <input type="submit" name="submit" value="Submit" class="button"/>
                 </p>';
@@ -125,8 +118,6 @@ $siteBuilder->getMenu();
             mysqli_close($dbc);
         }
     ?>
-    
-</div>
 
 <?php
 $siteBuilder->getClosinghtmlTags();

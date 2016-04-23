@@ -14,16 +14,14 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Ride');
+$siteBuilder->getOpenHtmlTags();
 
 $siteBuilder->getGreyOverLay();
-
-$siteBuilder->getSubTitle();
 
 $siteBuilder->getMenu();
 ?>
 
-<div class = "content" >
+
     <?php 
         if(isset($_POST['deleteRidesID'])){
             require_once('../db_connection.php');
@@ -67,17 +65,14 @@ $siteBuilder->getMenu();
                 $row = mysqli_fetch_array($response);
                 
                 echo '<form action="updateRide.php" method="post" id="updateRide">';
-                echo '<b>Update Ride</b>
-                        <div class = "col1">';
+                echo '<b>Update Ride</b>';
                 
                     
                 echo '<input type="hidden" name="idRides" size="30" value="' . $_POST['updateRidesID'] . '" />';
                 
                 
                 
-                echo '<div class = "col1">
-                        
-                <p>Name:
+                echo '<p>Name:
                     <input type="text" name="name" size="30" value="' . $row['name'] . '" />
                 </p>
                 
@@ -93,11 +88,6 @@ $siteBuilder->getMenu();
                     </select>
                 </p>
 
-        
-            </div>
-
-            <div class = "col2">
-
                 <p>Staff:
                     <input type="text" name="staff" size="30" value="' . $row['staff'] . '" />
                 </p>
@@ -109,9 +99,7 @@ $siteBuilder->getMenu();
 
                 <p>
                     <input type="submit" name="submit" value="Submit" class="button"/>
-                </p>
-
-            </div>';
+                </p>';
 
                 echo '</form>';
             } else {
@@ -123,8 +111,7 @@ $siteBuilder->getMenu();
             mysqli_close($dbc);
         }
     ?>
-    
-</div>
+
 
 <?php
 $siteBuilder->getClosinghtmlTags();

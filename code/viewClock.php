@@ -14,15 +14,12 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Clock Times');
+$siteBuilder->getOpenHtmlTags();
 
 $siteBuilder->getGreyOverLay();
 
-$siteBuilder->getSubTitle();
-
 $siteBuilder->getMenu();
 ?>
-<div class = "content" >
     <h1>Clock Times</h1>
     <form action="viewClock.php" method="post">
       Schedule (month and year):
@@ -109,8 +106,6 @@ $siteBuilder->getMenu();
                 echo '</div>';
         ?>
   
-</div>
-
 <?php
 $siteBuilder->getClosinghtmlTags();
 ?>

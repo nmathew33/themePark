@@ -14,15 +14,12 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Concession Stand');
+$siteBuilder->getOpenHtmlTags();
 
 $siteBuilder->getGreyOverLay();
 
-$siteBuilder->getSubTitle();
-
 $siteBuilder->getMenu();
 ?>
-<div class = "content" >
     <h1>Concession Stands</h1>
     <form action="viewConcessionStands.php" method="post">
        <select name = 'by'>
@@ -96,8 +93,6 @@ $siteBuilder->getMenu();
 
             echo '</div>';
         ?>
-  
-</div>
 
 <?php
 $siteBuilder->getClosinghtmlTags();

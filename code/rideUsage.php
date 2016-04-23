@@ -14,59 +14,55 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Ride Usage');
+$siteBuilder->getOpenHtmlTags();
 
 $siteBuilder->getGreyOverLay();
-
-$siteBuilder->getSubTitle();
 
 $siteBuilder->getMenu();
 ?>
 
-<div class = "content" >
-    <center class="info">
-        <h1>Ride Usage</h1>
-        <form action="rideUsage.php" method="post" id="rideusage">
-            <div>
-                <ul class="rideUsageForm">
-					<li>
-						<input name="customerID" type="text" placeholder="Customer ID" />
-					</li>
-					<li>
-                        <?php 
+<center class="info">
+    <h1>Ride Usage</h1>
+    <form action="rideUsage.php" method="post" id="rideusage">
+        <div>
+            <ul class="rideUsageForm">
+                <li>
+                    <input name="customerID" type="text" placeholder="Customer ID" />
+                </li>
+                <li>
+                    <?php 
 
-                            require_once('../db_connection.php');
+                        require_once('../db_connection.php');
 
-                            $query = "SELECT * FROM Rides";
-                            $response = @mysqli_query($dbc, $query);
-                            if($response){
-                                echo '<select name="rideID"  form="rideusage">';
+                        $query = "SELECT * FROM Rides";
+                        $response = @mysqli_query($dbc, $query);
+                        if($response){
+                            echo '<select name="rideID"  form="rideusage">';
 
-                                while($row = mysqli_fetch_array($response)){
-                                    echo '<option value="' . $row['idRides'] . '">' .
-                                    $row['name'];
-                                    echo '</option>';
-                                }
-
-                                echo '</select>';
-                            } else {
-                                echo "Couldn't obtain role list";
-
-                                echo mysqli_error($dbc);
+                            while($row = mysqli_fetch_array($response)){
+                                echo '<option value="' . $row['idRides'] . '">' .
+                                $row['name'];
+                                echo '</option>';
                             }
 
-                           
+                            echo '</select>';
+                        } else {
+                            echo "Couldn't obtain role list";
 
-                        ?>
-					</li>
-				</ul>
-            </div>
-			<div class="rideUsageInput">
-                    <input type="submit" name="submit" value="Submit" class = "button"> 
-            </div>
-        </form>
-    </center>
-</div>
+                            echo mysqli_error($dbc);
+                        }
+
+                        
+
+                    ?>
+                </li>
+            </ul>
+        </div>
+        <div class="rideUsageInput">
+                <input type="submit" name="submit" value="Submit" class = "button"> 
+        </div>
+    </form>
+</center>
 
 <?php
 $siteBuilder->getClosinghtmlTags();

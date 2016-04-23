@@ -45,15 +45,11 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Ticketing');
+$siteBuilder->getOpeningHtmlTags('Login');
 
-$siteBuilder->getGreyOverLay();
-
-$siteBuilder->getTitle();
+// $siteBuilder->getGreyOverLay();
 ?>
 
-
-	
 	<div class = "login">
 		Log In
 			<form action="index.php" method="post" enctype="multipart/form=data"> 
@@ -73,4 +69,5 @@ $siteBuilder->getTitle();
 
 <?php
 $siteBuilder->getClosinghtmlTags();
+
 ?>

@@ -1,17 +1,18 @@
-body {
-    background-image: url("images/91839.jpg");
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    background-attachment:fixed;
+html, body{
+    margin: 0;
+    padding: 0;
+}
 
+body {
+    background-image:#eee;
+    color: #333;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 #addAdult, #addChild, #addCoupon, .remove {
     background: dodgerblue;
     padding: 20px 0;
-    margin: 10px 30%;
     border-radius:10px;
-    width: 40%;
 }
 
 #coupon_id{
@@ -26,6 +27,36 @@ body {
 
 #coupon_id, #getCash > input ,#getCard > input, #getCard select{
     font-size: 30px;
+}
+
+.left-bar{
+    width:300px;
+    position: fixed;
+    height: 100%;
+    background: #4F52BA;
+    top: 0;
+    
+}
+
+.left-bar div{
+    margin: 30px;
+    color: #000;
+    font-size: 20px;
+    border-radius:20px;
+    background: #fff;
+    padding:20px;
+}
+
+.left-bar a{
+    text-decoration: none;
+}
+
+.left-bar .logo{
+    color: #fff;
+    font-size: 2em;
+    line-height: 1.2em;
+    font-weight: 700;
+    background: none;
 }
 
 #getCard, #getCash{
@@ -50,12 +81,46 @@ body {
 }
 
 .ticket_input > div > input, .ticket_input > div > div > input {
-    width: 20%;
     float: left;
-    font-size: 35px;
+    font-size: 20px;
 }
 
-.ticket_input > div{
+.button_group{
+    width: 100%;
+    float: left;
+}
+
+.button_group div{
+    width: 200px;
+    text-align: center;
+    background: #fff;
+    float: left;
+    padding: 15px;
+    margin: 20px 0 50px 0;
+    border:2px solid #ddd;
+    /*border-left: 3px solid #fff;*/
+}
+
+.button_group div:last-child{
+    border-top-right-radius:10px;    
+    border-bottom-right-radius: 10px;
+}
+
+.button_group div:first-child{
+    border-top-left-radius:10px;    
+    border-bottom-left-radius: 10px;
+    border-right: none;
+}
+
+.input-group{
+    width: 100%;
+}
+
+.input-group > input{
+    width: 25%;
+}
+
+.ticket_input input{
     float: left;
 }
 
@@ -63,45 +128,42 @@ body {
     width: 100%;
     margin: 30px auto;
     background: green;
-    color: white;
+    color: #333;
     font-size: 30px;
     border:none;
     padding:20px;
     border-radius: 10px;
 }
 
+.overlay{
+    position: fixed;
+    background: #eee;
+    /*background-color: #1a1a1a;*/
+    left: 0px;
+    top: 0px;
+    /*opacity: 0.5;*/
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+}
+.header {
+    font-size: 75px;
+    margin: 5%;
+}
+.subheader {
+    font-size: 50px;
+}
+/*.login {
+    font-size: 45px;
+    position: absolute;
+    top: 40%;
+    left: 20%;
+    width: 25%;
+    padding: 30px;
+    background: rgba(0,0,0, .5);
+    border-radius: 30px;
+}*/
 
- .overlay{		  
-     position: fixed;		 
-     background: rgba(0, 0, 0, .5);		 
-     /*background-color: #1a1a1a;*/		
-      left: 0px;		     
-      top: 0px;		      
-     /*opacity: 0.5;*/		 
-      z-index: -1;		      
-      width: 100%;		     
-      height: 100%;		   
- }		
- .header {		
-     font-size: 75px;		     
-     margin: 5%;		 
- }		
- 		 
- 		 
- 		 
- .subheader {		
-     font-size: 50px;		
- }		
- .login {		
-     font-size: 45px;		     
- 	position: absolute;		 	
-  	top: 40%;		  
-  	left: 20%;		  	
-	width: 25%;		  	
-     padding: 30px;		 
-     background: rgba(0,0,0, .5);		
-     border-radius: 30px;		
-  }
 
 /*form {
 	font-size: 30px;
@@ -178,14 +240,31 @@ body {
 }
 
 .content{
-    position: absolute;
-    color: white;
-    background: rgba(0,0,0,.5);
+    /*position: absolute;*/
+    padding-left:320px;
+    padding-top:50px;
+    /*background: rgba(255, 255, 255, .7);*/
+    /*background: rgba(0,0,0,.5);*/
+    /*width: 95%;*/
+    /*width:100%;*/
     top: 25%;
-    min-height: 70%;
-    width: 95%;
+    color: #333;
+    /*min-height: 70%;*/
+    /*margin-left:340px;*/
     font-size: 16px;
     right: 2.5%;
+}
+
+h3{
+    font-size:30px;
+    line-height: 30px;
+}
+
+.content-inner{
+    background: rgba(255, 255, 255, .9);    
+    height: 100%;
+    padding: 30px;
+    border-radius: 30px;
 }
 
 
@@ -206,8 +285,7 @@ body {
 .maintenanceMenu{
     position: absolute; 
     top: 360px;
-    left: 50px;
-    width: 92%;
+    width: 75%;
     height: 50%; 
     background-color: white;
     border: #008CBA;
@@ -218,7 +296,7 @@ body {
 
 .reports{
     position: absolute; 
-    width: 100%;
+    /*width: 100%;*/
     height: 75%; 
     background-color: white;
     border: #008CBA;
@@ -269,7 +347,7 @@ select {
 	position: absolute;
     background-color: #008CBA; 
     border: none;
-    color: white;
+    color: #333;
     padding: 15px 32px;
     text-align: center;
     font-size: 16px;
@@ -281,7 +359,7 @@ select {
 	position: absolute;
     background-color: #008CBA; 
     border: none;
-    color: white;
+    color: #333;
     padding: 20px 37px;
     text-align: center;
     font-size: 16px;
@@ -293,7 +371,7 @@ select {
 
     background-color: black; 
     border: none;
-    color: white;
+    color: #333;
     padding: 15px 32px;
     text-align: center;
     font-size: 16px;
@@ -304,7 +382,7 @@ select {
 	font-style: italic;
     background-color: red; 
     border: none;
-    color: white;
+    color: #333;
     padding: 20px 37px;
     text-align: center;
     font-size: 16px;
@@ -315,7 +393,7 @@ select {
 
     background-color: green; 
     border: none;
-    color: white;
+    color: #333;
     padding: 15px 32px;
     text-align: center;
     font-size: 16px;
@@ -326,7 +404,7 @@ select {
 
     background-color: red; 
     border: none;
-    color: white;
+    color: #333;
     padding: 15px 32px;
     text-align: center;
     font-size: 16px;

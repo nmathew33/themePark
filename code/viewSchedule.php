@@ -14,15 +14,13 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Shift Schedule');
+$siteBuilder->getOpenHtmlTags();
 
 $siteBuilder->getGreyOverLay();
 
-$siteBuilder->getSubTitle();
 
 $siteBuilder->getMenu();
 ?>
-<div class = "content" >
     <h1>Shift Schedule</h1>
     <form action="viewSchedule.php" method="post">
       Schedule (month and year):
@@ -94,8 +92,6 @@ $siteBuilder->getMenu();
                 }    
                 echo '</div>';
         ?>
-  
-</div>
 
 <?php
 $siteBuilder->getClosinghtmlTags();

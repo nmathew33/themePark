@@ -18,16 +18,13 @@ $siteBuilder->getOpeningHtmlTags('User');
 
 $siteBuilder->getGreyOverLay();
 
-$siteBuilder->getSubTitle();
-
 $siteBuilder->getMenu();
 ?>
 
-<div class = "content" >
     <form action="user_added.php" method="post" id="userform" >
         
         <b>Add a New User</b>
-        <div class = "col1">
+      
             <p>First Name:
                 <input type="text" name="first_name" size="30" value="" />
             </p>
@@ -75,8 +72,7 @@ $siteBuilder->getMenu();
             <p>City:
                 <input type="text" name="city" size="30" value="" />
             </p>
-        </div>
-        <div class = "col2">
+    
             <p>State (2 Characters):
                 <input type="text" name="state" size="2" maxlength="2" value="" />
             </p>
@@ -108,10 +104,8 @@ $siteBuilder->getMenu();
             <p>
                 <input type="submit" name="submit" value="Submit" class="button"/>
             </p>
-        </div>
-    </form>
-</div>
 
+    </form>
 
 <?php
 $siteBuilder->getClosinghtmlTags();
