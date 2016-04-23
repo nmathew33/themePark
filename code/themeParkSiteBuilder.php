@@ -12,7 +12,7 @@ class ThemeParkSiteBuilder{
 				</head>
 			<body>';
 	}
-    
+
     public function getOpenHtmlTags(){
 		echo '<html>
 				<head>
@@ -43,6 +43,7 @@ class ThemeParkSiteBuilder{
 					Four o Four land
 				</div>
 				<a href="clockInOut.php"><div class="menu-item">Clock In/Out</div></a>
+				<a href="rideUsage.php"><div class="menu-item">Ride Usage</div></a>
 				<a href="scheduling.php"><div class="menu-item">Scheduling</div></a>
 				<a href="ticketing.php"><div class="menu-item">Ticketing</div></a>
 				<a href="concessions.php"><div class="menu-item">Concessions</div></a>
