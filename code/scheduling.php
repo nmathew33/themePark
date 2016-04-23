@@ -26,12 +26,11 @@ $siteBuilder->getOpeningHtmlTags('Scheduling');
 
 $siteBuilder->getGreyOverLay();
 
-$siteBuilder->getSubTitle();
 
 $siteBuilder->getMenu();
+$siteBuilder->getOpenContentTags();
 ?>
 
-<div class = "content" >
     <h1>Shift Schedule</h1>
     <form action="scheduling.php" method="get">
         <input type="submit" name="Previous" value="Previous" />
@@ -112,8 +111,8 @@ $siteBuilder->getMenu();
                 echo '</div>';
         ?>
   
-</div>
 
 <?php
+$siteBuilder->getCloseContentTags();
 $siteBuilder->getClosinghtmlTags();
 ?>

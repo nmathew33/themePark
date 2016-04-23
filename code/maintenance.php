@@ -18,8 +18,6 @@ $siteBuilder->getOpeningHtmlTags('Maintenance');
 
 $siteBuilder->getGreyOverLay();
 
-$siteBuilder->getSubTitle();
-
 $siteBuilder->getMenu();
 ?>
 
@@ -102,6 +100,7 @@ $siteBuilder->getMenu();
               mysqli_close($dbc);     
             ?>
     </div>
+
 <?php
 $siteBuilder->getClosinghtmlTags();
 ?>

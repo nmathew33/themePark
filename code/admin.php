@@ -18,7 +18,6 @@ $siteBuilder->getOpeningHtmlTags('Admin');
 
 $siteBuilder->getGreyOverLay();
 
-$siteBuilder->getSubTitle();
 
 $siteBuilder->getMenu();
 ?>

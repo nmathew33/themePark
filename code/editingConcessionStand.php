@@ -18,7 +18,6 @@ $siteBuilder->getOpeningHtmlTags('Concession Stand');
 
 $siteBuilder->getGreyOverLay();
 
-$siteBuilder->getSubTitle();
 
 $siteBuilder->getMenu();
 ?>
