@@ -22,16 +22,15 @@ $siteBuilder->getMenu();
 ?>
 
 <div class = "content">
-        <a href="createMaintenance.php" class="add_ticket_button">
-        <button class="add_maintenance">Create</button>
-        <a href="maintenanceManage.php" class="add_ticket_button">
-        <button class="mod_maintenance">Manage</button>
-        </a>
-        <center>
         <h1>
         Ride Maintenance
         </h1>
-        </center> 
+        <a href="createMaintenance.php" class="add_ticket_button">
+        <button class="add_maintenance">Create</button>
+        </a>
+        <a href="maintenanceManage.php" class="add_ticket_button">
+        <button class="mod_maintenance">Manage</button>
+        </a>
  </div>
 <div class = "maintenanceMenu">
          <?php
@@ -42,12 +41,12 @@ $siteBuilder->getMenu();
             FROM UmaLand.Maintenance WHERE user_closed IS NULL ";
 
             $response = @mysqli_query($dbc, $query);
-            
+            $rowcount=mysqli_num_rows($response);
             if($response)
             {
                 echo '<table align = left"
-                cellspacing="10" cellpadding = "8" class="report"
-                <tr><td align = "left"><b> Active Tickets:</b></td></tr>
+                cellspacing="10" cellpadding = "8" class="reports"
+                <tr><td align = "left"><b> Active Tickets: '.$rowcount.'</b></td></tr>
                 <tr><td align = "left"><b>Ticket #</b></td>
                 <td align="left"><b>Date_Created</b></td>
                 <td align="left"><b>User_Created</b></td>
@@ -67,13 +66,15 @@ $siteBuilder->getMenu();
 
             $query = "SELECT idMaintenance, user_created, date_created, user_closed,date_closed,
             ticket_description,closed_description, ride FROM UmaLand.Maintenance WHERE user_closed IS NOT NULL ";
+            
 
             $response = @mysqli_query($dbc, $query);
-            
+            $rowcount=mysqli_num_rows($response);
+                            
             if($response)
             {
                 echo
-                '<tr><td align = "left"><b> Closed Tickets:</b></td></tr>
+                '<tr><td align = "left"><b> Closed Tickets: '.$rowcount.'</b></td></tr>
                 <tr><td align = "left"><b>Ticket #</b></td>
                 <td align="left"><b>Date_Created</b></td>
                 <td align="left"><b>User_Created</b></td>
