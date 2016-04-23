@@ -2,7 +2,7 @@
 session_start();
 
 if(isset($_SESSION['id'])){
-    $username = $_SESSION['username']; 
+    $username = $_SESSION['username'];
     $id = $_SESSION['id'];
     $roleId = $_SESSION['roleId'];
     $first_name = $_SESSION['first_name'];
@@ -21,7 +21,6 @@ $siteBuilder->getGreyOverLay();
 $siteBuilder->getMenu();
 ?>
 
-<<<<<<< HEAD
 <div class = "content" >
     <center class="info">
         <h1>Managment</h1>
@@ -43,7 +42,7 @@ $siteBuilder->getMenu();
         </table>
     </center>
 </div>
-=======
+
 <h1>Managment</h1>
 <table class = "menu">
     <tr>
@@ -56,7 +55,6 @@ $siteBuilder->getMenu();
         <td><a href="rainOut.php" class="clockInButton">Rain Outs</a></td>
     </tr>
 </table>
->>>>>>> refs/remotes/tahmidMahmud/master
 
 <?php
 $siteBuilder->getClosinghtmlTags();
