@@ -18,8 +18,6 @@ $siteBuilder->getOpeningHtmlTags('Ride Usage Report');
 
 $siteBuilder->getGreyOverLay();
 
-$siteBuilder->getSubTitle();
-
 $siteBuilder->getMenu();
 ?>
 <div class = "content" >

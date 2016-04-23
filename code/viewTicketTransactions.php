@@ -2,7 +2,7 @@
 session_start();
 
 if(isset($_SESSION['id'])){
-    $username = $_SESSION['username']; 
+    $username = $_SESSION['username'];
     $id = $_SESSION['id'];
     $roleId = $_SESSION['roleId'];
     $first_name = $_SESSION['first_name'];
@@ -14,16 +14,14 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpeningHtmlTags('Ticket Transactions');
+$siteBuilder->getOpeningHtmlTags('Ticket Transactions Report');
 
 $siteBuilder->getGreyOverLay();
-
-$siteBuilder->getSubTitle();
 
 $siteBuilder->getMenu();
 ?>
 <div class = "content" >
-    <h1>Ticket Transactions</h1>
+    <h1>Ticket Transactions Report</h1>
     <form action="viewTicketTransactions.php" method="post">
       Schedule (month and year):
       <input type="month" name="yearMonth">
@@ -31,10 +29,10 @@ $siteBuilder->getMenu();
     </form>
 
 
-    
+
         <?php
             if(isset($_POST['yearMonth'])){
-                
+
                 $month = $_POST['yearMonth'];
 
                 echo '<div class="reports">';
@@ -43,8 +41,8 @@ $siteBuilder->getMenu();
 
                 $month = $month . '%';
 
-                $query = 
-				"SELECT 
+                $query =
+				"SELECT
 					ts.idTicket_Sales,
 					ts.date,
 					ts.season_pass,
@@ -58,7 +56,7 @@ $siteBuilder->getMenu();
 					Customers as c,
 					Users as u
 				WHERE
-					ts.customer_id = c.idCustomers AND 
+					ts.customer_id = c.idCustomers AND
 					ts.user_id = u.idUsers AND
 					ts.date LIKE '$month'
 				ORDER BY
@@ -78,21 +76,21 @@ $siteBuilder->getMenu();
                 <td align="left"><b>Employee Name</b></td>
 				</tr>';
 
-            
+
                 while($row = mysqli_fetch_array($response)){
-				
+
 				$customer = $row['cfname'] . ' ' . $row['clname'];
 				$employee = $row['ufname'] . ' ' . $row['ulname'];
 				$season = 'No';
 				if ($row['season_pass'] != null) {
 					$season = 'Yes';
 				}
-				
-                echo '<tr><td align="left">' . 
+
+                echo '<tr><td align="left">' .
                 $row['idTicket_Sales'] . '</td><td align="left">' .
-				$row['date'] . '</td><td align="left">' . 
+				$row['date'] . '</td><td align="left">' .
                 $season . '</td><td align="left">' .
-                $row['customer_id'] . ' ' . '</td><td align="left">' . 
+                $row['customer_id'] . ' ' . '</td><td align="left">' .
                 $customer . '</td><td align="left">' .
                 $employee . '</td><td align="left">';
 
@@ -110,10 +108,10 @@ $siteBuilder->getMenu();
 
                 mysqli_close($dbc);
 
-                }    
+                }
                 echo '</div>';
         ?>
-  
+
 </div>
 
 <?php
