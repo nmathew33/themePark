@@ -25,7 +25,7 @@ require("themeparkSiteBuilder.php");
 <center>
     <h1>Concessions Stands</h1>
 
-    <form action="concession_stand_items.php" method="post" id="priceform" >
+    <form action="concession_stand_items_insert.php" method="post" id="priceform" >
         <p>Concession Stand Name:
 
             <table border = "1" bgcolor="#FFFFFF" align="left"
@@ -59,10 +59,60 @@ require("themeparkSiteBuilder.php");
                 }
             ?>
         </p>
+        <p>Customer ID:<input name="customerID" type="text" placeholder="Customer ID" form="priceform" /></p>
         <h2 class="total_price">	
                     Total: <span id='total_value'>0.00</span>
+                    <input type="hidden" name="total" id="total_value_input" form="priceform">
         </h2>
-    <input type = "submit" value="Select">
+        <div id="payment_options" style="display: inline-block;">>
+                <div class="col-50">
+                    <div id="getCash" class=" ticket_input">
+                        <h3>Cash</h3>
+                        <input type="number" min="0.01" step="0.01" max="2500" name="cash" placeholder="Cash">
+                    </div>
+                </div>
+                
+                <div class="col-50">
+                    <div id="getCard">
+                        <h3>Card</h3>
+                        <input type="number" placeholder="Card Number">
+                        <br>
+                        <input type="number" placeholder="cvv" min="0" step="1" max="999">
+                        <br>                            
+                        <select name='expireMM' id='expireMM'>
+                            <option value=''>Month</option>
+                            <option value='01'>Janaury/01</option>
+                            <option value='02'>February/02</option>
+                            <option value='03'>March/03</option>
+                            <option value='04'>April/04</option>
+                            <option value='05'>May/05</option>
+                            <option value='06'>June/06</option>
+                            <option value='07'>July/07</option>
+                            <option value='08'>August/08</option>
+                            <option value='09'>September/09</option>
+                            <option value='10'>October/10</option>
+                            <option value='11'>November/11</option>
+                            <option value='12'>December/12</option>
+                        </select>
+                        <select name='expireYY' id='expireYY'>
+                            <option value=''>Year</option>
+                            <option value='10'>2016</option>
+                            <option value='11'>2017</option>
+                            <option value='12'>2018</option>
+                            <option value='12'>2019</option>
+                        </select>
+                        
+                        <input class="inputCard" type="hidden" name="expiry" id="expiry" maxlength="4"/>
+                        <br>                            
+                        <select name='bank' id='bank_input'>
+                            <option value='Visa'>Visa</option>
+                            <option value='Mastercard'>Mastercard</option>
+                        </select> 
+                        
+                    </div>
+                </div>
+            </div>
+    <input type = "submit" name="submit" value="Purchase">
 
     </form>
     </center>
@@ -157,6 +207,7 @@ require("themeparkSiteBuilder.php");
 		}
 		console.log("total", total_price);
 		document.getElementById('total_value').innerHTML = total_price.toFixed(2);
+        document.getElementById("total_value_input").value =  total_price.toFixed(2);
 	});
 
 

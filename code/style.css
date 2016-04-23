@@ -90,8 +90,24 @@ body {
     float: left;
 }
 
+.button_group_managment{
+    width: 100%;
+    float: left;
+}
+
 .button_group div{
     width: 200px;
+    text-align: center;
+    background: #fff;
+    float: left;
+    padding: 15px;
+    margin: 20px 0 50px 0;
+    border:2px solid #ddd;
+    /*border-left: 3px solid #fff;*/
+}
+
+.button_group_managment div{
+    width: 150px;
     text-align: center;
     background: #fff;
     float: left;
@@ -107,6 +123,17 @@ body {
 }
 
 .button_group div:first-child{
+    border-top-left-radius:10px;    
+    border-bottom-left-radius: 10px;
+    border-right: none;
+}
+
+.button_group_managment div:last-child{
+    border-top-right-radius:10px;    
+    border-bottom-right-radius: 10px;
+}
+
+.button_group_managment div:first-child{
     border-top-left-radius:10px;    
     border-bottom-left-radius: 10px;
     border-right: none;
