@@ -22,11 +22,11 @@ $siteBuilder->getGreyOverLay();
 $siteBuilder->getMenu();
 ?>
 <h1>Admin</h1>
-<table class = "menu">
-    <tr>
-        <td><a href="registrate_new_user.php" class="clockInButton">Add New User</a></td>
-    </tr>
-</table>
+
+
+<div class="button_group">
+    <div><a href="registrate_new_user.php">Add New User</a></div>
+</div>
 
 <?php
 $siteBuilder->getClosinghtmlTags();
