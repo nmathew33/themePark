@@ -18,7 +18,6 @@ $siteBuilder->getOpeningHtmlTags('Shift Schedule');
 
 $siteBuilder->getGreyOverLay();
 
-$siteBuilder->getSubTitle();
 
 $siteBuilder->getMenu();
 ?>

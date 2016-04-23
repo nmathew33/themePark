@@ -18,8 +18,6 @@ $siteBuilder->getOpeningHtmlTags('User');
 
 $siteBuilder->getGreyOverLay();
 
-$siteBuilder->getSubTitle();
-
 $siteBuilder->getMenu();
 ?>
 
