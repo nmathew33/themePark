@@ -44,7 +44,7 @@ $siteBuilder->getMenu();
                         </form> ';
                 echo '<div class="reports">';
                 
-                $query = "SELECT idConcession_Pricing, Concession_Pricing.name, Concession_Pricing.price, Concession_Stands.name AS cstn, Concession_Stands.location FROM Concession_Pricing, Concession_Stands WHERE Concession_Pricing.location = idConcession_Stands ORDER BY " . $by;
+                $query = "SELECT idConcession_Pricing, Concession_Pricing.name, Concession_Pricing.price, Concession_Stands.name AS cstn, Concession_Stands.location FROM Concession_Pricing, Concession_Stands WHERE Concession_Pricing.location = idConcession_Stands AND Concession_Pricing.archive='no' ORDER BY " . $by;
             } else{
                 
                  echo '<form action="editingConcession.php" method="post" enctype="multipart/form=data"> 
@@ -52,7 +52,7 @@ $siteBuilder->getMenu();
                     </form> ';
                 echo '<div class="reports">';
             
-                $query = "SELECT idConcession_Pricing, Concession_Pricing.name, Concession_Pricing.price, Concession_Stands.name AS cstn, Concession_Stands.location FROM Concession_Pricing, Concession_Stands WHERE Concession_Pricing.location = idConcession_Stands ";
+                $query = "SELECT idConcession_Pricing, Concession_Pricing.name, Concession_Pricing.price, Concession_Stands.name AS cstn, Concession_Stands.location FROM Concession_Pricing, Concession_Stands WHERE Concession_Pricing.location = idConcession_Stands AND Concession_Pricing.archive='no'";
                 
             }
             require_once('../db_connection.php');
