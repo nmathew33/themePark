@@ -45,7 +45,7 @@ $siteBuilder->getMenu();
 
             $month = $month . '%';
 
-            $query = "SELECT idShift_Schedule, idUsers, first_name, last_name, name, shift_begin, shift_end, phone, created_by FROM Shift_Schedule, Users, Roles WHERE idUsers = worker_id AND role_id = idRoles AND shift_begin LIKE '$month'";
+            $query = "SELECT idShift_Schedule, idUsers, first_name, last_name, name, shift_begin, shift_end, phone, created_by FROM Shift_Schedule, Users, Roles WHERE idUsers = worker_id AND role_id = idRoles AND shift_begin AND archive = 'no' LIKE '$month'";
 
             $response = @mysqli_query($dbc, $query);
             

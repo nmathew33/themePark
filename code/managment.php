@@ -36,6 +36,8 @@ $siteBuilder->getMenu();
     <div><a href="viewTicketTransactions.php">Ticket Transactions</a></div>
     <div><a href="viewConcessionTransactions.php">Concession Transactions</a></div>
     <div><a href="viewRideUsage.php">Ride Usage</a></div>
+    <div><a href="rideStatistics.php">Ride Statistics</a></div>
+</div>
 
 
 

@@ -34,7 +34,8 @@ $siteBuilder->getMenu();
 
                         require_once('../db_connection.php');
 
-                        $query = "SELECT * FROM Rides WHERE in_use = 1";
+                        $query = "SELECT * FROM Rides WHERE in_use = 1 AND archive = 'no'";
+
                         $response = @mysqli_query($dbc, $query);
                         if($response){
                             echo '<select name="rideID"  form="rideusage">';
@@ -86,7 +87,6 @@ if (isset($_POST['submit'])) {
 		}
 		echo '</h1></center>';
 	} else {
-
         date_default_timezone_set('America/Chicago');
         $date = date('Y-m-d H:i:s', time());
 		$query = "INSERT INTO Ride_Usage (customer, ride, date) VALUES ($customer, $ride, '$date')";
