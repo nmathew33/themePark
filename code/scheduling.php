@@ -58,14 +58,14 @@ $siteBuilder->getMenu();
 
             $query = "SELECT 
                         shift.idShift_Schedule, shift.shift_begin, shift.shift_end,
-                        (SELECT idUsers FROM Users user WHERE idUsers=". $id ." AND user.idUsers = shift.worker_id) AS workerID,
-                        (SELECT first_name FROM Users user WHERE idUsers=". $id ." AND user.idUsers = shift.worker_id) AS workerFirstName,
-                        (SELECT last_name FROM Users user WHERE idUsers=". $id ." AND user.idUsers = shift.worker_id) AS workerLastName,
-                        (SELECT idUsers FROM Users user WHERE user.idUsers = shift.created_by) AS managerID,
-                        (SELECT first_name FROM Users user WHERE user.idUsers = shift.created_by) AS managerFirstName,
-                        (SELECT last_name FROM Users user WHERE user.idUsers = shift.created_by) AS managerLastName,
-                        (SELECT phone FROM Users user WHERE user.idUsers = shift.created_by) AS managerPhone
-                        FROM Shift_Schedule shift WHERE YEARWEEK(shift.shift_begin) = (YEARWEEK(NOW()) + " . $_SESSION['week'] . ")";
+                        (SELECT idUsers FROM Users user WHERE idUsers=". $id ." AND user.idUsers = shift.worker_id AND shift.archive='no') AS workerID,
+                        (SELECT first_name FROM Users user WHERE idUsers=". $id ." AND user.idUsers = shift.worker_id AND shift.archive='no') AS workerFirstName,
+                        (SELECT last_name FROM Users user WHERE idUsers=". $id ." AND user.idUsers = shift.worker_id AND shift.archive='no') AS workerLastName,
+                        (SELECT idUsers FROM Users user WHERE user.idUsers = shift.created_by AND shift.archive='no') AS managerID,
+                        (SELECT first_name FROM Users user WHERE user.idUsers = shift.created_by AND shift.archive='no') AS managerFirstName,
+                        (SELECT last_name FROM Users user WHERE user.idUsers = shift.created_by AND shift.archive='no') AS managerLastName,
+                        (SELECT phone FROM Users user WHERE user.idUsers = shift.created_by AND shift.archive='no') AS managerPhone
+                        FROM Shift_Schedule shift WHERE YEARWEEK(shift.shift_begin) = (YEARWEEK(NOW()) + " . $_SESSION['week'] . ") AND shift.archive='no'";
 
             $response = @mysqli_query($dbc, $query);
             

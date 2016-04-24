@@ -25,7 +25,7 @@ $siteBuilder->getMenu();
         if(isset($_POST['deleteShiftID'])){
             require_once('../db_connection.php');
             
-            $query = "DELETE FROM Shift_Schedule WHERE idShift_Schedule=?;";
+            $query = "UPDATE Shift_Schedule SET archive='yes' WHERE idShift_Schedule=?;";
 
             $stmt = mysqli_prepare($dbc, $query);
 

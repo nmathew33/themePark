@@ -29,7 +29,7 @@ $siteBuilder->getMenu();
 
                 require_once('../db_connection.php');
 
-                $query = "SELECT * FROM Concession_Stands";
+                $query = "SELECT * FROM Concession_Stands WHERE archive = 'no'";
                 $response = @mysqli_query($dbc, $query);
                 if($response){
                     echo '<select name="ConcessionName"  form="priceform">';

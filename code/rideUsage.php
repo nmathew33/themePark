@@ -34,7 +34,7 @@ $siteBuilder->getMenu();
 
                         require_once('../db_connection.php');
 
-                        $query = "SELECT * FROM Rides";
+                        $query = "SELECT * FROM Rides WHERE archive='no'";
                         $response = @mysqli_query($dbc, $query);
                         if($response){
                             echo '<select name="rideID"  form="rideusage">';

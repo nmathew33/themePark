@@ -41,7 +41,7 @@ require("themeparkSiteBuilder.php");
 
                 require_once('../db_connection.php');
 
-                $query = "SELECT * FROM Concession_Stands";
+                $query = "SELECT * FROM Concession_Stands WHERE archive ='no'";
                 $response = @mysqli_query($dbc, $query);
                 if($response){
                     echo '<select name="ConcessionName"  form="priceform">';
@@ -64,7 +64,7 @@ require("themeparkSiteBuilder.php");
                     Total: <span id='total_value'>0.00</span>
                     <input type="hidden" name="total" id="total_value_input" form="priceform">
         </h2>
-        <div id="payment_options" style="display: inline-block;">>
+        <div id="payment_options" style="display: inline-block;">
                 <div class="col-50">
                     <div id="getCash" class=" ticket_input">
                         <h3>Cash</h3>
@@ -109,10 +109,11 @@ require("themeparkSiteBuilder.php");
                             <option value='Mastercard'>Mastercard</option>
                         </select> 
                         
+
                     </div>
+                    <input type = "submit" name="submit" value="Purchase" align="center">
                 </div>
             </div>
-    <input type = "submit" name="submit" value="Purchase">
 
     </form>
     </center>
@@ -126,7 +127,7 @@ require("themeparkSiteBuilder.php");
 
             $query = "SELECT idConcession_Pricing, name ,price 
                         FROM Concession_Pricing
-                        WHERE location = " . $_POST['ConcessionName'];
+                        WHERE archive ='no' AND location = " . $_POST['ConcessionName'];
 
             $response = @mysqli_query($dbc, $query);
 
