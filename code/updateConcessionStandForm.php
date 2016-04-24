@@ -24,7 +24,7 @@ $siteBuilder->getMenu();
     if(isset($_POST['deleteConcessionStandID'])){
         require_once('../db_connection.php');
         
-        $query = "DELETE FROM Concession_Stands WHERE idConcession_Stands=?;";
+        $query = "UPDATE Concession_Stands SET archive='yes' WHERE idConcession_Stands=?;";
 
         $stmt = mysqli_prepare($dbc, $query);
 
