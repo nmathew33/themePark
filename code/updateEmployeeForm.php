@@ -25,7 +25,7 @@ $siteBuilder->getMenu();
     if(isset($_POST['deleteEmployeeID'])){
         require_once('../db_connection.php');
         
-        $query = "DELETE FROM Users WHERE idUsers= ?";
+        $query = "UPDATE Users SET archive = 'yes' WHERE idUsers= ?";
 
         $stmt = mysqli_prepare($dbc, $query);
 
@@ -59,7 +59,7 @@ $siteBuilder->getMenu();
         require_once('../db_connection.php');
 
         $query = "SELECT idUsers, role_id, Roles.name, first_name, last_name, email, address, phone,
-        ssn, gender, password, date_employed FROM Users, Roles Where idRoles = role_id AND idUsers =" . $_POST['updateEmployeeID'];
+        ssn, gender, password, date_employed FROM Users, Roles Where idRoles = role_id AND archive = 'no' AND idUsers =" . $_POST['updateEmployeeID'];
         $response = @mysqli_query($dbc, $query);
         if($response){
             $row = mysqli_fetch_array($response);
@@ -88,7 +88,7 @@ $siteBuilder->getMenu();
                         <input type="text" name="last_name" size="30" value="'.$lname.'" />
                     </p>';
             echo '<p>Role: ';        
-            $query = "SELECT * FROM Roles WHERE name != 'admin'";
+            $query = "SELECT * FROM Roles WHERE archive ='no' AND name != 'admin'";
             $response = @mysqli_query($dbc, $query);
             if($response){
                 echo '<select name="role"  form="updateEmployeeForm">';

@@ -46,7 +46,7 @@ $siteBuilder->getMenu();
                     </form> ';
             echo '<div class="reports">';
             
-            $query = "SELECT idConcession_Stands, name, description, location FROM Concession_Stands ORDER BY " . $by;
+            $query = "SELECT idConcession_Stands, name, description, location FROM Concession_Stands WHERE archive ='no' ORDER BY " . $by;
         } else{
             
             echo '<form action="viewConcessionStands.php" method="post" enctype="multipart/form=data"> 
@@ -54,7 +54,7 @@ $siteBuilder->getMenu();
                     </form> ';
             echo '<div class="reports">';
         
-            $query = "SELECT idConcession_Stands, name, description, location FROM Concession_Stands";
+            $query = "SELECT idConcession_Stands, name, description, location FROM Concession_Stands WHERE archive ='no'";
             
         }
         require_once('../db_connection.php');
