@@ -173,32 +173,47 @@ body {
 
 .add_maintenance{
     
-    height: 50px;
-    font-size: 30px;
-    width: 200px;
+    height: 100px;
+    font-size: 45px;
+    width: 250px;
     text-decoration: none;
     background: green;
     border: none;
     color: white;
-    border-radius: 10px;
+    border-radius: 30px;
     margin: 10px;
-    left:20%;
+    left:50%;
     position:absolute;
 }
 .mod_maintenance{
     
-    height: 50px;
-    font-size: 30px;
-    width: 200px;
+    height: 100px;
+    font-size: 45px;
+    width: 250px;
     text-decoration: none;
     background: green;
     border: none;
     color: white;
-    border-radius: 10px;
+    border-radius: 30px;
     margin: 10px;
     position:absolute;
-    top:35%;
-    left:20%;
+    top:40%;
+    left:50%;
+}
+.maint_reports{
+    
+    height: 100px;
+    font-size: 40px;
+    width: 250px;
+    text-decoration: none;
+    background: green;
+    border: none;
+    color: white;
+    border-radius: 30px;
+    margin: 10px;
+    position:absolute;
+    top:54%;
+    left:50%;
 }
 .end_maintenance{
     
