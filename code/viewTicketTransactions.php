@@ -102,7 +102,7 @@ $siteBuilder->getMenu();
                 $season . '</td><td align="left">' .
                 $row['customer_id'] . ' ' . '</td><td align="left">' .
                 $customer . '</td><td align="left">' .
-                $employee . '</td><td align="left">';
+                $employee . '</td>';
 
                 echo '</tr>';
                 }

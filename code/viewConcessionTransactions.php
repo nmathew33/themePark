@@ -94,7 +94,7 @@ $siteBuilder->getMenu();
 				$row['price'] . '</td><td align="left">' .
                 $row['cfn'] . ' ' . $row['cln'] . '</td><td align="left">' .
                 $row['ufn'] . ' ' . $row['uln'] . '</td><td align="left">' .
-                $row['date'] . '</td><td align="left">';
+                $row['date'] . '</td>';
 
                 echo '</tr>';
                 }
