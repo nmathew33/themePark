@@ -92,6 +92,7 @@ $siteBuilder->getMenu();
                 echo '<tr><td align="left">' .
                 $row['idConcession_Sales'] . '</td><td align="left">' .
 				$row['price'] . '</td><td align="left">' .
+                $row['name'] . '</td><td align="left">' .
                 $row['cfn'] . ' ' . $row['cln'] . '</td><td align="left">' .
                 $row['ufn'] . ' ' . $row['uln'] . '</td><td align="left">' .
                 $row['date'] . '</td>';
