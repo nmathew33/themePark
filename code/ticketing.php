@@ -52,7 +52,7 @@ $siteBuilder->getMenu();
 ?>
 
 <div>
-    <form action="ticketing.php" method="post">
+    <form action="ticketingInsert.php" method="post">
             <div class="col-100">
                 <h3>Adults</h3>
                 <div class='ticket_input'>
@@ -83,6 +83,9 @@ $siteBuilder->getMenu();
                     </div>
                 </div>
             </div>
+            
+            <input type="hidden" name="adult_price" id="adult_price">
+            <input type="hidden" name="child_price" id="child_price">
             
             <div class="col-100">
                 <h3>Coupon</h3>
@@ -141,7 +144,7 @@ $siteBuilder->getMenu();
                     </div>
                 </div>
             </div>
-        <input class='full-width-submit' type="submit" value="Complete order">
+        <input class='full-width-submit' type="submit" name="submit" value="Complete order">
     </form>
 </div>
 
@@ -156,6 +159,9 @@ $siteBuilder->getMenu();
     var adult_price = prices.filter(function( obj ) { return obj.name == 'adult'; })[0];
     var child_price = prices.filter(function( obj ) { return obj.name == 'child'; })[0];
     var total_price = adult_price.price;
+    
+    document.getElementById("adult_price").value =  adult_price.price;
+    document.getElementById("child_price").value =  child_price.price;
     
     
     
