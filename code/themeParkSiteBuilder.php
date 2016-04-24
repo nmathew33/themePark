@@ -1,4 +1,5 @@
 <?php
+
 class ThemeParkSiteBuilder{
 
 	protected $title = '<div class = "header">Four O Four Land</div>';
@@ -35,7 +36,7 @@ class ThemeParkSiteBuilder{
 	}
 
 	public function getMenu(){
-
+		if ($_SESSION['roleId'] == '1'){
 		echo '
             <div class = "subheader"><a href="logout.php" class="button">Sign Out</a></div>
 			<div class="left-bar">
@@ -54,6 +55,98 @@ class ThemeParkSiteBuilder{
 			<div class = "content">
 				<div class="content-inner">
 				';
+			} else if ($_SESSION['roleId'] == '2'){
+			echo '
+            <div class = "subheader"><a href="logout.php" class="button">Sign Out</a></div>
+			<div class="left-bar">
+				<div class="logo">
+					Four o Four land
+				</div>
+				<a href="clockInOut.php"><div class="menu-item">Clock In/Out</div></a>
+				<a href="rideUsage.php"><div class="menu-item">Ride Usage</div></a>
+				<a href="scheduling.php"><div class="menu-item">Scheduling</div></a>
+				<a href="ticketing.php"><div class="menu-item">Ticketing</div></a>
+				<a href="concessions.php"><div class="menu-item">Concessions</div></a>
+				<a href="maintenance.php"><div class="menu-item">Maintenance</div></a>
+				<a href="managment.php"><div class="menu-item">Management</div></a>
+
+			</div>
+			<div class = "content">
+				<div class="content-inner">
+				';				
+			} else if ($_SESSION['roleId'] == '3'){
+			echo '
+            <div class = "subheader"><a href="logout.php" class="button">Sign Out</a></div>
+			<div class="left-bar">
+				<div class="logo">
+					Four o Four land
+				</div>
+				<a href="clockInOut.php"><div class="menu-item">Clock In/Out</div></a>
+				<a href="scheduling.php"><div class="menu-item">Scheduling</div></a>
+				<a href="maintenance.php"><div class="menu-item">Maintenance</div></a>				
+			</div>
+			<div class = "content">
+				<div class="content-inner">
+				';				
+			} else if ($_SESSION['roleId'] == '4'){
+			echo '
+            <div class = "subheader"><a href="logout.php" class="button">Sign Out</a></div>
+			<div class="left-bar">
+				<div class="logo">
+					Four o Four land
+				</div>
+				<a href="clockInOut.php"><div class="menu-item">Clock In/Out</div></a>
+				<a href="scheduling.php"><div class="menu-item">Scheduling</div></a>
+				<a href="ticketing.php"><div class="menu-item">Ticketing</div></a>
+			</div>
+			<div class = "content">
+				<div class="content-inner">
+				';				
+			} else if ($_SESSION['roleId'] == '5'){
+			echo '
+            <div class = "subheader"><a href="logout.php" class="button">Sign Out</a></div>
+			<div class="left-bar">
+				<div class="logo">
+					Four o Four land
+				</div>
+				<a href="clockInOut.php"><div class="menu-item">Clock In/Out</div></a>
+				<a href="scheduling.php"><div class="menu-item">Scheduling</div></a>
+				<a href="concessions.php"><div class="menu-item">Concessions</div></a>
+			</div>
+			<div class = "content">
+				<div class="content-inner">
+				';				
+			} else if ($_SESSION['roleId'] == '6'){
+			echo '
+            <div class = "subheader"><a href="logout.php" class="button">Sign Out</a></div>
+			<div class="left-bar">
+				<div class="logo">
+					Four o Four land
+				</div>
+				<a href="clockInOut.php"><div class="menu-item">Clock In/Out</div></a>
+				<a href="rideUsage.php"><div class="menu-item">Ride Usage</div></a>
+				<a href="scheduling.php"><div class="menu-item">Scheduling</div></a>
+			</div>
+			<div class = "content">
+				<div class="content-inner">
+				';				
+			} else if ($_SESSION['roleId'] == '7'){
+			echo '
+            <div class = "subheader"><a href="logout.php" class="button">Sign Out</a></div>
+			<div class="left-bar">
+				<div class="logo">
+					Four o Four land
+				</div>
+				<a href="clockInOut.php"><div class="menu-item">Clock In/Out</div></a>
+				<a href="rideUsage.php"><div class="menu-item">Ride Usage</div></a>
+				<a href="scheduling.php"><div class="menu-item">Scheduling</div></a>
+				<a href="ticketing.php"><div class="menu-item">Ticketing</div></a>
+				<a href="concessions.php"><div class="menu-item">Concessions</div></a>
+			</div>
+			<div class = "content">
+				<div class="content-inner">
+				';				
+			}
 
 	}
 

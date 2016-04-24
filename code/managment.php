@@ -21,7 +21,7 @@ $siteBuilder->getGreyOverLay();
 $siteBuilder->getMenu();
 ?>
 
-<h1>Managment</h1>
+<h1>Management</h1>
 
 <div class="button_group_managment">
     <div><a href="viewEmployee.php" >Employees</a></div>
