@@ -38,7 +38,12 @@ $siteBuilder->getMenu();
 
                     require_once('../db_connection.php');
 
-                    $query = "SELECT * FROM Roles";
+                    if ($_SESSION['roleId'] == '1'){
+                        $query = "SELECT * FROM Roles";
+                    } else{
+                        $query = "SELECT * FROM Roles WHERE (name != 'admin')";
+                    }
+
                     $response = @mysqli_query($dbc, $query);
                     if($response){
                         echo '<select name="role"  form="userform">';

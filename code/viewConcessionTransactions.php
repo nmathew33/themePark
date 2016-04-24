@@ -36,7 +36,17 @@ $siteBuilder->getMenu();
                 $month = $_POST['yearMonth'];
 
                 echo '<div class="reports">';
+                ?>
 
+                <div class="report-header">
+                    <h4>Four O Four Land</h4>
+                    4773 Ashmor Drive <br />
+                    Houston, TX <br />
+
+                <?php
+                date_default_timezone_set('America/Chicago');
+                $date = date('m/d/Y h:i:s a', time());
+                echo "<br />This report was generated at $date</div>";
                 require_once('../db_connection.php');
 
                 $month = $month . '%';
@@ -84,7 +94,7 @@ $siteBuilder->getMenu();
 				$row['price'] . '</td><td align="left">' .
                 $row['cfn'] . ' ' . $row['cln'] . '</td><td align="left">' .
                 $row['ufn'] . ' ' . $row['uln'] . '</td><td align="left">' .
-                $row['date'] . '</td><td align="left">';
+                $row['date'] . '</td>';
 
                 echo '</tr>';
                 }

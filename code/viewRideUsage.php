@@ -36,7 +36,17 @@ $siteBuilder->getMenu();
                 $month = $_POST['yearMonth'];
 
                 echo '<div class="reports">';
+                ?>
 
+                <div class="report-header">
+                    <h4>Four O Four Land</h4>
+                    4773 Ashmor Drive <br />
+                    Houston, TX <br />
+
+                <?php
+                date_default_timezone_set('America/Chicago');
+                $date = date('m/d/Y h:i:s a', time());
+                echo "<br />This report was generated at $date</div>";
                 require_once('../db_connection.php');
 
                 $month = $month . '%';
@@ -59,6 +69,7 @@ $siteBuilder->getMenu();
 
                 $response = @mysqli_query($dbc, $query);
                 if($response){
+
                 echo '<table align="left"
                 cellspacing="5" cellpadding="8" class="report">
 
@@ -74,12 +85,15 @@ $siteBuilder->getMenu();
                 $row['idRide_Usage'] . '</td><td align="left">' .
 				$row['first_name'] . ' ' . $row['last_name'] . '</td><td align="left">' .
                 $row['name'] . '</td><td align="left">' .
-                $row['date'] . '</td><td align="left">';
+                $row['date'] . '</td>';
 
                 echo '</tr>';
                 }
 
+
+
                 echo '</table>';
+
                 } else {
 
                 echo "Couldn't issue database query<br />";
@@ -92,9 +106,18 @@ $siteBuilder->getMenu();
 
                 }
                 echo '</div>';
+
+
         ?>
 
 </div>
+
+<?php
+    if (isset($_POST['yearMonth'])) {
+
+    }
+
+ ?>
 
 <?php
 $siteBuilder->getClosinghtmlTags();
