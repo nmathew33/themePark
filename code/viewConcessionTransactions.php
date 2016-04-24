@@ -54,7 +54,7 @@ $siteBuilder->getMenu();
                 $query =
 				"SELECT
                     cs.idConcession_Sales,
-                    cp.price,
+                    cs.pricing,
                     cst.name,
                     c.first_name cfn,
                     c.last_name cln,
@@ -63,8 +63,6 @@ $siteBuilder->getMenu();
                     cs.date
                 FROM
                     Concession_Sales cs
-                        LEFT OUTER JOIN
-                    Concession_Pricing cp ON cs.pricing = cp.idConcession_Pricing
                         LEFT OUTER JOIN
                     Concession_Stands cst ON cs.location = cst.idConcession_Stands
                         LEFT OUTER JOIN
@@ -91,7 +89,8 @@ $siteBuilder->getMenu();
 
                 echo '<tr><td align="left">' .
                 $row['idConcession_Sales'] . '</td><td align="left">' .
-				$row['price'] . '</td><td align="left">' .
+				$row['pricing'] . '</td><td align="left">' .
+                $row['name'] . '</td><td align="left">' .
                 $row['cfn'] . ' ' . $row['cln'] . '</td><td align="left">' .
                 $row['ufn'] . ' ' . $row['uln'] . '</td><td align="left">' .
                 $row['date'] . '</td>';
