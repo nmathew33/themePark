@@ -26,7 +26,7 @@ $siteBuilder->getMenu();
         if(isset($_POST['deleteRidesID'])){
             require_once('../db_connection.php');
             
-            $query = "DELETE FROM Rides WHERE idRides=?;";
+            $query = "UPDATE Rides SET archive='yes' WHERE idRides=?;";
 
             $stmt = mysqli_prepare($dbc, $query);
 

@@ -10,7 +10,7 @@ if(isset($_POST['username'])){
 	$username = mysqli_real_escape_string($dbc, $username);
 	$password = mysqli_real_escape_string($dbc, $password);
 
-	$query = "SELECT idUsers, role_id, first_name, last_name, email, password FROM Users Where email = '$username' LIMIT 1";
+	$query = "SELECT idUsers, role_id, first_name, last_name, email, password, archive FROM Users Where archive = 'no' AND  email = '$username' LIMIT 1";
 	$response = @mysqli_query($dbc,$query);
 	$row = mysqli_fetch_array($response);
 

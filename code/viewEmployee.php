@@ -51,7 +51,7 @@ $siteBuilder->getMenu();
                 echo '<div class="reports">';
                 
                 $query = "SELECT idUsers, Roles.name, first_name, last_name, email, address, phone,
-            ssn, gender, date_employed FROM Users, Roles Where idRoles = role_id ORDER BY " . $by;
+            ssn, gender, date_employed FROM Users, Roles Where idRoles = role_id AND Users.archive = 'no' ORDER BY " . $by;
             
             } else{
                 
@@ -61,7 +61,7 @@ $siteBuilder->getMenu();
                 echo '<div class="reports">';
             
                 $query = "SELECT idUsers, Roles.name, first_name, last_name, email, address, phone,
-                            ssn, gender, date_employed FROM Users, Roles Where idRoles = role_id";
+                            ssn, gender, date_employed FROM Users, Roles Where idRoles = role_id AND Users.archive = 'no'";
                 
             }
            

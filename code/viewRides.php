@@ -47,7 +47,7 @@ $siteBuilder->getMenu();
                         </form> ';
                 echo '<div class="reports">';
                 
-                $query = "SELECT idRides, in_use, staff, name, description, date_created FROM Rides ORDER BY " . $by;
+                $query = "SELECT idRides, in_use, staff, name, description, date_created FROM Rides WHERE archive='no' ORDER BY " . $by;
             } else{
                 
                  echo '<form action="editingRides.php" method="post" enctype="multipart/form=data"> 
@@ -55,7 +55,7 @@ $siteBuilder->getMenu();
                     </form> ';
                 echo '<div class="reports">';
             
-                $query = "SELECT idRides, in_use, staff, name, description, date_created FROM Rides";
+                $query = "SELECT idRides, in_use, staff, name, description, date_created FROM Rides WHERE archive='no'";
                 
             }
             require_once('../db_connection.php');
