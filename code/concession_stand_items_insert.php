@@ -62,7 +62,6 @@ $siteBuilder->getMenu();
         $cash = !empty($_POST['cash']);
         
         if($card && $cash){
-            echo 'a';
             $card_number = trim($_POST['cnumber']);
             $cvv = trim($_POST['cvv']);
             $expireMM = trim($_POST['expireMM']);
@@ -72,10 +71,8 @@ $siteBuilder->getMenu();
             $cash_payment = trim($_POST['cash']);
             $card_amount = floatval($total_value_input) - floatval($cash_payment);
         } elseif ($cash) {
-            echo 'b';
             $cash_payment = trim($_POST['cash']);
         } elseif ($card) {
-            echo 'c';
             $card_number = trim($_POST['cnumber']);
             $cvv = trim($_POST['cvv']);
             $expireMM = trim($_POST['expireMM']);
@@ -119,7 +116,7 @@ $siteBuilder->getMenu();
 
                 }
             
-                $query = "INSERT INTO Transactions (sale_type, concession_sale_id) VALUES (1, $sale_id);";
+                $query = "INSERT INTO Transactions (sale_type, concession_sale_id) VALUES (3, $sale_id);";
                 
                 
                 $stmt = mysqli_prepare($dbc, $query);
@@ -143,8 +140,6 @@ $siteBuilder->getMenu();
 
                 $expiration = "$expireYY-$expireMM-01";
                 
-                echo $expiration;
-                                
                 mysqli_stmt_bind_param($stmt, "ssss", $card_number, $expiration, $cvv, $bank);
                 
                 mysqli_stmt_execute($stmt);
@@ -190,7 +185,6 @@ $siteBuilder->getMenu();
                 
                 $tinput = floatval($total_value_input);
                 
-                echo "<p>$tinput</p>";
                 
                 $customerID = intval($customerID);
                 
@@ -210,8 +204,6 @@ $siteBuilder->getMenu();
                 if($response){
                    $row = mysqli_fetch_array($response);
                    $sale_id = $row['idConcession_Sales'];
-                   echo $sale_id;
-
                 }
             
                 $query = "INSERT INTO Transactions (sale_type, concession_sale_id) VALUES (1, $sale_id);";
@@ -228,7 +220,6 @@ $siteBuilder->getMenu();
                 if($response){
                    $row = mysqli_fetch_array($response);
                    $transaction_id = $row['idTransactions'];
-                   echo $sale_id;
 
                 }
                 
@@ -289,11 +280,10 @@ $siteBuilder->getMenu();
                 if($response){
                     $row = mysqli_fetch_array($response);
                     $sale_id = $row['idConcession_Sales'];
-                    echo $sale_id;
 
                 }
             
-                $query = "INSERT INTO Transactions (sale_type, concession_sale_id) VALUES (1, $sale_id);";
+                $query = "INSERT INTO Transactions (sale_type, concession_sale_id) VALUES (2, $sale_id);";
                 
                 
                 $stmt = mysqli_prepare($dbc, $query);
@@ -307,7 +297,6 @@ $siteBuilder->getMenu();
                 if($response){
                     $row = mysqli_fetch_array($response);
                     $transaction_id = $row['idTransactions'];
-                    echo $sale_id;
 
                 }
                 
@@ -316,8 +305,6 @@ $siteBuilder->getMenu();
                 $stmt = mysqli_prepare($dbc, $query);
 
                 $expiration = "$expireYY-$expireMM-01";
-                
-                echo $expiration;
                                 
                 mysqli_stmt_bind_param($stmt, "ssss", $card_number, $expiration, $cvv, $bank);
                 
@@ -362,7 +349,7 @@ $siteBuilder->getMenu();
 
 ?>
 
-<a href="concession_stand_items.php" class="button">New Sale</a>
+<a href="concessions.php" class="button">New Sale</a>
 
 <?php
 $siteBuilder->getClosinghtmlTags();
