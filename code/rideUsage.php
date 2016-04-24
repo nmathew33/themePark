@@ -87,8 +87,9 @@ if (isset($_POST['submit'])) {
 		echo '</h1></center>';
 	} else {
 
-
-		$query = "INSERT INTO Ride_Usage (customer, ride, date) VALUES ($customer, $ride, NOW())";
+        date_default_timezone_set('America/Chicago');
+        $date = date('Y-m-d H:i:s', time());
+		$query = "INSERT INTO Ride_Usage (customer, ride, date) VALUES ($customer, $ride, '$date')";
 
 		$stmt = mysqli_prepare($dbc, $query);
 		mysqli_stmt_execute($stmt);
