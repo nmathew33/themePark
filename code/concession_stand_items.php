@@ -62,7 +62,7 @@ require("themeparkSiteBuilder.php");
         <p>Customer ID:<input name="customerID" type="text" placeholder="Customer ID" form="priceform" /></p>
         <h2 class="total_price">	
                     Total: <span id='total_value'>0.00</span>
-                    <input type="hidden" name="total" id="total_value_input" form="priceform">
+                    <input type="hidden" name="total_value_input" id="total_value_input" form="priceform">
         </h2>
         <div id="payment_options" style="display: inline-block;">
                 <div class="col-50">
@@ -75,9 +75,9 @@ require("themeparkSiteBuilder.php");
                 <div class="col-50">
                     <div id="getCard">
                         <h3>Card</h3>
-                        <input type="number" placeholder="Card Number">
+                        <input type="number" placeholder="Card Number" name="cnumber"  form="priceform">
                         <br>
-                        <input type="number" placeholder="cvv" min="0" step="1" max="999">
+                        <input type="number" placeholder="cvv" name="cvv" form="priceform" min="0" step="1" max="999">
                         <br>                            
                         <select name='expireMM' id='expireMM'>
                             <option value=''>Month</option>
@@ -96,10 +96,10 @@ require("themeparkSiteBuilder.php");
                         </select>
                         <select name='expireYY' id='expireYY'>
                             <option value=''>Year</option>
-                            <option value='10'>2016</option>
-                            <option value='11'>2017</option>
-                            <option value='12'>2018</option>
-                            <option value='12'>2019</option>
+                            <option value='2016'>2016</option>
+                            <option value='2017'>2017</option>
+                            <option value='2018'>2018</option>
+                            <option value='2019'>2019</option>
                         </select>
                         
                         <input class="inputCard" type="hidden" name="expiry" id="expiry" maxlength="4"/>
