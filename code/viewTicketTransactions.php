@@ -57,6 +57,7 @@ $siteBuilder->getMenu();
 					ts.date,
 					ts.season_pass,
 					ts.customer_id,
+                    ts.pricing,
 					c.first_name AS cfname,
 					c.last_name AS clname,
 					u.first_name AS ufname,
@@ -80,6 +81,7 @@ $siteBuilder->getMenu();
                 <tr>
 				<td align="left"><b>Ticket #</b></td>
 				<td align="left"><b>Date Sold</b></td>
+                <td align="left"><b>Pricing</b></td>
                 <td align="left"><b>Season Pass</b></td>
                 <td align="left"><b>Customer ID</b></td>
                 <td align="left"><b>Customer Name</b></td>
@@ -99,6 +101,7 @@ $siteBuilder->getMenu();
                 echo '<tr><td align="left">' .
                 $row['idTicket_Sales'] . '</td><td align="left">' .
 				$row['date'] . '</td><td align="left">' .
+                $row['pricing'] . '</td><td align="left">' .
                 $season . '</td><td align="left">' .
                 $row['customer_id'] . ' ' . '</td><td align="left">' .
                 $customer . '</td><td align="left">' .
