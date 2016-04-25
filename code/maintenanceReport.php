@@ -2,7 +2,7 @@
 session_start();
 
 if(isset($_SESSION['id'])){
-    $username = $_SESSION['username']; 
+    $username = $_SESSION['username'];
     $id = $_SESSION['id'];
     $roleId = $_SESSION['roleId'];
     $first_name = $_SESSION['first_name'];
@@ -22,9 +22,9 @@ $siteBuilder->getMenu();
 ?>
 <div class = "maintenanceMenu">
 <h1>Maintenance Report</h1>
-<?php 
+<?php
         require_once('../db_connection.php');
-        
+
         $query = "SELECT idMaintenance, user_created, date_created, ticket_description, ride
             FROM UmaLand.Maintenance WHERE user_closed IS NULL ";
 
@@ -40,18 +40,18 @@ $siteBuilder->getMenu();
                 <td align="left"><b>User_Created</b></td>
                 <td align="left"><b>Ride ID</b></td>
                 <td align="left"><b>Ticket_Description</b></td>';
-                
+
                 while($row = mysqli_fetch_array($response))
                 {
                     echo '<tr><td align="left">'.
-                    $row['idMaintenance'] . '</td><td align="left">' . 
+                    $row['idMaintenance'] . '</td><td align="left">' .
                     $row['date_created'] . '</td><td align="left">' .
-                    $row['user_created'] . '</td><td align="left">' . 
+                    $row['user_created'] . '</td><td align="left">' .
                     $row['ride'] . '</td><td align="left">' .
-                    $row['ticket_description'] . '</td><td align="left">';              
+                    $row['ticket_description'] . '</td>';              
                 }
             }
-            mysqli_close($dbc); 
+            mysqli_close($dbc);
 ?>
 </div>
 <?php
