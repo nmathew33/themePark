@@ -24,8 +24,9 @@ $siteBuilder->getMenu();
 <h1>Admin</h1>
 
 
-<div class="button_group">
+<div class="button_group" style="padding: 10px 10px">
     <div><a href="registrate_new_user.php">Add New User</a></div>
+    <div><a href="archive.php">Archived Data</a></div>
 </div>
 
 <?php
