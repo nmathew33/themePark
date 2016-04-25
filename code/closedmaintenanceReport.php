@@ -21,8 +21,13 @@ $siteBuilder->getGreyOverLay();
 $siteBuilder->getMenu();
 ?>
 
+
+<div class = "content">
+        <h1>
+            Maintenance Report
+        </h1>
+ </div>
 <div class = "maintenanceMenu">
-<h1>Maintenance Report</h1>
 <?php 
         require_once('../db_connection.php');
 
@@ -36,7 +41,7 @@ $siteBuilder->getMenu();
             if($response)
             {
                 echo '<table align = left"
-                cellspacing="10" cellpadding = "8" class="reports"
+                cellspacing="10" cellpadding = "8" class="report"
                 <tr><td align = "left"><b> Closed Tickets: '.$rowcount.'</b></td></tr>
                 <tr><td align = "left"><b>Ticket #</b></td>
                 <td align="left"><b>Date_Created</b></td>

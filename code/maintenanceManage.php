@@ -45,7 +45,7 @@ $siteBuilder->getMenu();
             if($response)
             {
                 echo '<table align = left"
-                cellspacing="10" cellpadding = "10" class="report">
+                cellspacing="10" cellpadding = "10" class="reports">
                 <tr><td align = "left"><b> Active Tickets:</b></td></tr>
                 <tr>
                 <td align="left"></td>
