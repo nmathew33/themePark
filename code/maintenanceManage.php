@@ -22,14 +22,12 @@ $siteBuilder->getMenu();
 ?>
 
 <div class = "content">
+        <h1>
+            Ride Maintenance
+        </h1>
         <a href="maintenance.php" class="add_ticket_button">
         <button class="add_maintenance">Back</button>
         </a>
-        <center>
-        <h1>
-        Ride Maintenance
-        </h1>
-        </center> 
  </div>
 <div class = "maintenanceMenu">
          <?php
