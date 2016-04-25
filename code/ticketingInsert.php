@@ -78,36 +78,6 @@ $siteBuilder->getMenu();
         }
         
         
-        if(empty($_POST['ConcessionName'])){
-
-            $data_missing[] = 'ConcessionName';
-
-        } else {
-
-            $concessionName = trim($_POST['ConcessionName']);
-
-        }
-
-        if(empty($_POST['customerID'])){
-
-            $data_missing[] = 'customerID';
-
-        } else{
-
-            $customerID = trim($_POST['customerID']);
-
-        }
-
-        if(empty($_POST['total_value_input'])){
-
-            $data_missing[] = 'total_value_input';
-
-        } else {
-
-            $total_value_input = trim($_POST['total_value_input']);
-
-        }
-        
         $card = (!empty($_POST['cnumber']) && !empty($_POST['cvv']) && !empty($_POST['expireMM']) && !empty($_POST['expireYY']));
         $cash = !empty($_POST['cash']);
         
@@ -143,24 +113,42 @@ $siteBuilder->getMenu();
 
                 $stmt = mysqli_prepare($dbc, $query);
                                 
-                mysqli_stmt_bind_param($stmt, "sssss", $fname[$i], $lname[$i], $email[$i], $phone[$i], $address[$i]);
+                mysqli_stmt_bind_param($stmt, "sssss", $fname[$i], $lname[$i], $email[$i], $address[$i], $phone[$i]);
                 
                 mysqli_stmt_execute($stmt);
                 
                 mysqli_stmt_close($stmt);
+                
+                $query = "SELECT idCustomers FROM Customers WHERE first_name = '$fname[$i]' AND last_name = '$lname[$i]' AND email = '$email[$i]' AND address = '$address[$i]' AND phone = '$phone[$i]'";
+                    $response = @mysqli_query($dbc, $query);
+                    if($response){
+                        $row = mysqli_fetch_array($response);
+                        $coustomer_id = $row['idCustomers'];
+                        echo $coustomer_id;
+                    }
             }
             
-            for($i = 0; $i < $numOfChildren;$i++)
-            {
-               $query = "INSERT INTO Customers (first_name, last_name, email, address, phone) VALUES (?, ?, ?, ?, ?);";
+            if(isset($_POST['child_first_name']) ){
+                for($i = 0; $i < $numOfChildren;$i++)
+                {
+                $query = "INSERT INTO Customers (first_name, last_name, email, address, phone) VALUES (?, ?, ?, ?, ?);";
 
-                $stmt = mysqli_prepare($dbc, $query);
-                                
-                mysqli_stmt_bind_param($stmt, "sssss", $child_fname[$i], $child_lname[$i], $child_email[$i], $child_phone[$i], $child_address[$i]);
-                
-                mysqli_stmt_execute($stmt);
-                
-                mysqli_stmt_close($stmt);
+                    $stmt = mysqli_prepare($dbc, $query);
+                                    
+                    mysqli_stmt_bind_param($stmt, "sssss", $child_fname[$i], $child_lname[$i], $child_email[$i], $child_address[$i], $child_phone[$i]);
+                    
+                    mysqli_stmt_execute($stmt);
+                    
+                    mysqli_stmt_close($stmt);
+                    
+                    $query = "SELECT idCustomers FROM Customers WHERE first_name = '$child_fname[$i]' AND last_name = '$child_lname[$i]' AND email = '$child_email[$i]' AND address = '$child_address[$i]' AND phone = '$child_phone[$i]'";
+                    $response = @mysqli_query($dbc, $query);
+                    if($response){
+                        $row = mysqli_fetch_array($response);
+                        $coustomer_id = $row['idCustomers'];
+                        echo $coustomer_id;
+                    }
+                }
             }
             
         } else {
