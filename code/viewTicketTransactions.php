@@ -46,7 +46,7 @@ $siteBuilder->getMenu();
                 <?php
                 date_default_timezone_set('America/Chicago');
                 $date = date('m/d/Y h:i:s a', time());
-                echo "<br />This report was generated at $date</div>";
+                echo "<br />This report was generated at $date";
                 require_once('../db_connection.php');
 
                 $query =
@@ -56,7 +56,7 @@ $siteBuilder->getMenu();
                     Ticket_Sales";
                 $response = @mysqli_query($dbc, $query);
                 while ($row = mysqli_fetch_array($response)) {
-                    echo "The total revenue generated this month through ticket sales is $" . $row['revenue'];
+                    echo "The total revenue generated this month through ticket sales is $" . $row['revenue']."</div>";
                 }
 
                 $month = $month . '%';
