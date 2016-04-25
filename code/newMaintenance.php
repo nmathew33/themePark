@@ -74,6 +74,7 @@ $siteBuilder->getMenu();
             
             $rideID = intval($ride); 
             
+            date_default_timezone_set('America/Chicago');
             $dateCreate = date("Y-m-d H:i:s");               
 
             mysqli_stmt_bind_param($stmt, "iissi", $maintID, $user,$dateCreate, $descrip,$rideID);
