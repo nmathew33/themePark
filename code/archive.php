@@ -39,6 +39,7 @@ $siteBuilder->getMenu();
   				<option value="SELECT * FROM Concession_Stands WHERE archive='yes'">Concession Stands</option>
   				<option value="SELECT * FROM Concession_Pricing WHERE archive='yes'">Concessions</option>  				
   				<option value="SELECT * FROM Rides WHERE archive='yes'">Rides</option>
+  				<option value="SELECT * FROM Maintenance WHERE archive='yes'">Maintenance</option>
 				</select>
             </p>
             <input type = "submit" value="Select">
