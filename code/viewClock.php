@@ -96,7 +96,7 @@ $siteBuilder->getMenu();
                 $row['last_name'] . '</td><td align="left">' .
                 $row['clock_in'] . '</td><td align="left">' .
                 $row['clock_out'] . '</td><td align="left">' .
-                $row['phone'] . '</td><td align="left">';
+                $row['phone'] . '</td>';
 
                 echo '</tr>';
                 }
