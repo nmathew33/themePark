@@ -83,8 +83,8 @@ $siteBuilder->getMenu();
                 <td align="left"><b>User_Created</b></td>
                 <td align="left"><b>Ride ID</b></td>
                 <td align="left"><b>Ticket_Description</b></td>
-                <td align="left"><b>Date_Closed</b></td>
                 <td align="left"><b>User_Closed</b></td>
+                <td align="left"><b>Date_Closed</b></td>
                 <td align="left"><b>Resolution</b></td>';
                 
                 while($row = mysqli_fetch_array($response))

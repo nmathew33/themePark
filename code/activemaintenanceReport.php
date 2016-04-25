@@ -20,7 +20,9 @@ $siteBuilder->getGreyOverLay();
 
 $siteBuilder->getMenu();
 ?>
+ <img src="icon.jpg" alt="icon" class = "reportIcon">
 <div class = "content">
+        
         <h1>
             Maintenance Report
         </h1>

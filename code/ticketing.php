@@ -10,48 +10,29 @@ if(isset($_SESSION['id'])){
 } else{
     header("Location: index.php");
 }
-
-
-
 $query = "SELECT * FROM Coupon";
-
 $response = @mysqli_query($dbc,$query);
-
-
 while ($row = @mysqli_fetch_array($response)) {
     
     $result[] = $row;
 }
-
 $json = @json_encode($result);
-
-
-
 $query = "SELECT * FROM Ticket_Pricing";
-
 $response2 = @mysqli_query($dbc,$query);
-
 while ($row = @mysqli_fetch_array($response2)) {
     
     $result2[] = $row;
 }
-
 $json_prices = @json_encode($result2);
-
-
-
-
 @mysqli_close($dbc);
-
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 $siteBuilder->getOpenHtmlTags();
 $siteBuilder->getGreyOverLay();
-
 $siteBuilder->getMenu();
 ?>
 
-<div>
+<div class="col-70">
     <form action="ticketingInsert.php" method="post">
             <div class="col-100">
                 <h3>Adults</h3>
@@ -84,73 +65,136 @@ $siteBuilder->getMenu();
                 </div>
             </div>
             
-            <input type="hidden" name="adult_price" id="adult_price">
-            <input type="hidden" name="child_price" id="child_price">
-            <input type="hidden" name="total_value_input" id="total_value_input">
+            <div class="col-100">
+                <div id="getCoupon">
+                    <h3>Coupon</h3>
+                    <input name="coupon" type="text" id="coupon_id">
+                    <input type="hidden" name="coupon_value" id="coupon_value" value="0">
+                    <div class="button_group">
+                        <div id="addCoupon" onclick="addCoupon()">Add Coupon</div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+                <table class="price_table">
+                    <tr>
+                        <td>
+                            Adults
+                        </td>
+                        <td id="table_adult_count"></td>
+                        <td id="table_adult_price"></td>
+                        <td id="table_adult_total_price"></td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Children</td>
+                        <td id="table_children_count"></td>
+                        <td id="table_children_price"></td>
+                        <td id="table_children_total_price"></td>
+                    </tr>
+                    <tr>
+                        <td>Coupon</td>
+                        <td></td>
+                        <td id="table_coupon_discount"></td>
+                        <td id="table_discount_total"></td>
+                    </tr>
+                    <tr>
+                        <td>Subtotal</td>
+                        <td></td>
+                        <td></td>
+                        <td id="table_subtotal"></td>
+                    </tr>
+                    <tr>
+                        <td>Tax</td>
+                        <td></td>
+                        <td id="table_tax_percentage"></td>
+                        <td id="table_tax_amount"></td>
+                    </tr>
+                    <tr class="price_table_total">
+                        <td>Total</td>
+                        <td></td>
+                        <td></td>
+                        <td id="table_total_price"></td>
+                    </tr>
+                </table>
             
             <div class="col-100">
-                <h3>Coupon</h3>
-                <input name="coupon" type="text" id="coupon_id">
-                <input type="hidden" name="coupon_value" id="coupon_value">
-                <div id="addCoupon" onclick="addCoupon()">Add Coupon</div>
-            </div>
-            
-            <h2>$<span id="total_price">0.00</span></h2>
-            
-            <div id="payment_options">
-                <div class="col-50">
-                    <div id="getCash" class=" ticket_input">
-                        <h3>Cash</h3>
-                        <input   type="number" min="0.01" step="0.01" max="2500" name="cash" placeholder="Cash">
-                    </div>
+                
+                <div class="button_group">
+                    <div onclick="payment_type(1)" >Card Payment</div>
+                    <div onclick="payment_type(2)" >Cash Payment</div>
                 </div>
                 
-                <div class="col-50">
-                    <div id="getCard">
-                        <h3>Card</h3>
-                        <input type="number" name="cnumber" placeholder="Card Number">
-                        <br>
-                        <input type="number" name="cvv" placeholder="cvv" min="0" step="1" max="999">
-                        <br>                            
-                        <select name='expireMM' id='expireMM'>
-                            <option value=''>Month</option>
-                            <option value='01'>Janaury/01</option>
-                            <option value='02'>February/02</option>
-                            <option value='03'>March/03</option>
-                            <option value='04'>April/04</option>
-                            <option value='05'>May/05</option>
-                            <option value='06'>June/06</option>
-                            <option value='07'>July/07</option>
-                            <option value='08'>August/08</option>
-                            <option value='09'>September/09</option>
-                            <option value='10'>October/10</option>
-                            <option value='11'>November/11</option>
-                            <option value='12'>December/12</option>
-                        </select>
-                        <select name='expireYY' id='expireYY'>
-                            <option value=''>Year</option>
-                            <option value='2016'>2016</option>
-                            <option value='2017'>2017</option>
-                            <option value='2018'>2018</option>
-                            <option value='2019'>2019</option>
-                        </select>
-                        
-                        <input class="inputCard" type="hidden" name="expiry" id="expiry" maxlength="4"/>
-                        <br>                            
-                        <select name='bank' id='bank_input'>
-                            <option value='Visa'>Visa</option>
-                            <option value='Mastercard'>Mastercard</option>
-                        </select> 
-                        
+                <div id="payment_options">
+                    <div class="col-100">
+                        <div id="getCash">
+                            <h3>Cash</h3>
+                            <input id="cash_amount"  type="number" min="0.01" step="0.01" max="2500" name="cash" placeholder="Amount">
+                        </div>
+                    </div>
+                    
+                    <div class="col-100">
+                        <div id="getCard">
+                            <h3>Card</h3>
+                            <input  id="card_amount" type="number" min="0.01" step="0.01" max="2500" name="card_amount" placeholder="Amount">                        
+                            <input type="number" name="cnumber" placeholder="Card Number">
+                            <br>
+                            <input type="number" name="cvv" placeholder="cvv" min="0" step="1" max="999">
+                            <br>                            
+                            <select name='expireMM' id='expireMM'>
+                                <option value=''>Month</option>
+                                <option value='01'>Janaury/01</option>
+                                <option value='02'>February/02</option>
+                                <option value='03'>March/03</option>
+                                <option value='04'>April/04</option>
+                                <option value='05'>May/05</option>
+                                <option value='06'>June/06</option>
+                                <option value='07'>July/07</option>
+                                <option value='08'>August/08</option>
+                                <option value='09'>September/09</option>
+                                <option value='10'>October/10</option>
+                                <option value='11'>November/11</option>
+                                <option value='12'>December/12</option>
+                            </select>
+                            <select name='expireYY' id='expireYY'>
+                                <option value=''>Year</option>
+                                <option value='2016'>2016</option>
+                                <option value='2017'>2017</option>
+                                <option value='2018'>2018</option>
+                                <option value='2019'>2019</option>
+                                <option value='2020'>2020</option>
+                            </select>
+                            
+                            <input class="inputCard" type="hidden" name="expiry" id="expiry" maxlength="4"/>
+                            <br>                            
+                            <select name='bank' id='bank_input'>
+                                <option value='Visa'>Visa</option>
+                                <option value='Mastercard'>Mastercard</option>
+                                <option value='American Express'>American Express</option>
+                                <option value='Discover'>Discover</option>
+                            </select> 
+                            
+                        </div>
                     </div>
                 </div>
             </div>
+            
+            <input type="hidden" name="adult_price" id="adult_price">
+            <input type="hidden" name="child_price" id="child_price">
+            <input type="hidden" value="0" id="hidden_total_price" name="total_value_input">
+            
+            
+            
+            
+            
+            
         <input class='full-width-submit' type="submit" name="submit" value="Complete order">
     </form>
 </div>
 
 <script> 
-
     console.log("query", "<?php echo $query; ?>");
     var output = <?php echo $json; ?>;
     console.log("coupons", output);
@@ -164,136 +208,113 @@ $siteBuilder->getMenu();
     document.getElementById("adult_price").value =  adult_price.price;
     document.getElementById("child_price").value =  child_price.price;
     
-    
-    
-// var para = document.createElement("p");
-// var node = document.createTextNode("This is new.");
-// para.appendChild(node);
-
-// var element = document.getElementById("div1");
-// element.appendChild(para);
-
-
+function payment_type(type){
+    switch (type) {
+        case 1:
+            document.getElementById('getCash').style.display = "none";
+            document.getElementById('getCard').style.display = "block";
+        break;   
+        
+        case 2:
+            document.getElementById('getCash').style.display = "block";
+            document.getElementById('getCard').style.display = "none";
+        break;   
+    }
+}
 function addAdult() {
     var append_list = document.createElement('div');
-    
-    var input = document.createElement('input');
-    input.name = "first_name[]";
-    input.type = "text";
-    input.placeholder = "First Name";
-    append_list.appendChild(input);
-    
-    input = document.createElement('input');
-    input.name = "last_name[]";
-    input.type = "text";
-    input.placeholder = "Last Name";
-    append_list.appendChild(input);
-    
-    input = document.createElement('input');
-    input.name = "email[]";
-    input.type = "text";
-    input.placeholder = "Email";
-    append_list.appendChild(input);
-    
-    input = document.createElement('input');
-    input.name = "address[]";
-    input.type = "text";
-    input.placeholder = "Address";
-    append_list.appendChild(input);
-    
-    input = document.createElement('input');
-    input.name = "phone[]";
-    input.type = "text";
-    input.placeholder = "Phone";
-    append_list.appendChild(input);
+    append_list.className = 'input-group';
+    append_list.innerHTML = '<input name="first_name[]" type="text" placeholder="First Name" />\
+                        <input name="last_name[]" type="text" placeholder="Last Name" />\
+                        <input name="email[]" type="text" placeholder="E-Mail">\
+                        <input name="phone[]" type="text" placeholder="Phone">\
+                    </div>\
+                    <div class="col-100">\
+                        <input name="address[]" class="col-100" type="text" placeholder="Address">\
+                    </div>\
+    ';
     
     addItem("adultList", append_list);
 }
-
 function addChild(){
-     var append_list = document.createElement('div');
+    var append_list = document.createElement('div');
+    append_list.className = 'input-group';
+    append_list.innerHTML = '<input name="child_first_name[]" type="text" placeholder="First Name" />\
+                        <input name="child_last_name[]" type="text" placeholder="Last Name" />\
+                        <input name="child_email[]" type="text" placeholder="E-Mail">\
+                        <input name="child_phone[]" type="text" placeholder="Phone">\
+                    </div>\
+                    <div class="col-100">\
+                        <input name="child_address[]" class="col-100" type="text" placeholder="Address">\
+                    </div>\
+    ';
     
-    var input = document.createElement('input');
-    input.name = "child_first_name[]";
-    input.type = "text";
-    input.placeholder = "First Name";
-    append_list.appendChild(input);
+    addItem("childList", append_list);
     
-    input = document.createElement('input');
-    input.name = "child_last_name[]";
-    input.type = "text";
-    input.placeholder = "Last Name";
-    append_list.appendChild(input);
     
-    input = document.createElement('input');
-    input.name = "child_email[]";
-    input.type = "text";
-    input.placeholder = "Email";
-    append_list.appendChild(input);
     
-    input = document.createElement('input');
-    input.name = "child_address[]";
-    input.type = "text";
-    input.placeholder = "Address";
-    append_list.appendChild(input);
     
-    input = document.createElement('input');
-    input.name = "child_phone[]";
-    input.type = "text";
-    input.placeholder = "Phone";
-    append_list.appendChild(input);
     
-    addItem("childList", append_list);  
+    
 }
-
-
-
 function addItem(element_id, append_item){
     var element = document.getElementById(element_id);
     element.appendChild(append_item);
     updatePrice();
-    
 }
-
-
-
 function updatePrice(){
+    var finalTotal;
     var adult_count = document.getElementById("adultList").childElementCount;
     var child_count = document.getElementById("childList").childElementCount;
-    console.log("adults", document.getElementById("adultList").childElementCount);
-    console.log('update price begin');
-    console.log("adult_count", adult_count);
-    console.log("adult_price", adult_price.price);
     adult_count += 1;
+    
+    document.getElementById('table_adult_count').innerHTML = adult_count;    
+    document.getElementById('table_adult_price').innerHTML = adult_price.price;    
+    document.getElementById('table_children_count').innerHTML = child_count;    
+    document.getElementById('table_children_price').innerHTML = child_price.price;    
+    
     console.log("adult_count", adult_count);
     
     total_price1 = adult_count  * adult_price.price;
+    document.getElementById('table_adult_total_price').innerHTML = (adult_count * adult_price.price).toFixed(2);        
+    document.getElementById('table_children_total_price').innerHTML = (child_count * child_price.price).toFixed(2);        
     total_price1 += child_count * child_price.price;
     console.log(coupon_discount);
-    if(coupon_discount < 1){   
+    if(coupon_discount === 0){
+        console.log("no discount");
+        document.getElementById('table_coupon_discount').innerHTML = '';
+        document.getElementById('table_discount_total').innerHTML = '';
+    } else if (coupon_discount < 1){   
+        var discount_amount = total_price1 * coupon_discount;
         total_price1 = total_price1 * (1 - coupon_discount);
+        document.getElementById('table_coupon_discount').innerHTML = (coupon_discount*100) +'% off';
+        document.getElementById('table_discount_total').innerHTML = "$" + discount_amount.toFixed(2);
     } else {
+        var discount_amount = coupon_discount;        
         total_price1 = total_price1 - coupon_discount;
+        document.getElementById('table_coupon_discount').innerHTML = '$'+coupon_discount+' off';
+        document.getElementById('table_discount_total').innerHTML = "$" + discount_amount.toFixed(2);               
     }
     
     console.log('total price', total_price);
-    document.getElementById('total_price').innerHTML = total_price1.toFixed(2);
-    document.getElementById("total_value_input").value =  total_price1.toFixed(2);      
+    document.getElementById('table_subtotal').innerHTML = total_price1.toFixed(2);     
+    document.getElementById('table_tax_percentage').innerHTML = '8.25%';     
+    document.getElementById('table_tax_amount').innerHTML = (total_price1 * .0825).toFixed(2);     
+    finalTotal = total_price1 * 1.0825;
+    document.getElementById('table_total_price').innerHTML = finalTotal.toFixed(2);
+    document.getElementById('hidden_total_price').value = finalTotal.toFixed(2);
 }    
-    
     
 function removeItem(name){
     var list = document.getElementById(name); 
     list.removeChild(list.childNodes[list.childElementCount - 1]);
     updatePrice();
 }
- 
-
    
 function addCoupon() {
     var coupon;
     var coupon_value;
-    if (typeof document.getElementById('coupon_id').value != '') {
+    if (document.getElementById('coupon_id').value != '') {
         coupon = document.getElementById('coupon_id').value;
         coupon_value = output.filter(function( obj ) { return obj.code == coupon; });
         if(typeof coupon_value != 'undefined'){
@@ -304,16 +325,13 @@ function addCoupon() {
         }
     } else {
         coupon = "";
-        coupon_value = null;
+        coupon_discount = 0;
     }
     updatePrice();
     
 }
-
-
 updatePrice();
     
-
 </script>
 
 
