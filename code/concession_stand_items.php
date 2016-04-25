@@ -68,11 +68,11 @@ require("themeparkSiteBuilder.php");
                 <div class="col-50">
                     <div id="getCash" class=" ticket_input">
                         <h3>Cash</h3>
-                        <input type="number" min="0.01" step="0.01" max="2500" name="cash" placeholder="Cash">
+                        <input type="number" min="0.01" step="0.01" max="2500" name="cash" placeholder="Cash" >
                     </div>
                 </div>
                 
-                <div class="col-50">
+                <div class="col-150">
                     <div id="getCard">
                         <h3>Card</h3>
                         <input type="number" placeholder="Card Number" name="cnumber"  form="priceform">
