@@ -2,7 +2,7 @@
 session_start();
 
 if(isset($_SESSION['id'])){
-    $username = $_SESSION['username']; 
+    $username = $_SESSION['username'];
     $id = $_SESSION['id'];
     $roleId = $_SESSION['roleId'];
     $first_name = $_SESSION['first_name'];
@@ -33,35 +33,35 @@ $siteBuilder->getMenu();
       <input type="submit">
       <a href="insertRideForm.php" class="button">Add Ride</a>
     </form>
-    
 
 
-    
+
+
         <?php
             if(isset($_POST['by'])){
-                
+
             $by = $_POST['by'];
 
-                echo '<form action="editingRides.php" method="post" enctype="multipart/form=data"> 
+                echo '<form action="editingRides.php" method="post" enctype="multipart/form=data">
                             <button type="submit" name="by" value="' . $by . '">Select</button>
                         </form> ';
                 echo '<div class="reports">';
-                
+
                 $query = "SELECT idRides, in_use, staff, name, description, date_created FROM Rides WHERE archive='no' ORDER BY " . $by;
             } else{
-                
-                 echo '<form action="editingRides.php" method="post" enctype="multipart/form=data"> 
+
+                 echo '<form action="editingRides.php" method="post" enctype="multipart/form=data">
                         <button type="submit" value="">Select</button>
                     </form> ';
                 echo '<div class="reports">';
-            
+
                 $query = "SELECT idRides, in_use, staff, name, description, date_created FROM Rides WHERE archive='no'";
-                
+
             }
             require_once('../db_connection.php');
 
             $response = @mysqli_query($dbc, $query);
-            
+
             if($response){
             echo '<table align="left"
             cellspacing="5" cellpadding="8" class="report">
@@ -73,16 +73,16 @@ $siteBuilder->getMenu();
             <td align="left"><b>Staff</b></td>
             <td align="left"><b>date_created</b></td></tr>';
 
-        
+
             while($row = mysqli_fetch_array($response)){
 
-            echo '<tr><td align="left">' . 
-            $row['idRides'] . '</td><td align="left">' . 
+            echo '<tr><td align="left">' .
+            $row['idRides'] . '</td><td align="left">' .
             $row['name'] . '</td><td align="left">' .
             ($row['in_use'] ? 'yes' : 'no') . '</td><td align="left">' .
             $row['description'] . '</td><td align="left">' .
-            $row['staff'] . '</td><td align="left">' . 
-            $row['date_created'] . '</td><td align="left">';
+            $row['staff'] . '</td><td align="left">' .
+            $row['date_created'] . '</td>';
 
             echo '</tr>';
             }

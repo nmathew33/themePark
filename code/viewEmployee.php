@@ -2,7 +2,7 @@
 session_start();
 
 if(isset($_SESSION['id'])){
-    $username = $_SESSION['username']; 
+    $username = $_SESSION['username'];
     $id = $_SESSION['id'];
     $roleId = $_SESSION['roleId'];
     $first_name = $_SESSION['first_name'];
@@ -40,31 +40,31 @@ $siteBuilder->getMenu();
     </form>
 
         <?php
-        
+
             if(isset($_POST['by'])){
-                
+
             $by = $_POST['by'];
 
-                echo '<form action="editingEmployee.php" method="post" enctype="multipart/form=data"> 
+                echo '<form action="editingEmployee.php" method="post" enctype="multipart/form=data">
                             <button type="submit" name="by" value="' . $by . '">Select</button>
                         </form> ';
                 echo '<div class="reports">';
-                
+
                 $query = "SELECT idUsers, Roles.name, first_name, last_name, email, address, phone,
             ssn, gender, date_employed FROM Users, Roles Where idRoles = role_id AND Users.archive = 'no' ORDER BY " . $by;
-            
+
             } else{
-                
-                 echo '<form action="editingEmployee.php" method="post" enctype="multipart/form=data"> 
+
+                 echo '<form action="editingEmployee.php" method="post" enctype="multipart/form=data">
                         <button type="submit" value="">Select</button>
                     </form> ';
                 echo '<div class="reports">';
-            
+
                 $query = "SELECT idUsers, Roles.name, first_name, last_name, email, address, phone,
                             ssn, gender, date_employed FROM Users, Roles Where idRoles = role_id AND Users.archive = 'no'";
-                
+
             }
-           
+
             require_once('../db_connection.php');
 
             $response = @mysqli_query($dbc, $query);
@@ -84,20 +84,20 @@ $siteBuilder->getMenu();
             <td align="left"><b>Gender</b></td>
             <td align="left"><b>Date Employed</b></td></tr>';
 
-        
+
             while($row = mysqli_fetch_array($response)){
 
-            echo '<tr><td align="left">' . 
-            $row['idUsers'] . '</td><td align="left">' . 
+            echo '<tr><td align="left">' .
+            $row['idUsers'] . '</td><td align="left">' .
             $row['name'] . '</td><td align="left">' .
-            $row['first_name'] . '</td><td align="left">' . 
+            $row['first_name'] . '</td><td align="left">' .
             $row['last_name'] . '</td><td align="left">' .
-            $row['email'] . '</td><td align="left">' . 
-            $row['address'] . '</td><td align="left">' . 
+            $row['email'] . '</td><td align="left">' .
+            $row['address'] . '</td><td align="left">' .
             $row['phone'] . '</td><td align="left">' .
             $row['ssn'] . '</td><td align="left">' .
             $row['gender'] . '</td><td align="left">' .
-            $row['date_employed'] . '</td><td align="left">';
+            $row['date_employed'] . '</td>';
 
             echo '</tr>';
             }
