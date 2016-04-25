@@ -48,6 +48,15 @@ $siteBuilder->getMenu();
                 $date = date('m/d/Y h:i:s a', time());
                 echo "<br />This report was generated at $date</div>";
                 require_once('../db_connection.php');
+                $query =
+                "SELECT
+                    SUM(pricing) revenue
+                FROM
+                    Concession_Sales";
+                $response = @mysqli_query($dbc, $query);
+                while ($row = mysqli_fetch_array($response)) {
+                    echo "The total revenue generated this month through concession sales is $" . $row['revenue'];
+                }
 
                 $month = $month . '%';
 
