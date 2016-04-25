@@ -279,6 +279,18 @@ $siteBuilder->getMenu();
                         $row = mysqli_fetch_array($response);
                         $coustomer_id = $row['idCustomers'];
                     }
+                    
+                date_default_timezone_set('America/Chicago');
+                $date = date('Y-m-d H:i:s');
+                    
+               $query = "INSERT INTO Ticket_Sales (customer_id, pricing, date, user_id, transaction_id) VALUES ($coustomer_id, ". $_POST['adult_price'] . ", '$date', $id,  $transaction_id);";
+
+               
+                $stmt = mysqli_prepare($dbc, $query);
+                
+                mysqli_stmt_execute($stmt);
+                
+                mysqli_stmt_close($stmt);
             }
             
             if(isset($_POST['child_first_name']) ){
@@ -300,8 +312,21 @@ $siteBuilder->getMenu();
                         $row = mysqli_fetch_array($response);
                         $coustomer_id = $row['idCustomers'];
                     }
+                    
+                    date_default_timezone_set('America/Chicago');
+                    $date = date('Y-m-d H:i:s');
+                    
+                    $query = "INSERT INTO Ticket_Sales (customer_id, pricing, date, user_id, transaction_id) VALUES ($coustomer_id," . $_POST['child_price']. ", '$date', $id,  $transaction_id);";
+
+                    $stmt = mysqli_prepare($dbc, $query);
+                    
+                    mysqli_stmt_execute($stmt);
+                    
+                    mysqli_stmt_close($stmt);
                 }
             }
+            
+            
             mysqli_close($dbc);
             
         } else {
