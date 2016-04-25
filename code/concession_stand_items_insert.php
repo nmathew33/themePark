@@ -237,7 +237,7 @@ $siteBuilder->getMenu();
                 
                 if($affected_rows == 1){
                     
-                    echo '<center><h1>Sale Successfull</h1></center>';
+                    echo '<center><h1>Sale Successful</h1></center>';
                     
                     mysqli_stmt_close($stmt);
                     mysqli_close($dbc);
