@@ -26,7 +26,7 @@ $siteBuilder->getGreyOverLay();
 $siteBuilder->getMenu();
 
 ?>
-        
+    
     <?php
         date_default_timezone_set('America/Chicago');
         /*  Echo the Date
@@ -43,7 +43,9 @@ $siteBuilder->getMenu();
             Y : 4 digit year    
         */
             
-        echo '<center class="info"><h1>' . date('h:i:s a'). '</h1><p>' . date('l F jS, Y ') . 'CST</p>' . '</center>';
+        echo '<center class="info"><h1 id=\'current_clock\'></h1><p>' . date('l F jS, Y ') . 'CST</p>' . '</center>';
+        
+        
         if (mysqli_num_rows($response) == 0) { 
            echo '<center><a href="in.php" class="clockInButton">Clock In</a></center>';
         } else { 
@@ -52,8 +54,36 @@ $siteBuilder->getMenu();
             $_SESSION['active_status'] = $row['active_status'];
            echo '<center><a href="out.php" class="clockOutButton">Clock Out</a></center>';
         }
+        
         mysqli_close($dbc);  
     ?>
+    
+    <script>
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            var am = "am";
+            if(h > 12){
+                h = h-12;
+                am = "pm";
+            }
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('current_clock').innerHTML =
+            h + ":" + m + ":" + s + " " + am;
+            var t = setTimeout(startTime, 500);
+        }
+        function checkTime(i) {
+            if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+            return i;
+        }
+        
+        startTime();
+    </script>
+    
+    
 <?php
 $siteBuilder->getClosinghtmlTags();
 ?>
