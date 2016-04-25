@@ -36,9 +36,12 @@ class ThemeParkSiteBuilder{
 	}
 
 	public function getMenu(){
+
+		echo '<div class = "subheader">&nbsp<a href="logout.php" class="logout_button">Sign Out</a></div>';
+		
 		if ($_SESSION['roleId'] == '1'){
 		echo '
-            <div class = "subheader"><a href="logout.php" class="button">Sign Out</a></div>
+
 			<div class="left-bar">
 				<div class="logo">
 					Four o Four land
@@ -57,7 +60,7 @@ class ThemeParkSiteBuilder{
 				';
 			} else if ($_SESSION['roleId'] == '2'){
 			echo '
-            <div class = "subheader"><a href="logout.php" class="button">Sign Out</a></div>
+
 			<div class="left-bar">
 				<div class="logo">
 					Four o Four land
@@ -76,7 +79,6 @@ class ThemeParkSiteBuilder{
 				';				
 			} else if ($_SESSION['roleId'] == '3'){
 			echo '
-            <div class = "subheader"><a href="logout.php" class="button">Sign Out</a></div>
 			<div class="left-bar">
 				<div class="logo">
 					Four o Four land
@@ -90,7 +92,6 @@ class ThemeParkSiteBuilder{
 				';				
 			} else if ($_SESSION['roleId'] == '4'){
 			echo '
-            <div class = "subheader"><a href="logout.php" class="button">Sign Out</a></div>
 			<div class="left-bar">
 				<div class="logo">
 					Four o Four land
@@ -104,7 +105,6 @@ class ThemeParkSiteBuilder{
 				';				
 			} else if ($_SESSION['roleId'] == '5'){
 			echo '
-            <div class = "subheader"><a href="logout.php" class="button">Sign Out</a></div>
 			<div class="left-bar">
 				<div class="logo">
 					Four o Four land
@@ -118,7 +118,6 @@ class ThemeParkSiteBuilder{
 				';				
 			} else if ($_SESSION['roleId'] == '6'){
 			echo '
-            <div class = "subheader"><a href="logout.php" class="button">Sign Out</a></div>
 			<div class="left-bar">
 				<div class="logo">
 					Four o Four land
@@ -132,7 +131,6 @@ class ThemeParkSiteBuilder{
 				';				
 			} else if ($_SESSION['roleId'] == '7'){
 			echo '
-            <div class = "subheader"><a href="logout.php" class="button">Sign Out</a></div>
 			<div class="left-bar">
 				<div class="logo">
 					Four o Four land

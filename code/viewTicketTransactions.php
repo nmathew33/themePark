@@ -46,8 +46,18 @@ $siteBuilder->getMenu();
                 <?php
                 date_default_timezone_set('America/Chicago');
                 $date = date('m/d/Y h:i:s a', time());
-                echo "<br />This report was generated at $date</div>";
+                echo "<br />This report was generated at $date";
                 require_once('../db_connection.php');
+
+                $query =
+                "SELECT
+                    SUM(pricing) revenue
+                FROM
+                    Ticket_Sales";
+                $response = @mysqli_query($dbc, $query);
+                while ($row = mysqli_fetch_array($response)) {
+                    echo "The total revenue generated this month through ticket sales is $" . $row['revenue']."</div>";
+                }
 
                 $month = $month . '%';
 
@@ -57,6 +67,7 @@ $siteBuilder->getMenu();
 					ts.date,
 					ts.season_pass,
 					ts.customer_id,
+                    ts.pricing,
 					c.first_name AS cfname,
 					c.last_name AS clname,
 					u.first_name AS ufname,
@@ -80,6 +91,7 @@ $siteBuilder->getMenu();
                 <tr>
 				<td align="left"><b>Ticket #</b></td>
 				<td align="left"><b>Date Sold</b></td>
+                <td align="left"><b>Pricing</b></td>
                 <td align="left"><b>Season Pass</b></td>
                 <td align="left"><b>Customer ID</b></td>
                 <td align="left"><b>Customer Name</b></td>
@@ -99,6 +111,7 @@ $siteBuilder->getMenu();
                 echo '<tr><td align="left">' .
                 $row['idTicket_Sales'] . '</td><td align="left">' .
 				$row['date'] . '</td><td align="left">' .
+                $row['pricing'] . '</td><td align="left">' .
                 $season . '</td><td align="left">' .
                 $row['customer_id'] . ' ' . '</td><td align="left">' .
                 $customer . '</td><td align="left">' .

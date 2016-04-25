@@ -99,7 +99,7 @@ $siteBuilder->getMenu();
             $bank = trim($_POST['bank']);
             
             $cash_payment = trim($_POST['cash']);
-            $card_amount = floatval($total_value_input) - floatval($cash_payment);
+            $card_amount = floatval(trim($_POST['card_amount']));
         } elseif ($cash) {
             $cash_payment = trim($_POST['cash']);
         } elseif ($card) {
@@ -108,7 +108,7 @@ $siteBuilder->getMenu();
             $expireMM = trim($_POST['expireMM']);
             $expireYY = trim($_POST['expireYY']);
             $bank = trim($_POST['bank']);
-            $card_amount = floatval($total_value_input);
+            $card_amount = floatval(trim($_POST['card_amount']));
         } else {
              $data_missing[] = 'Payment Information';
         }
@@ -159,7 +159,7 @@ $siteBuilder->getMenu();
                 
                 if($affected_rows == 1){
                     
-                    echo '<center><h1>Sale Successfull</h1></center>';
+                    echo '<center><h1>Sale Successful</h1></center>';
                     
                     mysqli_stmt_close($stmt);
                     
@@ -279,6 +279,18 @@ $siteBuilder->getMenu();
                         $row = mysqli_fetch_array($response);
                         $coustomer_id = $row['idCustomers'];
                     }
+                    
+                date_default_timezone_set('America/Chicago');
+                $date = date('Y-m-d H:i:s');
+                    
+               $query = "INSERT INTO Ticket_Sales (customer_id, pricing, date, user_id, transaction_id) VALUES ($coustomer_id, ". $_POST['adult_price'] . ", '$date', $id,  $transaction_id);";
+
+               
+                $stmt = mysqli_prepare($dbc, $query);
+                
+                mysqli_stmt_execute($stmt);
+                
+                mysqli_stmt_close($stmt);
             }
             
             if(isset($_POST['child_first_name']) ){
@@ -300,8 +312,21 @@ $siteBuilder->getMenu();
                         $row = mysqli_fetch_array($response);
                         $coustomer_id = $row['idCustomers'];
                     }
+                    
+                    date_default_timezone_set('America/Chicago');
+                    $date = date('Y-m-d H:i:s');
+                    
+                    $query = "INSERT INTO Ticket_Sales (customer_id, pricing, date, user_id, transaction_id) VALUES ($coustomer_id," . $_POST['child_price']. ", '$date', $id,  $transaction_id);";
+
+                    $stmt = mysqli_prepare($dbc, $query);
+                    
+                    mysqli_stmt_execute($stmt);
+                    
+                    mysqli_stmt_close($stmt);
                 }
             }
+            
+            
             mysqli_close($dbc);
             
         } else {
@@ -321,7 +346,7 @@ $siteBuilder->getMenu();
     
 ?>
 
-<a href="concessions.php" class="button">New Sale</a>
+<a href="ticketing.php" class="button">New Sale</a>
 
 <?php
 $siteBuilder->getClosinghtmlTags();

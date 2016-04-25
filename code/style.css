@@ -12,7 +12,10 @@ body {
 #addAdult, #addChild, #addCoupon, .remove {
     background: dodgerblue;
     padding: 20px 0;
-    border-radius:10px;
+    border-radius: 10px;
+    color: #fff;
+    margin: 20px 0 0 0;
+    border: none;
 }
 
 #coupon_id{
@@ -25,8 +28,20 @@ body {
     margin: 20px auto;
 }
 
+#coupon_id{
+    width: 100%;
+}
+
 #coupon_id, #getCash > input ,#getCard > input, #getCard select{
-    font-size: 30px;
+    font-size: 20px;
+    margin: 6px;
+    border-radius: 10px;
+    border: none;
+    padding: 5px;
+}
+
+form.ticketing #getCash, form.ticketing #getCard{
+    display: none;
 }
 
 .left-bar{
@@ -59,12 +74,18 @@ body {
     background: none;
 }
 
-#getCard, #getCash{
+#getCard, #getCash, #getCoupon{
     width: 400px;
-    padding: 20px;
+    padding: 30px;
     margin: 20px, auto;
-    background: rgba(255, 255, 255, .8);
+    background: #C0C2F9;
     text-align: left;
+    border-radius: 20px;
+    overflow: auto;
+}
+
+.total_price{
+    font-size: 30px;    
 }
 
 .col-50{
@@ -180,20 +201,19 @@ body {
 .subheader {
     font-size: 50px;
 }
-/*.login {
+.login {
     font-size: 45px;
     position: absolute;
     top: 40%;
     left: 20%;
     width: 25%;
     padding: 30px;
-    background: rgba(0,0,0, .5);
     border-radius: 30px;
-}*/
+}
 
 
 /*form {
-	font-size: 30px;
+    font-size: 30px;
     padding: 20px;
 }
 */
@@ -263,8 +283,8 @@ body {
 }
 
 .input {
-	line-height: 40px;
-	width : 100%;
+    line-height: 40px;
+    width : 100%;
     font-size: 30px;
  }
 
@@ -279,7 +299,7 @@ body {
 
 .menu {
     position: absolute;
-	top: 17.5%;
+    top: 17.5%;
     right: 2.55%;
 }
 
@@ -399,20 +419,66 @@ input {
 select {
     font-size: 32px;
 }
+
+.logout_button{
+    margin: 0 100px;
+    float: right;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px;
+    background: #fff;
+    text-decoration: none;
+    color: #4F52BA;
+    
+}
+
 .button {
-	position: absolute;
-    background-color: #008CBA;
+    position: absolute;
+    background-color: #4F52BA;
     border: none;
-    color: #333;
+    color: white;
     padding: 15px 32px;
     text-align: center;
     font-size: 16px;
     right: 0%;
 
 }
+
+.price_table, .price_table th, .price_table td {
+    background: #C0C2F9;
+    border-bottom: 5px solid #fff;
+    border-collapse: collapse;
+    padding: 10px;
+    font-size: 30px;
+    line-height: 30px;
+    min-width: 100px;
+}
+
+#payment_options{
+    min-height: 500px;
+}
+
+.price_table_total > td{
+    font-size: 35px;
+    line-height: 50px;
+    font-weight: bold;
+    background: #9A9DFF;
+    border-radius: 0;
+}
+
+.price_table{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+    border-top-left-radius: 30px;
+}
+
+/*
 .button:hover {
-	font-style: italic;
-	position: absolute;
+    font-style: italic;
+    position: absolute;
     background-color: #008CBA;
     border: none;
     color: #333;
@@ -422,6 +488,7 @@ select {
     right: 0%;
 
 }
+*/
 
 .buttonMenu {
 
@@ -435,7 +502,7 @@ select {
 
 }
 .buttonMenu:hover {
-	font-style: italic;
+    font-style: italic;
     background-color: red;
     border: none;
     color: #333;
@@ -469,6 +536,5 @@ select {
 }
 
 .rideUsageForm {
-	list-style: none;
+    list-style: none;
 }
-

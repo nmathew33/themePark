@@ -49,6 +49,7 @@ $siteBuilder->getOpeningHtmlTags('Login');
 
 // $siteBuilder->getGreyOverLay();
 ?>
+<h1 style="font-size: 70px;">Four O Four Land</h1>
 
 	<div class = "login">
 		Log In
