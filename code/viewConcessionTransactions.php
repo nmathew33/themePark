@@ -52,9 +52,14 @@ $siteBuilder->getMenu();
                 "SELECT
                     SUM(pricing) revenue
                 FROM
-                    Concession_Sales";
+                    Concession_Sales cs
+                WHERE
+                    cs.date LIKE '$month%'";
                 $response = @mysqli_query($dbc, $query);
                 while ($row = mysqli_fetch_array($response)) {
+                    if ($row['revenue'] == '') {
+                        $row['revenue'] = 0;
+                    }
                     echo "<br />The total revenue generated this month through concession sales is $" . $row['revenue'];
                 }
 
