@@ -99,7 +99,7 @@ $siteBuilder->getMenu();
             $bank = trim($_POST['bank']);
             
             $cash_payment = trim($_POST['cash']);
-            $card_amount = floatval($total_value_input) - floatval($cash_payment);
+            $card_amount = floatval(trim($_POST['card_amount']));
         } elseif ($cash) {
             $cash_payment = trim($_POST['cash']);
         } elseif ($card) {
@@ -108,7 +108,7 @@ $siteBuilder->getMenu();
             $expireMM = trim($_POST['expireMM']);
             $expireYY = trim($_POST['expireYY']);
             $bank = trim($_POST['bank']);
-            $card_amount = floatval($total_value_input);
+            $card_amount = floatval(trim($_POST['card_amount']));
         } else {
              $data_missing[] = 'Payment Information';
         }
@@ -159,7 +159,7 @@ $siteBuilder->getMenu();
                 
                 if($affected_rows == 1){
                     
-                    echo '<center><h1>Sale Successfull</h1></center>';
+                    echo '<center><h1>Sale Successful</h1></center>';
                     
                     mysqli_stmt_close($stmt);
                     
@@ -346,7 +346,7 @@ $siteBuilder->getMenu();
     
 ?>
 
-<a href="concessions.php" class="button">New Sale</a>
+<a href="ticketing.php" class="button">New Sale</a>
 
 <?php
 $siteBuilder->getClosinghtmlTags();
