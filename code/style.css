@@ -199,17 +199,10 @@ body {
 */
 
 .add_maintenance{
-<<<<<<< HEAD
-
-    height: 50px;
-    font-size: 30px;
-    width: 200px;
-=======
     
     height: 100px;
     font-size: 45px;
     width: 250px;
->>>>>>> a9a4bd63e199306fe4ad2c0e345e94738c576dd3
     text-decoration: none;
     background: green;
     border: none;
