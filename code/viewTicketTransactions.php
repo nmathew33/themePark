@@ -56,7 +56,7 @@ $siteBuilder->getMenu();
                     Ticket_Sales";
                 $response = @mysqli_query($dbc, $query);
                 while ($row = mysqli_fetch_array($response)) {
-                    echo "The total revenue generated this month through ticket sales is $" . $row['revenue'];
+                    echo "<br />The total revenue generated this month through ticket sales is $" . $row['revenue'];
                 }
 
                 $month = $month . '%';
