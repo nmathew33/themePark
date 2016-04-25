@@ -86,6 +86,7 @@ $siteBuilder->getMenu();
             
             <input type="hidden" name="adult_price" id="adult_price">
             <input type="hidden" name="child_price" id="child_price">
+            <input type="hidden" name="total_value_input" id="total_value_input">
             
             <div class="col-100">
                 <h3>Coupon</h3>
@@ -107,9 +108,9 @@ $siteBuilder->getMenu();
                 <div class="col-50">
                     <div id="getCard">
                         <h3>Card</h3>
-                        <input type="number" placeholder="Card Number">
+                        <input type="number" name="cnumber" placeholder="Card Number">
                         <br>
-                        <input type="number" placeholder="cvv" min="0" step="1" max="999">
+                        <input type="number" name="cvv" placeholder="cvv" min="0" step="1" max="999">
                         <br>                            
                         <select name='expireMM' id='expireMM'>
                             <option value=''>Month</option>
@@ -128,10 +129,10 @@ $siteBuilder->getMenu();
                         </select>
                         <select name='expireYY' id='expireYY'>
                             <option value=''>Year</option>
-                            <option value='10'>2016</option>
-                            <option value='11'>2017</option>
-                            <option value='12'>2018</option>
-                            <option value='12'>2019</option>
+                            <option value='2016'>2016</option>
+                            <option value='2017'>2017</option>
+                            <option value='2018'>2018</option>
+                            <option value='2019'>2019</option>
                         </select>
                         
                         <input class="inputCard" type="hidden" name="expiry" id="expiry" maxlength="4"/>
@@ -276,7 +277,8 @@ function updatePrice(){
     }
     
     console.log('total price', total_price);
-    document.getElementById('total_price').innerHTML = total_price1.toFixed(2);        
+    document.getElementById('total_price').innerHTML = total_price1.toFixed(2);
+    document.getElementById("total_value_input").value =  total_price1.toFixed(2);      
 }    
     
     
