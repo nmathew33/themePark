@@ -68,9 +68,10 @@ $siteBuilder->getMenu();
             
             $stmt = mysqli_prepare($dbc, $query);
             
+            date_default_timezone_set('America/Chicago');
             $dateEnd = date("Y-m-d H:i:s");               
 
-            mysqli_stmt_bind_param($stmt, "ids", $user,$dateEnd, $descrip);
+            mysqli_stmt_bind_param($stmt, "iss", $user,$dateEnd, $descrip);
         
             mysqli_stmt_execute($stmt);
             
