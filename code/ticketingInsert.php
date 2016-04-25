@@ -78,6 +78,16 @@ $siteBuilder->getMenu();
         }
         
         
+        if(empty($_POST['total_value_input'])){
+
+            $data_missing[] = 'total_value_input';
+
+        } else {
+
+            $total_value_input = trim($_POST['total_value_input']);
+
+        }
+        
         $card = (!empty($_POST['cnumber']) && !empty($_POST['cvv']) && !empty($_POST['expireMM']) && !empty($_POST['expireYY']));
         $cash = !empty($_POST['cash']);
         
@@ -105,7 +115,151 @@ $siteBuilder->getMenu();
         
         if(empty($data_missing)){
             
-            require_once('../db_connection.php');
+            if($card && $cash){
+                require_once('../db_connection.php');
+
+                $query = "INSERT INTO Transactions (sale_type) VALUES (3);";
+                
+                $stmt = mysqli_prepare($dbc, $query);
+                                
+                mysqli_stmt_execute($stmt);
+                
+                mysqli_stmt_close($stmt);
+                
+                $query = "SELECT MAX(idTransactions) FROM Transactions;";
+                $response = @mysqli_query($dbc, $query);
+                if($response){
+                    $row = mysqli_fetch_array($response);
+                    $transaction_id = $row['MAX(idTransactions)'];
+                }
+                
+                $query = "INSERT INTO Card_Payment (card_number, expiration, cvv, bank, transaction_id, amount) VALUES (?, ?, ?, ?, $transaction_id, $card_amount);";
+
+                $stmt = mysqli_prepare($dbc, $query);
+
+                $expiration = "$expireYY-$expireMM-01";
+                
+                mysqli_stmt_bind_param($stmt, "ssss", $card_number, $expiration, $cvv, $bank);
+                
+                mysqli_stmt_execute($stmt);
+                
+                mysqli_stmt_close($stmt);
+                
+                $query = "INSERT INTO Cash_Payment (amount, transaction_id) VALUES (?, $transaction_id);";
+
+                $stmt = mysqli_prepare($dbc, $query);
+                
+                $cash_payment = floatval($cash_payment);
+                                
+                mysqli_stmt_bind_param($stmt, "d", $cash_payment);
+                
+                mysqli_stmt_execute($stmt);
+                
+                $affected_rows = mysqli_stmt_affected_rows($stmt);
+                
+                if($affected_rows == 1){
+                    
+                    echo '<center><h1>Sale Successfull</h1></center>';
+                    
+                    mysqli_stmt_close($stmt);
+                    
+                } else {
+                    
+                    echo '<center><h1>Error Occurred</h1></center>';
+                    echo mysqli_error($dbc);
+                    
+                    mysqli_stmt_close($stmt);
+
+                }
+            } elseif ($cash) {
+                require_once('../db_connection.php');
+
+                $query = "INSERT INTO Transactions (sale_type) VALUES (1);";
+                
+                $stmt = mysqli_prepare($dbc, $query);
+                                
+                mysqli_stmt_execute($stmt);
+                
+                mysqli_stmt_close($stmt);
+                
+                $query = "SELECT MAX(idTransactions) FROM Transactions;";
+                $response = @mysqli_query($dbc, $query);
+                if($response){
+                    $row = mysqli_fetch_array($response);
+                    $transaction_id = $row['MAX(idTransactions)'];
+
+                }
+                
+                $query = "INSERT INTO Cash_Payment (amount, transaction_id) VALUES (?, $transaction_id);";
+
+                $stmt = mysqli_prepare($dbc, $query);
+                
+                $cash_payment = floatval($cash_payment);
+                                
+                mysqli_stmt_bind_param($stmt, "d", $cash_payment);
+                
+                mysqli_stmt_execute($stmt);
+                
+                $affected_rows = mysqli_stmt_affected_rows($stmt);
+                
+                if($affected_rows == 1){
+                    
+                    echo '<center><h1>Sale Successfull</h1></center>';
+                    
+                    mysqli_stmt_close($stmt);
+                    
+                } else {
+                    
+                    echo '<center><h1>Error Occurred</h1></center>';
+                    echo mysqli_error($dbc);
+                    
+                    mysqli_stmt_close($stmt);        
+                }
+            } elseif ($card) {
+                require_once('../db_connection.php');
+
+                $query = "INSERT INTO Transactions (sale_type) VALUES (2);";
+                
+                $stmt = mysqli_prepare($dbc, $query);
+                                
+                mysqli_stmt_execute($stmt);
+                
+                mysqli_stmt_close($stmt);
+                
+                $query = "SELECT MAX(idTransactions) FROM Transactions;";
+                $response = @mysqli_query($dbc, $query);
+                if($response){
+                    $row = mysqli_fetch_array($response);
+                    $transaction_id = $row['MAX(idTransactions)'];
+
+                }
+                
+                $query = "INSERT INTO Card_Payment (card_number, expiration, cvv, bank, transaction_id, amount) VALUES (?, ?, ?, ?, $transaction_id, $card_amount);";
+
+                $stmt = mysqli_prepare($dbc, $query);
+
+                $expiration = "$expireYY-$expireMM-01";
+                                
+                mysqli_stmt_bind_param($stmt, "ssss", $card_number, $expiration, $cvv, $bank);
+                
+                mysqli_stmt_execute($stmt);
+                
+                $affected_rows = mysqli_stmt_affected_rows($stmt);
+                
+                if($affected_rows == 1){
+                    
+                    echo '<center><h1>Sale Successfull</h1></center>';
+                    
+                    mysqli_stmt_close($stmt);
+                    
+                } else {
+                    
+                    echo '<center><h1>Error Occurred</h1></center>';
+                    echo mysqli_error($dbc);
+                    
+                    mysqli_stmt_close($stmt);        
+                }
+            }
             
             for($i = 0; $i < $numOfAdults;$i++)
             {
@@ -124,7 +278,6 @@ $siteBuilder->getMenu();
                     if($response){
                         $row = mysqli_fetch_array($response);
                         $coustomer_id = $row['idCustomers'];
-                        echo $coustomer_id;
                     }
             }
             
@@ -146,10 +299,10 @@ $siteBuilder->getMenu();
                     if($response){
                         $row = mysqli_fetch_array($response);
                         $coustomer_id = $row['idCustomers'];
-                        echo $coustomer_id;
                     }
                 }
             }
+            mysqli_close($dbc);
             
         } else {
             
