@@ -20,7 +20,7 @@ $siteBuilder->getGreyOverLay();
 
 $siteBuilder->getMenu();
 ?>
-
+<div class = "content">
     <h1>Select Report Type</h1>
     <a href="activemaintenanceReport.php" class="add_ticket_button">
         <button class="add_maintenance" name="active">Active Tickets</button>
@@ -28,3 +28,5 @@ $siteBuilder->getMenu();
     <a href="closedmaintenanceReport.php" class="add_ticket_button" name="closed">
         <button class="mod_maintenance" name="closed">Closed Tickets</button>
     </a>
+    
+ </div>
