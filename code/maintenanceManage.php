@@ -68,7 +68,7 @@ $siteBuilder->getMenu();
                 }    
            }
             $query = "SELECT idMaintenance, user_created, date_created, user_closed,date_closed,
-            ticket_description,closed_description, ride FROM UmaLand.Maintenance WHERE user_closed IS NOT NULL ";
+            ticket_description,closed_description, ride FROM UmaLand.Maintenance WHERE archive = 'no' AND user_closed IS NOT NULL ";
 
             $response = @mysqli_query($dbc, $query);
             
