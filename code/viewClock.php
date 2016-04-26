@@ -2,7 +2,7 @@
 session_start();
 
 if(isset($_SESSION['id'])){
-    $username = $_SESSION['username']; 
+    $username = $_SESSION['username'];
     $id = $_SESSION['id'];
     $roleId = $_SESSION['roleId'];
     $first_name = $_SESSION['first_name'];
@@ -14,7 +14,7 @@ if(isset($_SESSION['id'])){
 require("themeparkSiteBuilder.php");
 $siteBuilder = new themeParkSiteBuilder();
 
-$siteBuilder->getOpenHtmlTags();
+$siteBuilder->getOpeningHtmlTags('Clock Times Report');
 
 $siteBuilder->getGreyOverLay();
 
@@ -28,20 +28,30 @@ $siteBuilder->getMenu();
     </form>
 
 
-    
+
         <?php
             if(isset($_POST['yearMonth'])){
-                
+
                 $month = $_POST['yearMonth'];
 
                 echo '<div class="reports">';
+                ?>
 
+                <div class="report-header">
+                    <h4>Four O Four Land</h4>
+                    4773 Ashmor Drive <br />
+                    Houston, TX <br />
+
+                <?php
+                date_default_timezone_set('America/Chicago');
+                $date = date('m/d/Y h:i:s a', time());
+                echo "<br />This report was generated at $date</div>";
                 require_once('../db_connection.php');
 
                 $month = $month . '%';
 
-                $query = 
-				"SELECT 
+                $query =
+				"SELECT
 					idClock_Times,
 					idUsers,
 					name,
@@ -55,10 +65,10 @@ $siteBuilder->getMenu();
 					Users,
 					Roles
 				WHERE
-					idUsers = user_id AND 
-					role_id = idRoles AND 
+					idUsers = user_id AND
+					role_id = idRoles AND
 					clock_in LIKE '$month'
-                ORDER BY 
+                ORDER BY
                     clock_in";
 
                 $response = @mysqli_query($dbc, $query);
@@ -75,18 +85,18 @@ $siteBuilder->getMenu();
                 <td align="left"><b>Clock Out</b></td>
                 <td align="left"><b>Phone</b></td></tr>';
 
-            
+
                 while($row = mysqli_fetch_array($response)){
 
-                echo '<tr><td align="left">' . 
+                echo '<tr><td align="left">' .
                 $row['idClock_Times'] . '</td><td align="left">' .
-				$row['idUsers'] . '</td><td align="left">' . 
+				$row['idUsers'] . '</td><td align="left">' .
                 $row['name'] . '</td><td align="left">' .
-                $row['first_name'] . '</td><td align="left">' . 
+                $row['first_name'] . '</td><td align="left">' .
                 $row['last_name'] . '</td><td align="left">' .
-                $row['clock_in'] . '</td><td align="left">' . 
-                $row['clock_out'] . '</td><td align="left">' . 
-                $row['phone'] . '</td><td align="left">';
+                $row['clock_in'] . '</td><td align="left">' .
+                $row['clock_out'] . '</td><td align="left">' .
+                $row['phone'] . '</td>';
 
                 echo '</tr>';
                 }
@@ -102,10 +112,10 @@ $siteBuilder->getMenu();
 
                 mysqli_close($dbc);
 
-                }    
+                }
                 echo '</div>';
         ?>
-  
+
 <?php
 $siteBuilder->getClosinghtmlTags();
 ?>

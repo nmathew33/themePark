@@ -25,7 +25,7 @@ $siteBuilder->getMenu();
     if(isset($_POST['closeMaintenance'])){
         require_once('../db_connection.php');
         
-        $query = "DELETE FROM Maintenance WHERE idMaintenance= ?";
+        $query = "UPDATE Maintenance SET archive ='yes' WHERE idMaintenance= ?";
 
         $stmt = mysqli_prepare($dbc, $query);
 

@@ -23,7 +23,7 @@ $siteBuilder->getMenu();
 
 <h1>Management</h1>
 
-<h2>Controles: </h2>
+<h2>Controls: </h2>
 <div class="button_group_managment">
     <div><a href="viewEmployee.php" >Employees</a></div>
     <div><a href="viewSchedule.php" class="">Shift Schedule</a></div>

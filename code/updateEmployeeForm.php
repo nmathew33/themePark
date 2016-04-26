@@ -59,7 +59,7 @@ $siteBuilder->getMenu();
         require_once('../db_connection.php');
 
         $query = "SELECT idUsers, role_id, Roles.name, first_name, last_name, email, address, phone,
-        ssn, gender, password, date_employed FROM Users, Roles Where idRoles = role_id AND archive = 'no' AND idUsers =" . $_POST['updateEmployeeID'];
+        ssn, gender, password, date_employed FROM Users, Roles Where idRoles = role_id AND Users.archive = 'no' AND idUsers =" . $_POST['updateEmployeeID'];
         $response = @mysqli_query($dbc, $query);
         if($response){
             $row = mysqli_fetch_array($response);

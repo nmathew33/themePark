@@ -33,7 +33,7 @@ $siteBuilder->getMenu();
 ?>
 
 <div class="col-70">
-    <form action="ticketingInsert.php" method="post">
+    <form action="ticketingInsert.php" method="post" class="ticketing">
             <div class="col-100">
                 <h3>Adults</h3>
                 <div class='ticket_input'>

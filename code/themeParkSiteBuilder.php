@@ -37,7 +37,7 @@ class ThemeParkSiteBuilder{
 
 	public function getMenu(){
 
-		echo '<div class = "subheader">&nbsp<a href="logout.php" class="button">Sign Out</a></div>';
+		echo '<div class = "subheader">&nbsp<a href="logout.php" class="logout_button">Sign Out</a></div>';
 		
 		if ($_SESSION['roleId'] == '1'){
 		echo '

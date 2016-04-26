@@ -48,7 +48,7 @@ $siteBuilder->getMenu();
                 $date = date('m/d/Y h:i:s a', time());
                 echo "<br />This report was generated at $date</div>";
                 require_once('../db_connection.php');
-
+                
                 $month = $month . '%';
 
                 $query =
